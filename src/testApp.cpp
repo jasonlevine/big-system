@@ -75,7 +75,7 @@ void testApp::draw(){
             break;
             
         case 3:
-            rm.drawPerformer(currentScene);
+            rm.draw(currentScene, currentScene);
             break;
     }
     

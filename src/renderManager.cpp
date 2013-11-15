@@ -23,7 +23,7 @@ void renderManager::setup(openNIManager &_oni, vector<scene*> &_scenes) {
     int width = oni->openNIDevice.getWidth();
     int height = oni->openNIDevice.getHeight();
     
-    shader.load("shadersGL2/shader");
+    shader.load("shadersGL3/shader");
 }
 
 //-----------------------------------------------------
@@ -36,11 +36,11 @@ void renderManager::update() {
 //-----------------------------------------------------
 void renderManager::draw(int wallScene, int bodyScene) {
     ofSetDepthTest(true);
-//    cam.begin();
+    cam.begin();
 //    ofDrawAxis(100);
-//    drawStage(wallScene);
+    drawStage(wallScene);
     drawPerformer(bodyScene);
-//    cam.end();
+    cam.end();
     ofSetDepthTest(false);
    }
 
@@ -94,68 +94,31 @@ void renderManager::drawPerformer(int bodyScene){
     
     
     ///mesh2oni
-    ofSetColor(255, 255, 255);
-    
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    
-    
-    cam.begin();
-    //    ofDrawAxis(100);
-    
-    ofImage depthImage, maskImage;
-    
     int numUsers = oni->openNIDevice.getNumTrackedUsers();
     for (int i = 0; i < numUsers; i++){
         
-        
         ofxOpenNIUser & user = oni->openNIDevice.getTrackedUser(i);
         
-        ofPixels depthPix = oni->openNIDevice.getDepthPixels();
-        depthImage = depthPix;
-        maskImage = user.getMaskPixels();
-        
-        
-        ofMesh depthMesh;
-        int width = oni->openNIDevice.getWidth();
-        int height = oni->openNIDevice.getHeight();
-        for (float y = 0; y < height; y++) {//+=10
-            for (float x = 0; x < width; x++) {
-                float lightness = depthPix.getColor(x, y).getLightness();
-                float z = lightness == 0 ? 255 : lightness;
-                depthMesh.addVertex(ofVec3f(x, y, z));//depthPix.getColor(x,y).r * 10
-                depthMesh.addTexCoord(ofVec2f(x, y));
-            }
+        if (user.isTracking()) {
+            ofPlanePrimitive plane;
+            plane.set(640, 480, 64, 48);
+            plane.mapTexCoords(0, 0, 640, 480);
+            
+            ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+            
+            ofPushMatrix();
+            
+            shader.begin();
+            shader.setUniformTexture("tex0", oni->openNIDevice.getDepthTextureReference(), 0);
+            shader.setUniformTexture("tex1", oni->openNIDevice.getimageTextureReference(), 1);
+            shader.setUniformTexture("tex2", bodyProjo.getTextureReference(), 2);
+            shader.setUniformTexture("tex3", user.getMaskTextureReference(), 3);
+            plane.draw();
+            shader.end();
+            
+            ofPopMatrix();
+            
+            ofDisableBlendMode();
         }
-        
-        
-        for (int y = 0; y < height - 1; y++){
-            for (int x = 0; x < width - 1; x++){
-                depthMesh.addIndex(x+y*width);       // 0
-                depthMesh.addIndex((x+1)+y*width);     // 1
-                depthMesh.addIndex(x+(y+1)*width);     // 10
-                
-                depthMesh.addIndex((x+1)+y*width);     // 1
-                depthMesh.addIndex((x+1)+(y+1)*width);   // 11
-                depthMesh.addIndex(x+(y+1)*width);     // 10
-            }
-        }
-        
-        ofPushMatrix();
-        ofTranslate(-320, -240, 0);
-        shader.begin();
-        shader.setUniformTexture("tex0", bodyProjo.getTextureReference(), 0);
-        shader.setUniformTexture("tex1", maskImage, 1);
-        depthMesh.draw();
-        shader.end();
-        ofPopMatrix();
-        
     }
-    cam.end();
-    ofDisableBlendMode();
-
-    
-    ofSetColor(255);
-//    depthImage.draw(0,0,160,120);
-//    maskImage.draw(160,0,160, 120);
-//    bodyProjo.draw(320,0,160, 120);
 }

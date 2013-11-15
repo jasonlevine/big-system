@@ -20,25 +20,24 @@ void openNIManager::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
     
 #ifdef USERECORDING
-    openNIDevice.setupFromONI("onis/mary'sy.oni");
+    openNIDevice.setupFromONI("onis/claudia mid.oni"); //onis/mary'sy.oni
 #else
     openNIDevice.setup();
 #endif
     //    openNIDevice.addImageGenerator();
-    openNIDevice.addDepthGenerator();
-    openNIDevice.setRegister(true);
-    openNIDevice.setMirror(true);
+//    openNIDevice.addDepthGenerator();
+//    openNIDevice.setRegister(true);
+//    openNIDevice.setMirror(true);
     openNIDevice.addUserGenerator();
     openNIDevice.setMaxNumUsers(2);
     openNIDevice.start();
     
-    // set properties for all user masks and point clouds
-    openNIDevice.setUseMaskPixelsAllUsers(true); // if you just want pixels, use this set to true
-    openNIDevice.setUseMaskTextureAllUsers(true); // this turns on mask pixels internally AND creates mask textures efficiently
-    openNIDevice.setUsePointCloudsAllUsers(true);
-    openNIDevice.setPointCloudDrawSizeAllUsers(2); // size of each 'point' in the point cloud
-    openNIDevice.setPointCloudResolutionAllUsers(2); // resolution of the mesh created for the point cloud eg., this will use every second depth pixel
     openNIDevice.setDepthColoring(COLORING_GREY);
+    openNIDevice.setUseMaskTextureAllUsers(true);
+    openNIDevice.setUsePointCloudsAllUsers(true);
+    openNIDevice.setPointCloudDrawSizeAllUsers(2); // size of each 'point' in the
+    openNIDevice.setPointCloudResolutionAllUsers(2); // resolution of the mesh created for the point cloud eg., this will use every second depth pixel
+
     // you can alternatively create a 'base' user class
     //    ofxOpenNIUser user;
     //    user.setUseMaskTexture(true);
@@ -90,10 +89,10 @@ void openNIManager::draw(){
         
         // and point clouds:
         
-        ofPushMatrix();
+//        ofPushMatrix();
         // move it a bit more central
         //ofTranslate(320, 240, -1000);
-        user.drawPointCloud();
+//        user.drawPointCloud();
         
         // you can also access the mesh:
         
@@ -101,7 +100,7 @@ void openNIManager::draw(){
         //ofMesh & mesh = user.getPointCloud();
         // do something with the point cloud mesh
         
-        ofPopMatrix();
+//        ofPopMatrix();
     }
     
     ofDisableBlendMode();
