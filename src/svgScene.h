@@ -23,8 +23,9 @@ public:
     birdBlooms birds;
     bool addBird;
     
-//    audioAnalytics * aa;
-//    openNIManager * oni;
+    decayer wavesInput;
+    smoother wavesInput2;
+    float noiseT;
 };
 
     

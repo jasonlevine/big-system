@@ -10,6 +10,7 @@
 
 #include "ofMain.h"
 #include "ofxOpenNI.h"
+#include "ofxNormals.h"
 
 class openNIManager {
 public:
@@ -19,6 +20,8 @@ public:
 
     void userEvent(ofxOpenNIUserEvent & event);
 	ofxOpenNI openNIDevice;
+    
+    ofxNormals normals;
 };
 
     

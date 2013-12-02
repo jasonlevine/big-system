@@ -7,6 +7,8 @@
 //
 #include "audioAnalytics.h"
 #include "openNIManager.h"
+#include "smoother.h"
+#include "decayer.h"
 
 #pragma once
 

@@ -15,10 +15,12 @@ void main()
     vec4 maskColor = texture(tex3, texCoordVarying);
     
     vec4 color;
-    color.r = (imageColor.r * projColor.r);
-    color.g = (imageColor.g * projColor.g);
-    color.b = (imageColor.b * projColor.b);
+    color.r = (imageColor.r * projColor.r) + projColor.r / 2;
+    color.g = (imageColor.g * projColor.g)+ projColor.g / 2;
+    color.b = (imageColor.b * projColor.b)+ projColor.b / 2;
     color.a = 1.0 - maskColor.a;
+    
+
     
     
     outputColor = color;

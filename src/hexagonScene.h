@@ -17,6 +17,10 @@ public:
     void draw(int width, int height);
     
     vector<ofImage> waveSeq;
+    int imgW, imgH;
     int numImgs;
-    int curFrame;
+    float curFrame;
+    
+    smoother ampSmooth;
+    decayer pitchDecay;
 };

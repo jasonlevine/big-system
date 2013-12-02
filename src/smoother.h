@@ -6,9 +6,29 @@
 //
 //
 
-#ifndef __just_you_AA_NI_GLSL__smoother__
-#define __just_you_AA_NI_GLSL__smoother__
+#pragma once
+#include "ofMain.h"
 
-#include <iostream>
 
-#endif /* defined(__just_you_AA_NI_GLSL__smoother__) */
+//mean - Return mean of n past values.  requires vector of past values
+
+//weighted mean - Return some pct of current value plus some percentage of last value(s).  requires vector of past values
+
+
+//median - sort current value with last n values.  Return median. requires vector of past values
+
+//decay - If value is greater than threshold, return value, otherwise return decayed version of that value that was greater than threshold.  requires threshold, decay, and value.
+
+
+
+class smoother {
+    public:
+    void setNumPValues(int _numPVals) { numPVals = _numPVals; }
+    void addValue(float value);
+    float getMean();
+    float getWMean(float curWeight, float pastWeight);
+    float getMedian();
+    
+    int numPVals;
+    vector<float> pastValues;
+};

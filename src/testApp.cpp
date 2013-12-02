@@ -56,6 +56,7 @@ void testApp::update(){
         if (numUsers > 0 && aa.amp[2] > 0.3) contour.findContours(grayImage, 20, (640*480)/3, 10, true);
     }
     */
+    
 
 }
 
@@ -75,7 +76,7 @@ void testApp::draw(){
             break;
             
         case 3:
-            rm.draw(currentScene, currentScene);
+            rm.draw(0,1);
             break;
     }
     

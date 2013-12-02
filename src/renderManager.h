@@ -34,5 +34,5 @@ class renderManager {
     int width, height;
     
     ofShader shader;
-    
+    ofPlanePrimitive plane;
 };

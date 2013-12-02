@@ -14,13 +14,16 @@
 void openNIManager::userEvent(ofxOpenNIUserEvent & event){
     // show user event messages in the console
     ofLogNotice() << getUserStatusAsString(event.userStatus) << "for user" << event.id << "from device" << event.deviceID;
+    
+    normals.allocate(640,480);
 }
 //--------------------------------------------------------------
 void openNIManager::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
     
 #ifdef USERECORDING
-    openNIDevice.setupFromONI("onis/claudia mid.oni"); //onis/mary'sy.oni
+    openNIDevice.setupFromONI("onis/ETD_2013-11-30-17-02-35-060.oni"); //onis/mary'sy.oni
+    //claudia mid.oni
 #else
     openNIDevice.setup();
 #endif
@@ -51,6 +54,10 @@ void openNIManager::setup(){
 //--------------------------------------------------------------
 void openNIManager::update(){
     openNIDevice.update();
+    
+    normals << openNIDevice.getDepthTextureReference();
+    normals.update();
+    
 }
 
 //--------------------------------------------------------------
@@ -103,7 +110,11 @@ void openNIManager::draw(){
 //        ofPopMatrix();
     }
     
+    
+    
     ofDisableBlendMode();
     ofPopMatrix();
+    
+    normals.draw(0,480);
     
 }

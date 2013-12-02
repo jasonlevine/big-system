@@ -16,7 +16,7 @@ void main()
     vec4 modifiedPosition = position;
     
     // we need to scale up the values we get from the texture
-    float scale = 100;
+    float scale = 250;
     
     // here we get the red channel value from the texture
     // to use it as vertical displacement

@@ -24,6 +24,10 @@ void renderManager::setup(openNIManager &_oni, vector<scene*> &_scenes) {
     int height = oni->openNIDevice.getHeight();
     
     shader.load("shadersGL3/shader");
+    
+    
+    plane.set(640, 480, 640, 480);
+    plane.mapTexCoords(0, 0, 640, 480);
 }
 
 //-----------------------------------------------------
@@ -100,9 +104,7 @@ void renderManager::drawPerformer(int bodyScene){
         ofxOpenNIUser & user = oni->openNIDevice.getTrackedUser(i);
         
         if (user.isTracking()) {
-            ofPlanePrimitive plane;
-            plane.set(640, 480, 64, 48);
-            plane.mapTexCoords(0, 0, 640, 480);
+            
             
             ofEnableBlendMode(OF_BLENDMODE_ALPHA);
             

@@ -97,10 +97,10 @@ void audioAnalytics::setupVectors(){
 //--------------------------------------------------------------
 void audioAnalytics::loadTracks(){
     //vox
-    stems[0]->setFile(ofFilePath::getAbsolutePath("STEMS/bgVox.wav"));
+    stems[0]->setFile(ofFilePath::getAbsolutePath("STEMS/vox.wav"));
     stemNames[0] = "vox";
     //bgVox
-    stems[1]->setFile(ofFilePath::getAbsolutePath("STEMS/vox.wav")); //vox-lowpass.aiff
+    stems[1]->setFile(ofFilePath::getAbsolutePath("STEMS/bgVox.wav")); //vox-lowpass.aiff
     stemNames[1] = "bgVox";
     //beats
     stems[2]->setFile(ofFilePath::getAbsolutePath("STEMS/beats.wav"));

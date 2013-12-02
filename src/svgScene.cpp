@@ -17,18 +17,28 @@ void svgScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
     bird.load("bird.svg");
     waves.load("sea-waves.svg");
     addBird = false;
+    
+    wavesInput.setDecay(0.1);
+    wavesInput2.setNumPValues(25);
 }
 
 //--------------------------------------------------------------
 void svgScene::update() {
-    if (aa->amp[2] > 0.3 && !addBird) {
+    //birds
+    if (aa->amp[3] > 0.3 && !addBird) {
         birds.addBird(ofVec2f(ofRandom(50, 750), ofRandom(0, 300)));
         addBird = true;
     }
     
-    if (aa->amp[2] < 0.2 && addBird) addBird = false;
+    if (aa->amp[3] < 0.2 && addBird) addBird = false;
     
     birds.update();
+    
+    //waves
+//    wavesInput.addValue(aa->amp[2]);
+//    noiseT+=wavesInput.getValue() / 10;
+    noiseT+=aa->amp[2]/10;
+//    wavesInput2.addValue(aa->amp[2]);
 }
 
 //--------------------------------------------------------------
@@ -38,13 +48,12 @@ void svgScene::draw(int width, int height){
     
     ofSetHexColor(0xEDF484);
     ofRect(0,0,width, width);
-    float t = ofGetElapsedTimef();
+
     for (int i = 0; i < waves.getNumPath(); i++){
         ofPushMatrix();
         ofTranslate(width/2, height - height/3);
         ofScale(1 / waves.getWidth() * width, 1 / waves.getHeight() * height);
-        ofRotateZ(ofSignedNoise(t+i));
-        //ofRotateZ(i * 15);
+        ofRotateZ(ofSignedNoise(noiseT+i));
         
         ofPushMatrix();
         ofTranslate(-waves.getWidth()/2, -waves.getHeight()/2);
