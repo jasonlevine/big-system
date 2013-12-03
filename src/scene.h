@@ -17,7 +17,11 @@ class scene {
     virtual void setup(audioAnalytics * _aa, openNIManager * _oni){}
     virtual void update(){}
     virtual void draw(int width, int height){}
-
+//    void setupGUI(){}
+//    void guiEvent(ofxUIEventArgs &e){}
+    virtual void toggleGUI(){}
+    
     audioAnalytics * aa;
     openNIManager * oni;
+//    ofxUICanvas *gui;
 };

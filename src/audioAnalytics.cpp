@@ -141,16 +141,16 @@ void audioAnalytics::playStems(){
     }
     
     for ( int i = 0; i < NUMTRACKS; i++ ) {
-        stems[i]->play();
+        stems[i]->loop();
     }
     
-    stems[0]->play();
-    stems[1]->play();
-    stems[2]->play();
-    stems[3]->play();
-    stems[4]->play();
-    stems[5]->play();
-    stems[6]->play();
+    stems[0]->loop();
+    stems[1]->loop();
+    stems[2]->loop();
+    stems[3]->loop();
+    stems[4]->loop();
+    stems[5]->loop();
+    stems[6]->loop();
 }
 
 

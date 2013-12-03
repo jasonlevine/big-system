@@ -23,7 +23,7 @@ void renderManager::setup(openNIManager &_oni, vector<scene*> &_scenes) {
     int width = oni->openNIDevice.getWidth();
     int height = oni->openNIDevice.getHeight();
     
-    shader.load("shadersGL3/shader");
+    shader.load("shadersGL3/userMesh");
     
     
     plane.set(640, 480, 640, 480);

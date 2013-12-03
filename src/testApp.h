@@ -7,12 +7,14 @@
 #include "ofxOpenCv.h"
 
 #include "openNIManager.h"
-#include "audioAnalytics.h"
-#include "renderManager.h"
+//#include "audioAnalytics.h"
+//#include "renderManager.h"
+#include "projectionManager.h"
 
 #include "scene.h"
-#include "svgScene.h"
-#include "hexagonScene.h"
+#include "squigglerScene.h"
+#include "meshScene.h"
+//#include "hexagonScene.h"
 
 #define USERECORDING
 
@@ -42,7 +44,9 @@ public:
     vector<scene*> scenes;
     int currentScene;
     
-    renderManager rm;
+//    renderManager rm;
+    projectionManager pm;
+    float xOffset, yOffset, scale;
     
     ofTrueTypeFont verdana;
     

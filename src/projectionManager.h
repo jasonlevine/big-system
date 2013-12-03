@@ -15,16 +15,20 @@ class projectionManager {
 public:
     void setup(openNIManager &_oni, vector<scene*> &_scenes);
     void update();
-    void draw(int wallScene, int bodyScene);
+    void draw(int wallScene, int bodyScene, float scale, float xOffset, float yOffset);
     
     openNIManager * oni;
     vector<scene*> scenes;
     
-    ofShader maskingShader;
+    ofShader shader;
     
     int bodyScene, wallScene;
     
-    ofFbo maskFbo;
-    ofFbo fbo;
+    ofFbo maskFbo, fgFbo, bgFbo;
+    ofFbo finalFbo;
+    
+    ofPlanePrimitive plane;
+    
+    int w,h;
     
 };

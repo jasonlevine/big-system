@@ -6,8 +6,8 @@ void testApp::setup() {
     oni.setup();
     
 
-    scenes.push_back(new svgScene());
-    scenes.push_back(new hexagonScene());
+    scenes.push_back(new squigglerScene());
+    scenes.push_back(new meshScene());
     
     for (int i = 0; i < scenes.size(); i++) {
         scenes[i]->setup(&aa, &oni);
@@ -16,7 +16,10 @@ void testApp::setup() {
     currentScene = 0;
     mode = 2;
     
-    rm.setup(oni, scenes);
+//    rm.setup(oni, scenes);
+    pm.setup(oni, scenes);
+    xOffset = yOffset = 0;
+    scale = 1.0;
     
     verdana.loadFont(ofToDataPath("verdana.ttf"), 24);
     
@@ -34,6 +37,7 @@ void testApp::update(){
     for (int i = 0; i < scenes.size(); i++) {
         scenes[i]->update();
     }
+    
     /*
 (    if mode == 2) {
         // get number of current users
@@ -76,8 +80,12 @@ void testApp::draw(){
             break;
             
         case 3:
-            rm.draw(0,1);
+            pm.draw(0, 1, scale, xOffset, yOffset);
             break;
+            
+//        case 4:
+//            rm.draw(0,0);
+//            break;
     }
     
     
@@ -144,6 +152,39 @@ void testApp::keyPressed(int key){
         case '5':
             aa.setMode(key - 48);
             break;
+            
+        case OF_KEY_LEFT:
+            xOffset-=10;
+            break;
+            
+        case OF_KEY_RIGHT:
+            xOffset+=10;
+            break;
+            
+        case OF_KEY_DOWN:
+            yOffset-=10;
+            break;
+            
+        case OF_KEY_UP:
+            yOffset+=10;
+            break;
+            
+        case '-':
+            scale-=0.1;
+            break;
+            
+        case '=':
+            scale+=0.1;
+            break;
+            
+        case ' ':
+            cout << "scale = " << scale << "xOffsest = " << xOffset << " yoffste = " << yOffset << endl;
+            break;
+            
+        case 'g':
+            scenes[currentScene]->toggleGUI();
+            break;
+                
 
     }
 }

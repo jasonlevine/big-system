@@ -66,7 +66,7 @@ void hexagonScene::draw(int width, int height){
             int x = (float)i / 40 * imgW;
             int y = (float)j / 30 * imgH;
 
-            ofSetColor(pix1.getColor(x,y) * ampSmooth.getMean() * 2);
+            ofSetColor(pix1.getColor(x,y));
             float w = width / 40;
             float h = height / 30;
             
