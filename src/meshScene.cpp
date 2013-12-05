@@ -51,7 +51,7 @@ void meshScene::update(){
     if (waveHistory.size() > 120) waveHistory.erase(waveHistory.begin());
     
 
-    bassAccum += aa->amp[3] / 4;
+    bassAccum += aa->amp[3] / waveSpeed;
     
     gui->update();
     
@@ -60,39 +60,27 @@ void meshScene::update(){
 
 }
 
-void meshScene::draw(int width, int height){
+void meshScene::draw(int x, int y, int width, int height, bool drawToScreen = true){
+//    ofPushStyle();
+//    ofSetDepthTest(true);
     float noiseVel = bassAccum;
     
     if (waveHistory[0].size() > 0) {
-        int width = 512;
+        int width = 120;
         int height = waveHistory.size();
         
         ofMesh mesh;
         
         for (int y = 0; y < height; y++){
-            for (int x = 0; x<width; x++){
+            for (int x = 0; x < width; x++){
                 float noiseValue = ofNoise(x * noiseScale, y * noiseScale, noiseVel);
                 //                float h = waveHistory[y][x] * 0.5 + waveHistory[y][x] * noiseValue * 0.5 + noiseValue * 0.5;
-                float h = waveHistory[y][x] * (1.0 - noiseStrength) + noiseValue * noiseStrength; //waveHistory[y][x] * noiseValue * 0.5 +
+                float h = waveHistory[y][x] * waveStrength + noiseValue * noiseStrength; //waveHistory[y][x] * noiseValue * 0.5 +
                 
                 mesh.addVertex(ofPoint(x, h * hScale, y)); //waveHistory[y][x] +
                 float col = h * colScale;
                 
-                
-                
-                mesh.addColor(ofFloatColor::darkGoldenRod * col + ofFloatColor::chocolate * (1.0 - col));
-                
-                //float h = (waveHistory[y][x] + 1.0) / 2;
-                //                float r, g, b;
-                //                r = h > 0.4 ? (h - 0.4) * 2: 0.0; // + aa.amp[3]
-                //                g = r; //waveHistory2[y][x];
-                //                b = h;
-                //                float dist = float(abs(width / 2 - x)) / width;
-                //                float distSq = dist * dist;
-                //                ofFloatColor gradient = gradientStart * (1.0 - dist) + gradientEnd * dist;
-                //                float yDist = float(y) / height;
-                //                float yDistSq = yDist * yDist;
-                //                mesh.addColor(ofFloatColor(r,g,b) * (1.0 - yDistSq) + gradient * yDistSq);  // add a color at that vertex
+                mesh.addColor(meshHiCol * col + meshCol * (1.0 - col));
             }
         }
         
@@ -112,41 +100,80 @@ void meshScene::draw(int width, int height){
         
         
         //        ofDrawAxis(100);
+
         post.begin(cam);
         ofPushMatrix();
         ofRotateX(meshRotateX);
         ofRotateY(180);
-        ofScale(7,180,10);
+        ofScale(scaleX, scaleY, scaleZ);
         ofTranslate(-width/2, 0, -height/2);
+        ofSetLineWidth(lineWidth);
         mesh.drawWireframe();
         ofPopMatrix();
-        post.end();
         
+//        ofPushMatrix();
+//        ofTranslate(x,y);
+        post.end();
+//        ofPopMatrix();
+
     }
+//    ofSetDepthTest(false);
+//    ofPopStyle();
+}
+
+//--------------------------------------------------------------
+ofTexture & meshScene::getTexRef(int width, int height){
+//    draw(width, height, false);
+//    return post.getProcessedTextureReference();
 
 }
+
 
 //--------------------------------------------------------------
 void meshScene::setupGUI(){
     noiseScale = 0.01;
     meshRotateX = 0.0;
+    waveSpeed = 1.0;
     camX = 0;
     camY = 150;
     camZ = 600;
+    lineWidth = 1.0;
+    scaleX = 7;
+    scaleY = 180;
+    scaleZ = 10;
+    
+    meshCol.set(0.5, 0.5, 0.5);
+    meshHiCol.set(1.0, 1.0, 1.0);
     
     float dim = 16;
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
     float length = 255-xInit;
     
-    gui = new ofxUICanvas(0, 0, length+xInit, ofGetHeight());
+    gui = new ofxUIScrollableCanvas(0, 0, length+xInit, ofGetHeight());
+    gui->setScrollAreaToScreen();
+    gui->setScrollableDirections(false, true);
     
     gui->addFPSSlider("FPS SLIDER", length-xInit, dim*.25, 1000);
     gui->addSpacer(length-xInit, 1);
+    gui->addSlider("meshCol.r", 0.0, 1.0, &meshCol.r, length-xInit, dim);
+    gui->addSlider("meshCol.g", 0.0, 1.0, &meshCol.g, length-xInit, dim);
+    gui->addSlider("meshCol.b", 0.0, 1.0, &meshCol.b, length-xInit, dim);
+    gui->addSlider("meshHiCol.r", 0.0, 1.0, &meshHiCol.r, length-xInit, dim);
+    gui->addSlider("meshHiCol.g", 0.0, 1.0, &meshHiCol.g, length-xInit, dim);
+    gui->addSlider("meshHiCol.b", 0.0, 1.0, &meshHiCol.b, length-xInit, dim);
+    gui->addSlider("lineWidth", 0.0, 10.0, &lineWidth, length-xInit, dim);
+
+    gui->addSpacer(length-xInit, 1);
     gui->addSlider("noiseScale", 0.0, 0.1, &noiseScale, length-xInit, dim);
     gui->addSlider("noiseStrength", 0.0, 1.0, &noiseStrength, length-xInit, dim);
+    gui->addSlider("waveSpeed", 1.0, 100.0, &waveSpeed, length-xInit, dim);
+    gui->addSlider("waveStrength", 0.0, 1.0, &waveStrength, length-xInit, dim);
     gui->addSlider("hScale", 1.0, 20.0, &hScale, length-xInit, dim);
     gui->addSlider("colScale", 1.0, 10.0, &colScale, length-xInit, dim);
     gui->addSlider("meshRotateX", -90.0, 90, &meshRotateX, length-xInit, dim);
+    gui->addSlider("scaleX", 0, 50, &scaleX, length-xInit, dim);
+    gui->addSlider("scaleY", 0.0, 300, &scaleY, length-xInit, dim);
+    gui->addSlider("scaleZ", 0, 50, &scaleZ, length-xInit, dim);
     gui->addSlider("camX", -260, 260, &camX, length-xInit, dim);
     gui->addSlider("camY", 0.0, 500, &camY, length-xInit, dim);
     gui->addSlider("camZ", -600, 600, &camZ, length-xInit, dim);
@@ -162,6 +189,11 @@ void meshScene::setupGUI(){
     gui->addSpacer(length-xInit, 1);
     gui->addLabelToggle("GodRays", false);
     gui->addLabelToggle("RimHighlighting", false);
+    
+    gui->autoSizeToFitWidgets();
+    gui->getRect()->setWidth(ofGetWidth());
+    
+    
     ofAddListener(gui->newGUIEvent,this,&meshScene::guiEvent);
 }
 

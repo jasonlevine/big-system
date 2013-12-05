@@ -11,7 +11,7 @@
 #include "scene.h"
 #include "squiggler.h"
 
-#include "ofxPostProcessing.h"
+//#include "ofxPostProcessing.h"
 
 
 
@@ -19,8 +19,8 @@ class squigglerScene : public scene {
 public:
     void setup(audioAnalytics * _aa, openNIManager * _oni);
     void update();
-    void draw(int width, int height);
-    
+    void draw(int x, int y, int width, int height, bool drawToScreen);
+    ofTexture & getTexRef(int width, int height);
     
     void setupGUI();
     void guiEvent(ofxUIEventArgs &e);

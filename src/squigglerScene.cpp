@@ -56,10 +56,13 @@ void squigglerScene::update(){
     bassSquiggler.update(aa->pitch[bassSquiggler.track], aa->amp[bassSquiggler.track], useCam);
 }
 
-void squigglerScene::draw(int width, int height){
-    ofBackground(20);
-    
+void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen = true){
+//    ofPushStyle();
+//    ofEnableAlphaBlending();
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    ofBackground(0);
     fbo.begin();
+
     ofSetColor(0,0,0,fadeAmt);
     ofRect(0,0,ofGetWidth(),ofGetHeight());
     
@@ -73,11 +76,25 @@ void squigglerScene::draw(int width, int height){
     if (useCam) cam.end();
     fbo.end();
     
-    
-    if (usePost) post.begin();
+
+    post.begin();
     fbo.draw(0,0);
-    if (usePost) post.end();
+    
+//    ofPushMatrix();
+//    ofTranslate(x,y);
+    post.end(drawToScreen);
+//    ofPopMatrix();
+    
+    ofDisableBlendMode();
+//    ofDisableAlphaBlending();
+//    ofPopStyle();
 }
+
+ofTexture & squigglerScene::getTexRef(int width, int height){
+//    draw(width, height, false);
+//    return post.getProcessedTextureReference();
+}
+
 
 void squigglerScene::setupGUI(){
     fadeAmt = 255;

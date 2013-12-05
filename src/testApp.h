@@ -16,7 +16,6 @@
 #include "meshScene.h"
 //#include "hexagonScene.h"
 
-#define USERECORDING
 
 
 class testApp : public ofBaseApp{
@@ -44,21 +43,13 @@ public:
     vector<scene*> scenes;
     int currentScene;
     
+    int scene1, scene2;
+    
 //    renderManager rm;
     projectionManager pm;
     float xOffset, yOffset, scale;
     
     ofTrueTypeFont verdana;
-    
-    //to be abstracted away!
-//    
-//    ofxCvContourFinder contour;
-//    ofxCvGrayscaleImage grayImage;
-
-   
-    
-
-    
 
 };
 

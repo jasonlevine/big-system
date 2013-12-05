@@ -25,11 +25,12 @@ void openNIManager::setup(){
     //claudia mid.oni
 #else
     openNIDevice.setup();
+    openNIDevice.addImageGenerator();
+    openNIDevice.addDepthGenerator();
+    openNIDevice.setRegister(true);
+    openNIDevice.setMirror(false);
+
 #endif
-    //    openNIDevice.addImageGenerator();
-//    openNIDevice.addDepthGenerator();
-//    openNIDevice.setRegister(true);
-//    openNIDevice.setMirror(true);
     openNIDevice.addUserGenerator();
     openNIDevice.setMaxNumUsers(2);
     openNIDevice.start();

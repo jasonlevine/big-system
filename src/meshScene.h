@@ -11,14 +11,15 @@
 #include "ofMain.h"
 #include "scene.h"
 #include "ofxUI.h"
-#include "ofxPostProcessing.h"
+//#include "ofxPostProcessing.h"
 
 class meshScene : public scene {
     
     void setup(audioAnalytics * _aa, openNIManager * _oni);
     void update();
-    void draw(int width, int height);
-    
+    void draw(int x, int y, int width, int height, bool drawToScreen);
+    ofTexture & getTexRef(int width, int height);
+        
     void setupGUI();
     void guiEvent(ofxUIEventArgs &e);
     void toggleGUI();
@@ -34,16 +35,18 @@ class meshScene : public scene {
     float bassAccum, time;
     
     //UI variables
-    ofxUICanvas *gui;
+    ofxUIScrollableCanvas *gui;
     
     float noiseScale;
     float meshRotateX;
     float camX, camY, camZ;
     float lookatX, lookatY, lookatZ;
-
+    float scaleX, scaleY, scaleZ;
+    ofFloatColor meshCol, meshHiCol;
+    float lineWidth;
     
     //postproc vars
-    float waveStrength, noiseStrength;
+    float waveStrength, noiseStrength, waveSpeed;
     float fboBlend;
     
     bool drawPost;

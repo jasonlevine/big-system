@@ -30,5 +30,4 @@ public:
     ofPlanePrimitive plane;
     
     int w,h;
-    
 };

@@ -15,6 +15,8 @@ void testApp::setup() {
     
     currentScene = 0;
     mode = 2;
+    scene1 = 0;
+    scene2 = 1;
     
 //    rm.setup(oni, scenes);
     pm.setup(oni, scenes);
@@ -26,6 +28,8 @@ void testApp::setup() {
 //    grayImage.allocate(640,480);
     
     aa.playStems();
+    
+    
     
 }
 
@@ -76,11 +80,11 @@ void testApp::draw(){
             break;
             
         case 2:
-            scenes[currentScene]->draw(ofGetWidth(), ofGetHeight());
+            scenes[currentScene]->draw(0, 0, ofGetWidth(), ofGetHeight(), true);
             break;
             
         case 3:
-            pm.draw(0, 1, scale, xOffset, yOffset);
+            pm.draw(scene1, scene2, scale, xOffset, yOffset);
             break;
             
 //        case 4:
@@ -184,8 +188,12 @@ void testApp::keyPressed(int key){
         case 'g':
             scenes[currentScene]->toggleGUI();
             break;
-                
-
+            
+        case 'x':
+            scene1 = abs(scene1 - 1);
+            scene2 = abs(scene2 - 1);
+            break;
+            
     }
 }
 
