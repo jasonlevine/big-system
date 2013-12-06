@@ -858,8 +858,11 @@
 		9011EBE01831994D003EBEF6 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				90FCDE3918522A5F006D9C2C /* squiggler.cpp */,
 				90FCDE3A18522A5F006D9C2C /* squiggler.h */,
+=======
+>>>>>>> 32b1e744abff442cf0cd10032602cd7c95b38897
 				903619DE184D39E50003E3D5 /* squigglerScene.cpp */,
 				903619DF184D39E50003E3D5 /* squigglerScene.h */,
 				903619E1184D39FE0003E3D5 /* meshScene.cpp */,
