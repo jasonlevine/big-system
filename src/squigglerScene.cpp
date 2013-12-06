@@ -31,17 +31,16 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
     ofSetLineWidth(4);
 
     post.init(1024, 768);
+    post.createPass<FxaaPass>()->setEnabled(true);
     post.createPass<KaleidoscopePass>()->setEnabled(false);
     post.createPass<DofAltPass>()->setEnabled(false);
     post.createPass<BloomPass>()->setEnabled(false);
     post.createPass<GodRaysPass>()->setEnabled(false);
     post.createPass<RimHighlightingPass>()->setEnabled(false);
+    
     post.setFlip(false);
 
-
     renderPasses = post.getPasses();
-    //    shared_ptr<KaleidoscopePass> Kaleidoscope = static_pointer_cast<KaleidoscopePass>(renderPasses[4]);
-    //    Kaleidoscope->setSegments(4);
     setupGUI();
 
     presets.loadFile("presets.xml");
@@ -131,8 +130,9 @@ void squigglerScene::setupGUI(){
     gui->addLabelToggle("kaleidoscope", false);
     gui->addLabelToggle("dof", false);
     gui->addLabelToggle("bloom", false);
-    gui->addLabelToggle("highlight", false);
     gui->addLabelToggle("godrays", false);
+    gui->addLabelToggle("highlight", false);
+
     
     
     ofAddListener(gui->newGUIEvent,this,&squigglerScene::guiEvent);
@@ -168,32 +168,32 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
     else if(name == "kaleidoscope")
 	{
 		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
-		post[0]->setEnabled(toggle->getValue());
+		post[1]->setEnabled(toggle->getValue());
         kaleidoscope = toggle->getValue();
 	}
     else if(name == "dof")
 	{
 		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
-		post[1]->setEnabled(toggle->getValue());
+		post[2]->setEnabled(toggle->getValue());
         dof = toggle->getValue();
 	}
     else if(name == "bloom")
 	{
 		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
-		post[2]->setEnabled(toggle->getValue());
-        bloom = toggle->getValue();
-	}
-    else if(name == "highlight")
-	{
-		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
 		post[3]->setEnabled(toggle->getValue());
-        highlight = toggle->getValue();
+        bloom = toggle->getValue();
 	}
     else if(name == "godrays")
 	{
 		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
 		post[4]->setEnabled(toggle->getValue());
         godrays = toggle->getValue();
+	}
+    else if(name == "highlight")
+	{
+		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
+		post[5]->setEnabled(toggle->getValue());
+        highlight = toggle->getValue();
 	}
 
 }

@@ -22,9 +22,9 @@ void squiggler::setup(float guiX, int _track, float _maxAmp, float _maxPitch) {
     baseThickness = 20;
     taper = false;
     calligraphy = false;
-    colorStart = new ofFloatColor(1.0,1.0,1.0); //&base;
-    colorEnd = new ofFloatColor(1.0,1.0,1.0); //&base;
-    colorLine = new ofFloatColor(1.0,1.0,1.0); //&base;
+    colorStart = &base; //new ofFloatColor(1.0,1.0,1.0);
+    colorEnd = &base;
+    colorLine = &base;
 //    colorStart->set(1.0, 0.7, 1.0, 1.0);
 //    colorEnd->set(1.0, 0.7, 1.0, 1.0);
 //    colorLine->set(1.0, 0.7, 1.0, 1.0);

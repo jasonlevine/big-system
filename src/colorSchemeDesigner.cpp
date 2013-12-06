@@ -305,6 +305,7 @@ void colorSchemeDesigner::assignRandom(bool unique) {
         assignColors[i]->set(colorScheme[hue][variant]);
     }
 }
+
 //void colorSchemeDesigner::assignRandom(bool unique) {
 //    vector<vector<ofFloatColor> > colorSchemeCopy;
 //    
