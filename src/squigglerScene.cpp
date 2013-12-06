@@ -51,7 +51,7 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
 void squigglerScene::setupSquigglers(vector<int> &tracks){
     for (int i = 0; i < tracks.size(); i++) {
         squigglers.push_back(new squiggler);
-        squigglers[i]->setup(255 * (i+1) + 2, tracks[i], 140, 0.06);
+        squigglers[i]->setup(255 * (i+1) + 2, tracks[i], 0.06, 140);
     }
 }
 
