@@ -84,6 +84,7 @@
 		90FCDE351851B5D2006D9C2C /* ofxGamepadOIS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE261851B5D2006D9C2C /* ofxGamepadOIS.cpp */; };
 		90FCDE3B18522A5F006D9C2C /* squiggler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE3918522A5F006D9C2C /* squiggler.cpp */; };
 		90FCDE3E18522A6E006D9C2C /* colorSchemeDesigner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE3C18522A6E006D9C2C /* colorSchemeDesigner.cpp */; };
+		90FCDE4118522B37006D9C2C /* gamePadManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE3F18522B37006D9C2C /* gamePadManager.cpp */; };
 		9177f62acd8b721065a083f069ca8361 /* ofxAudioDeviceControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = ae197401a06411e94419ee7963ba271f /* ofxAudioDeviceControl.mm */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -541,6 +542,8 @@
 		90FCDE3A18522A5F006D9C2C /* squiggler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = squiggler.h; sourceTree = "<group>"; };
 		90FCDE3C18522A6E006D9C2C /* colorSchemeDesigner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = colorSchemeDesigner.cpp; sourceTree = "<group>"; };
 		90FCDE3D18522A6E006D9C2C /* colorSchemeDesigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorSchemeDesigner.h; sourceTree = "<group>"; };
+		90FCDE3F18522B37006D9C2C /* gamePadManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gamePadManager.cpp; sourceTree = "<group>"; };
+		90FCDE4018522B37006D9C2C /* gamePadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gamePadManager.h; sourceTree = "<group>"; };
 		91821b92c0988056ec2f9256cc1bfe47 /* ofxAudioFeaturesChannel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAudioFeaturesChannel.cpp; path = ../../../addons/ofxAudioFeatures/src/ofxAudioFeaturesChannel.cpp; sourceTree = SOURCE_ROOT; };
 		921304abbee9bbad134368987c452278 /* ofxAudioUnitInput.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAudioUnitInput.cpp; path = ../../../addons/ofxAudioUnit/src/ofxAudioUnitInput.cpp; sourceTree = SOURCE_ROOT; };
 		9aba70779062f057766bc5de660295e8 /* ofxAudioUnitHardwareUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAudioUnitHardwareUtils.cpp; path = ../../../addons/ofxAudioUnit/src/ofxAudioUnitHardwareUtils.cpp; sourceTree = SOURCE_ROOT; };
@@ -874,6 +877,8 @@
 				9011EBD918318919003EBEF6 /* openNIManager.cpp */,
 				903619DA184D08660003E3D5 /* projectionManager.h */,
 				903619D9184D08660003E3D5 /* projectionManager.cpp */,
+				90FCDE3F18522B37006D9C2C /* gamePadManager.cpp */,
+				90FCDE4018522B37006D9C2C /* gamePadManager.h */,
 			);
 			name = managers;
 			sourceTree = "<group>";
@@ -1733,6 +1738,7 @@
 				90FCDE3B18522A5F006D9C2C /* squiggler.cpp in Sources */,
 				a1d93b3b282e51fd3ded53133a442174 /* ofxAudioUnitInput.cpp in Sources */,
 				90361D18184D3B340003E3D5 /* ofxXmlSettings.cpp in Sources */,
+				90FCDE4118522B37006D9C2C /* gamePadManager.cpp in Sources */,
 				90361CD7184D3B340003E3D5 /* FxaaPass.cpp in Sources */,
 				90361CE5184D3B340003E3D5 /* VerticalTiltShifPass.cpp in Sources */,
 				90361D15184D3B340003E3D5 /* tinyxml.cpp in Sources */,
