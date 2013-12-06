@@ -54,3 +54,7 @@ bin/data/openni/*
 *.jpg
 *.wav
 *.aiff
+
+
+# !!!:Motoi added
+.DS_Store
