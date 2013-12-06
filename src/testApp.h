@@ -13,6 +13,7 @@
 #include "squigglerScene.h"
 #include "meshScene.h"
 
+#include "ofxGamepadHandler.h"
 
 
 
@@ -34,6 +35,9 @@ public:
 	void mouseReleased(int x, int y, int button);
 	void windowResized(int w, int h);
     
+    void axisChanged(ofxGamepadAxisEvent &e);
+    void buttonPressed(ofxGamepadButtonEvent &e);
+    void buttonReleased(ofxGamepadButtonEvent &e);
 
 
     openNIManager oni;
