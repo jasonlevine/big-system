@@ -27,7 +27,6 @@
 		903619DB184D08660003E3D5 /* projectionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619D9184D08660003E3D5 /* projectionManager.cpp */; };
 		903619E0184D39E50003E3D5 /* squigglerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619DE184D39E50003E3D5 /* squigglerScene.cpp */; };
 		903619E3184D39FE0003E3D5 /* meshScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619E1184D39FE0003E3D5 /* meshScene.cpp */; };
-		903619E6184D3A520003E3D5 /* squiggler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619E4184D3A520003E3D5 /* squiggler.cpp */; };
 		90361CCF184D3B340003E3D5 /* BleachBypassPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619FD184D3B2A0003E3D5 /* BleachBypassPass.cpp */; };
 		90361CD0184D3B340003E3D5 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619FF184D3B2A0003E3D5 /* BloomPass.cpp */; };
 		90361CD1184D3B340003E3D5 /* ContrastPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90361A01184D3B2A0003E3D5 /* ContrastPass.cpp */; };
@@ -209,8 +208,6 @@
 		903619DF184D39E50003E3D5 /* squigglerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = squigglerScene.h; sourceTree = "<group>"; };
 		903619E1184D39FE0003E3D5 /* meshScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = meshScene.cpp; sourceTree = "<group>"; };
 		903619E2184D39FE0003E3D5 /* meshScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = meshScene.h; sourceTree = "<group>"; };
-		903619E4184D3A520003E3D5 /* squiggler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = squiggler.cpp; path = "../../../just you/just_you/src/squiggler.cpp"; sourceTree = "<group>"; };
-		903619E5184D3A520003E3D5 /* squiggler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = squiggler.h; path = "../../../just you/just_you/src/squiggler.h"; sourceTree = "<group>"; };
 		903619E8184D3B290003E3D5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		903619F7184D3B2A0003E3D5 /* ofxaddons_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ofxaddons_thumbnail.png; sourceTree = "<group>"; };
 		903619F8184D3B2A0003E3D5 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
@@ -781,8 +778,6 @@
 		9011EBE01831994D003EBEF6 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
-				903619E4184D3A520003E3D5 /* squiggler.cpp */,
-				903619E5184D3A520003E3D5 /* squiggler.h */,
 				903619DE184D39E50003E3D5 /* squigglerScene.cpp */,
 				903619DF184D39E50003E3D5 /* squigglerScene.h */,
 				903619E1184D39FE0003E3D5 /* meshScene.cpp */,
@@ -1502,7 +1497,6 @@
 				250a710d8814bf6d345b0877aa3e879b /* ofxAudioUnitNetSend.cpp in Sources */,
 				90361CE1184D3B340003E3D5 /* RGBShiftPass.cpp in Sources */,
 				f46d757e6d52dffe3a9c169bfec4ec4b /* ofxAudioUnitOutput.cpp in Sources */,
-				903619E6184D3A520003E3D5 /* squiggler.cpp in Sources */,
 				aa26bbda5e32e5bb20c82addd5114453 /* ofxAudioUnitRecorder.cpp in Sources */,
 				90361CD5184D3B340003E3D5 /* EdgePass.cpp in Sources */,
 				90361CD1184D3B340003E3D5 /* ContrastPass.cpp in Sources */,
