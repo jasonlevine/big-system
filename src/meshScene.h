@@ -14,7 +14,7 @@
 //#include "ofxPostProcessing.h"
 
 class meshScene : public scene {
-    
+public:
     void setup(audioAnalytics * _aa, openNIManager * _oni);
     void update();
     void draw(int x, int y, int width, int height, bool drawToScreen);
@@ -42,7 +42,7 @@ class meshScene : public scene {
     float camX, camY, camZ;
     float lookatX, lookatY, lookatZ;
     float scaleX, scaleY, scaleZ;
-    ofFloatColor meshCol, meshHiCol;
+    ofFloatColor *meshCol, *meshHiCol;
     float lineWidth;
     
     //postproc vars

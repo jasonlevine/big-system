@@ -46,6 +46,7 @@ public:
     bool useCam;
     float posX, posY, posZ;
     float lookatX, lookatY, lookatZ;
+    float orientX, orientY, orientZ;
     bool usePost;
     bool flip;
     bool kaleidoscope, dof, bloom, highlight, godrays;

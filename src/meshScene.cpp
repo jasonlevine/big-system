@@ -80,7 +80,7 @@ void meshScene::draw(int x, int y, int width, int height, bool drawToScreen = tr
                 mesh.addVertex(ofPoint(x, h * hScale, y)); //waveHistory[y][x] +
                 float col = h * colScale;
                 
-                mesh.addColor(meshHiCol * col + meshCol * (1.0 - col));
+                mesh.addColor(*meshHiCol * col + *meshCol * (1.0 - col));
             }
         }
         
@@ -142,8 +142,10 @@ void meshScene::setupGUI(){
     scaleY = 180;
     scaleZ = 10;
     
-    meshCol.set(0.5, 0.5, 0.5);
-    meshHiCol.set(1.0, 1.0, 1.0);
+    meshCol = new ofFloatColor(0.5,0.5,0.5);
+    meshHiCol = new ofFloatColor(1.0,1.0,1.0);
+//    meshCol->set(0.5, 0.5, 0.5);
+//    meshHiCol->set(1.0, 1.0, 1.0);
     
     float dim = 16;
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
@@ -154,13 +156,13 @@ void meshScene::setupGUI(){
     gui->setScrollableDirections(false, true);
     
     gui->addFPSSlider("FPS SLIDER", length-xInit, dim*.25, 1000);
-    gui->addSpacer(length-xInit, 1);
-    gui->addSlider("meshCol.r", 0.0, 1.0, &meshCol.r, length-xInit, dim);
-    gui->addSlider("meshCol.g", 0.0, 1.0, &meshCol.g, length-xInit, dim);
-    gui->addSlider("meshCol.b", 0.0, 1.0, &meshCol.b, length-xInit, dim);
-    gui->addSlider("meshHiCol.r", 0.0, 1.0, &meshHiCol.r, length-xInit, dim);
-    gui->addSlider("meshHiCol.g", 0.0, 1.0, &meshHiCol.g, length-xInit, dim);
-    gui->addSlider("meshHiCol.b", 0.0, 1.0, &meshHiCol.b, length-xInit, dim);
+//    gui->addSpacer(length-xInit, 1);
+//    gui->addSlider("meshCol.r", 0.0, 1.0, &meshCol.r, length-xInit, dim);
+//    gui->addSlider("meshCol.g", 0.0, 1.0, &meshCol.g, length-xInit, dim);
+//    gui->addSlider("meshCol.b", 0.0, 1.0, &meshCol.b, length-xInit, dim);
+//    gui->addSlider("meshHiCol.r", 0.0, 1.0, &meshHiCol.r, length-xInit, dim);
+//    gui->addSlider("meshHiCol.g", 0.0, 1.0, &meshHiCol.g, length-xInit, dim);
+//    gui->addSlider("meshHiCol.b", 0.0, 1.0, &meshHiCol.b, length-xInit, dim);
     gui->addSlider("lineWidth", 0.0, 10.0, &lineWidth, length-xInit, dim);
 
     gui->addSpacer(length-xInit, 1);

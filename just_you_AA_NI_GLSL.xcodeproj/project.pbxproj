@@ -27,7 +27,6 @@
 		903619DB184D08660003E3D5 /* projectionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619D9184D08660003E3D5 /* projectionManager.cpp */; };
 		903619E0184D39E50003E3D5 /* squigglerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619DE184D39E50003E3D5 /* squigglerScene.cpp */; };
 		903619E3184D39FE0003E3D5 /* meshScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619E1184D39FE0003E3D5 /* meshScene.cpp */; };
-		903619E6184D3A520003E3D5 /* squiggler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619E4184D3A520003E3D5 /* squiggler.cpp */; };
 		90361CCF184D3B340003E3D5 /* BleachBypassPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619FD184D3B2A0003E3D5 /* BleachBypassPass.cpp */; };
 		90361CD0184D3B340003E3D5 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 903619FF184D3B2A0003E3D5 /* BloomPass.cpp */; };
 		90361CD1184D3B340003E3D5 /* ContrastPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90361A01184D3B2A0003E3D5 /* ContrastPass.cpp */; };
@@ -72,6 +71,19 @@
 		904AABC61836D35200B7EB00 /* libXnVFeatures_1_5_2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 904AABB81836D35100B7EB00 /* libXnVFeatures_1_5_2.dylib */; };
 		904AABC71836D35200B7EB00 /* libXnVHandGenerator_1_5_2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 904AABB91836D35100B7EB00 /* libXnVHandGenerator_1_5_2.dylib */; };
 		904AABC81836D35200B7EB00 /* libXnVNite_1_5_2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 904AABBA1836D35100B7EB00 /* libXnVNite_1_5_2.dylib */; };
+		90FCDE2B1851B5D2006D9C2C /* libwgois64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FCDE121851B5D2006D9C2C /* libwgois64.a */; };
+		90FCDE2C1851B5D2006D9C2C /* libOIS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FCDE141851B5D2006D9C2C /* libOIS.a */; };
+		90FCDE2D1851B5D2006D9C2C /* OIS_static.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FCDE161851B5D2006D9C2C /* OIS_static.lib */; };
+		90FCDE2E1851B5D2006D9C2C /* OIS_static_d.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FCDE171851B5D2006D9C2C /* OIS_static_d.lib */; };
+		90FCDE2F1851B5D2006D9C2C /* OIS_vs2010_static.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FCDE191851B5D2006D9C2C /* OIS_vs2010_static.lib */; };
+		90FCDE301851B5D2006D9C2C /* OIS_vs2010_static_d.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FCDE1A1851B5D2006D9C2C /* OIS_vs2010_static_d.lib */; };
+		90FCDE311851B5D2006D9C2C /* ofxGamepad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE1D1851B5D2006D9C2C /* ofxGamepad.cpp */; };
+		90FCDE321851B5D2006D9C2C /* ofxGamepadCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE1F1851B5D2006D9C2C /* ofxGamepadCamera.cpp */; };
+		90FCDE331851B5D2006D9C2C /* ofxGamepadHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE221851B5D2006D9C2C /* ofxGamepadHandler.cpp */; };
+		90FCDE341851B5D2006D9C2C /* ofxGamepadLinux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE241851B5D2006D9C2C /* ofxGamepadLinux.cpp */; };
+		90FCDE351851B5D2006D9C2C /* ofxGamepadOIS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE261851B5D2006D9C2C /* ofxGamepadOIS.cpp */; };
+		90FCDE3B18522A5F006D9C2C /* squiggler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE3918522A5F006D9C2C /* squiggler.cpp */; };
+		90FCDE3E18522A6E006D9C2C /* colorSchemeDesigner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FCDE3C18522A6E006D9C2C /* colorSchemeDesigner.cpp */; };
 		9177f62acd8b721065a083f069ca8361 /* ofxAudioDeviceControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = ae197401a06411e94419ee7963ba271f /* ofxAudioDeviceControl.mm */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -209,8 +221,6 @@
 		903619DF184D39E50003E3D5 /* squigglerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = squigglerScene.h; sourceTree = "<group>"; };
 		903619E1184D39FE0003E3D5 /* meshScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = meshScene.cpp; sourceTree = "<group>"; };
 		903619E2184D39FE0003E3D5 /* meshScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = meshScene.h; sourceTree = "<group>"; };
-		903619E4184D3A520003E3D5 /* squiggler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = squiggler.cpp; path = "../../../just you/just_you/src/squiggler.cpp"; sourceTree = "<group>"; };
-		903619E5184D3A520003E3D5 /* squiggler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = squiggler.h; path = "../../../just you/just_you/src/squiggler.h"; sourceTree = "<group>"; };
 		903619E8184D3B290003E3D5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		903619F7184D3B2A0003E3D5 /* ofxaddons_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ofxaddons_thumbnail.png; sourceTree = "<group>"; };
 		903619F8184D3B2A0003E3D5 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
@@ -473,6 +483,64 @@
 		904AABBA1836D35100B7EB00 /* libXnVNite_1_5_2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libXnVNite_1_5_2.dylib; sourceTree = "<group>"; };
 		904AABCB1836FF8C00B7EB00 /* decayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decayer.h; sourceTree = "<group>"; };
 		908b13275b242f3ea5f76eea83361fa7 /* source_apple_audio.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = source_apple_audio.h; path = ../../../addons/ofxAudioFeatures/libs/aubio/include/aubio/io/source_apple_audio.h; sourceTree = SOURCE_ROOT; };
+		90FCDDD21851B5D2006D9C2C /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		90FCDDEB1851B5D2006D9C2C /* EventHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHelpers.h; sourceTree = "<group>"; };
+		90FCDDEC1851B5D2006D9C2C /* LinuxForceFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinuxForceFeedback.h; sourceTree = "<group>"; };
+		90FCDDED1851B5D2006D9C2C /* LinuxInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinuxInputManager.h; sourceTree = "<group>"; };
+		90FCDDEE1851B5D2006D9C2C /* LinuxJoyStickEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinuxJoyStickEvents.h; sourceTree = "<group>"; };
+		90FCDDEF1851B5D2006D9C2C /* LinuxKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinuxKeyboard.h; sourceTree = "<group>"; };
+		90FCDDF01851B5D2006D9C2C /* LinuxMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinuxMouse.h; sourceTree = "<group>"; };
+		90FCDDF11851B5D2006D9C2C /* LinuxPrereqs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinuxPrereqs.h; sourceTree = "<group>"; };
+		90FCDDF31851B5D2006D9C2C /* MacHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacHelpers.h; sourceTree = "<group>"; };
+		90FCDDF41851B5D2006D9C2C /* MacHIDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacHIDManager.h; sourceTree = "<group>"; };
+		90FCDDF51851B5D2006D9C2C /* MacInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacInputManager.h; sourceTree = "<group>"; };
+		90FCDDF61851B5D2006D9C2C /* MacJoyStick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacJoyStick.h; sourceTree = "<group>"; };
+		90FCDDF71851B5D2006D9C2C /* MacKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacKeyboard.h; sourceTree = "<group>"; };
+		90FCDDF81851B5D2006D9C2C /* MacMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacMouse.h; sourceTree = "<group>"; };
+		90FCDDF91851B5D2006D9C2C /* MacPrereqs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacPrereqs.h; sourceTree = "<group>"; };
+		90FCDDFA1851B5D2006D9C2C /* OIS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIS.h; sourceTree = "<group>"; };
+		90FCDDFB1851B5D2006D9C2C /* OISConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISConfig.h; sourceTree = "<group>"; };
+		90FCDDFC1851B5D2006D9C2C /* OISEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISEffect.h; sourceTree = "<group>"; };
+		90FCDDFD1851B5D2006D9C2C /* OISEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISEvents.h; sourceTree = "<group>"; };
+		90FCDDFE1851B5D2006D9C2C /* OISException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISException.h; sourceTree = "<group>"; };
+		90FCDDFF1851B5D2006D9C2C /* OISFactoryCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISFactoryCreator.h; sourceTree = "<group>"; };
+		90FCDE001851B5D2006D9C2C /* OISForceFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISForceFeedback.h; sourceTree = "<group>"; };
+		90FCDE011851B5D2006D9C2C /* OISInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISInputManager.h; sourceTree = "<group>"; };
+		90FCDE021851B5D2006D9C2C /* OISInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISInterface.h; sourceTree = "<group>"; };
+		90FCDE031851B5D2006D9C2C /* OISJoyStick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISJoyStick.h; sourceTree = "<group>"; };
+		90FCDE041851B5D2006D9C2C /* OISKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISKeyboard.h; sourceTree = "<group>"; };
+		90FCDE051851B5D2006D9C2C /* OISMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISMouse.h; sourceTree = "<group>"; };
+		90FCDE061851B5D2006D9C2C /* OISMultiTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISMultiTouch.h; sourceTree = "<group>"; };
+		90FCDE071851B5D2006D9C2C /* OISObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISObject.h; sourceTree = "<group>"; };
+		90FCDE081851B5D2006D9C2C /* OISPrereqs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OISPrereqs.h; sourceTree = "<group>"; };
+		90FCDE0A1851B5D2006D9C2C /* Win32ForceFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Win32ForceFeedback.h; sourceTree = "<group>"; };
+		90FCDE0B1851B5D2006D9C2C /* Win32InputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Win32InputManager.h; sourceTree = "<group>"; };
+		90FCDE0C1851B5D2006D9C2C /* Win32JoyStick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Win32JoyStick.h; sourceTree = "<group>"; };
+		90FCDE0D1851B5D2006D9C2C /* Win32KeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Win32KeyBoard.h; sourceTree = "<group>"; };
+		90FCDE0E1851B5D2006D9C2C /* Win32Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Win32Mouse.h; sourceTree = "<group>"; };
+		90FCDE0F1851B5D2006D9C2C /* Win32Prereqs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Win32Prereqs.h; sourceTree = "<group>"; };
+		90FCDE121851B5D2006D9C2C /* libwgois64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libwgois64.a; sourceTree = "<group>"; };
+		90FCDE141851B5D2006D9C2C /* libOIS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOIS.a; sourceTree = "<group>"; };
+		90FCDE161851B5D2006D9C2C /* OIS_static.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = OIS_static.lib; sourceTree = "<group>"; };
+		90FCDE171851B5D2006D9C2C /* OIS_static_d.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = OIS_static_d.lib; sourceTree = "<group>"; };
+		90FCDE191851B5D2006D9C2C /* OIS_vs2010_static.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = OIS_vs2010_static.lib; sourceTree = "<group>"; };
+		90FCDE1A1851B5D2006D9C2C /* OIS_vs2010_static_d.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = OIS_vs2010_static_d.lib; sourceTree = "<group>"; };
+		90FCDE1B1851B5D2006D9C2C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		90FCDE1D1851B5D2006D9C2C /* ofxGamepad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGamepad.cpp; sourceTree = "<group>"; };
+		90FCDE1E1851B5D2006D9C2C /* ofxGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGamepad.h; sourceTree = "<group>"; };
+		90FCDE1F1851B5D2006D9C2C /* ofxGamepadCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGamepadCamera.cpp; sourceTree = "<group>"; };
+		90FCDE201851B5D2006D9C2C /* ofxGamepadCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGamepadCamera.h; sourceTree = "<group>"; };
+		90FCDE211851B5D2006D9C2C /* ofxGamepadConfigs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGamepadConfigs.h; sourceTree = "<group>"; };
+		90FCDE221851B5D2006D9C2C /* ofxGamepadHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGamepadHandler.cpp; sourceTree = "<group>"; };
+		90FCDE231851B5D2006D9C2C /* ofxGamepadHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGamepadHandler.h; sourceTree = "<group>"; };
+		90FCDE241851B5D2006D9C2C /* ofxGamepadLinux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGamepadLinux.cpp; sourceTree = "<group>"; };
+		90FCDE251851B5D2006D9C2C /* ofxGamepadLinux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGamepadLinux.h; sourceTree = "<group>"; };
+		90FCDE261851B5D2006D9C2C /* ofxGamepadOIS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGamepadOIS.cpp; sourceTree = "<group>"; };
+		90FCDE271851B5D2006D9C2C /* ofxGamepadOIS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGamepadOIS.h; sourceTree = "<group>"; };
+		90FCDE3918522A5F006D9C2C /* squiggler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = squiggler.cpp; sourceTree = "<group>"; };
+		90FCDE3A18522A5F006D9C2C /* squiggler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = squiggler.h; sourceTree = "<group>"; };
+		90FCDE3C18522A6E006D9C2C /* colorSchemeDesigner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = colorSchemeDesigner.cpp; sourceTree = "<group>"; };
+		90FCDE3D18522A6E006D9C2C /* colorSchemeDesigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorSchemeDesigner.h; sourceTree = "<group>"; };
 		91821b92c0988056ec2f9256cc1bfe47 /* ofxAudioFeaturesChannel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAudioFeaturesChannel.cpp; path = ../../../addons/ofxAudioFeatures/src/ofxAudioFeaturesChannel.cpp; sourceTree = SOURCE_ROOT; };
 		921304abbee9bbad134368987c452278 /* ofxAudioUnitInput.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAudioUnitInput.cpp; path = ../../../addons/ofxAudioUnit/src/ofxAudioUnitInput.cpp; sourceTree = SOURCE_ROOT; };
 		9aba70779062f057766bc5de660295e8 /* ofxAudioUnitHardwareUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAudioUnitHardwareUtils.cpp; path = ../../../addons/ofxAudioUnit/src/ofxAudioUnitHardwareUtils.cpp; sourceTree = SOURCE_ROOT; };
@@ -555,17 +623,23 @@
 				E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */,
 				E45BE97E0E8CC7DD009D7055 /* Carbon.framework in Frameworks */,
 				E45BE97F0E8CC7DD009D7055 /* CoreAudio.framework in Frameworks */,
+				90FCDE301851B5D2006D9C2C /* OIS_vs2010_static_d.lib in Frameworks */,
 				E45BE9800E8CC7DD009D7055 /* CoreFoundation.framework in Frameworks */,
 				904AABBF1836D35200B7EB00 /* libusb-1.0.0.dylib in Frameworks */,
+				90FCDE2E1851B5D2006D9C2C /* OIS_static_d.lib in Frameworks */,
 				904AABC01836D35200B7EB00 /* libXnCore.dylib in Frameworks */,
 				E45BE9810E8CC7DD009D7055 /* CoreServices.framework in Frameworks */,
 				E45BE9830E8CC7DD009D7055 /* OpenGL.framework in Frameworks */,
+				90FCDE2C1851B5D2006D9C2C /* libOIS.a in Frameworks */,
 				904AABC21836D35200B7EB00 /* libXnDeviceFile.dylib in Frameworks */,
 				904AABC51836D35200B7EB00 /* libXnVCNITE_1_5_2.dylib in Frameworks */,
 				E45BE9840E8CC7DD009D7055 /* QuickTime.framework in Frameworks */,
 				904AABC81836D35200B7EB00 /* libXnVNite_1_5_2.dylib in Frameworks */,
+				90FCDE2F1851B5D2006D9C2C /* OIS_vs2010_static.lib in Frameworks */,
 				E4C2424710CC5A17004149E2 /* AppKit.framework in Frameworks */,
+				90FCDE2D1851B5D2006D9C2C /* OIS_static.lib in Frameworks */,
 				904AABBE1836D35200B7EB00 /* libOpenNI.dylib in Frameworks */,
+				90FCDE2B1851B5D2006D9C2C /* libwgois64.a in Frameworks */,
 				E4C2424810CC5A17004149E2 /* Cocoa.framework in Frameworks */,
 				E4C2424910CC5A17004149E2 /* IOKit.framework in Frameworks */,
 				E7E077E515D3B63C0020DFD4 /* CoreVideo.framework in Frameworks */,
@@ -781,8 +855,8 @@
 		9011EBE01831994D003EBEF6 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
-				903619E4184D3A520003E3D5 /* squiggler.cpp */,
-				903619E5184D3A520003E3D5 /* squiggler.h */,
+				90FCDE3918522A5F006D9C2C /* squiggler.cpp */,
+				90FCDE3A18522A5F006D9C2C /* squiggler.h */,
 				903619DE184D39E50003E3D5 /* squigglerScene.cpp */,
 				903619DF184D39E50003E3D5 /* squigglerScene.h */,
 				903619E1184D39FE0003E3D5 /* meshScene.cpp */,
@@ -1228,11 +1302,171 @@
 		904AABCD183700A300B7EB00 /* utilities */ = {
 			isa = PBXGroup;
 			children = (
+				90FCDE3C18522A6E006D9C2C /* colorSchemeDesigner.cpp */,
+				90FCDE3D18522A6E006D9C2C /* colorSchemeDesigner.h */,
 				9011EBEF1832A079003EBEF6 /* smoother.h */,
 				9011EBEE1832A079003EBEF6 /* smoother.cpp */,
 				904AABCB1836FF8C00B7EB00 /* decayer.h */,
 			);
 			name = utilities;
+			sourceTree = "<group>";
+		};
+		90FCDDD11851B5D2006D9C2C /* ofxGamepad */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDDD21851B5D2006D9C2C /* .gitignore */,
+				90FCDDE71851B5D2006D9C2C /* libs */,
+				90FCDE1B1851B5D2006D9C2C /* README */,
+				90FCDE1C1851B5D2006D9C2C /* src */,
+			);
+			name = ofxGamepad;
+			path = ../../../addons/ofxGamepad;
+			sourceTree = "<group>";
+		};
+		90FCDDE71851B5D2006D9C2C /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDDE81851B5D2006D9C2C /* wgois */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		90FCDDE81851B5D2006D9C2C /* wgois */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDDE91851B5D2006D9C2C /* include */,
+				90FCDE101851B5D2006D9C2C /* lib */,
+			);
+			path = wgois;
+			sourceTree = "<group>";
+		};
+		90FCDDE91851B5D2006D9C2C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDDEA1851B5D2006D9C2C /* linux */,
+				90FCDDF21851B5D2006D9C2C /* mac */,
+				90FCDDFA1851B5D2006D9C2C /* OIS.h */,
+				90FCDDFB1851B5D2006D9C2C /* OISConfig.h */,
+				90FCDDFC1851B5D2006D9C2C /* OISEffect.h */,
+				90FCDDFD1851B5D2006D9C2C /* OISEvents.h */,
+				90FCDDFE1851B5D2006D9C2C /* OISException.h */,
+				90FCDDFF1851B5D2006D9C2C /* OISFactoryCreator.h */,
+				90FCDE001851B5D2006D9C2C /* OISForceFeedback.h */,
+				90FCDE011851B5D2006D9C2C /* OISInputManager.h */,
+				90FCDE021851B5D2006D9C2C /* OISInterface.h */,
+				90FCDE031851B5D2006D9C2C /* OISJoyStick.h */,
+				90FCDE041851B5D2006D9C2C /* OISKeyboard.h */,
+				90FCDE051851B5D2006D9C2C /* OISMouse.h */,
+				90FCDE061851B5D2006D9C2C /* OISMultiTouch.h */,
+				90FCDE071851B5D2006D9C2C /* OISObject.h */,
+				90FCDE081851B5D2006D9C2C /* OISPrereqs.h */,
+				90FCDE091851B5D2006D9C2C /* win32 */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		90FCDDEA1851B5D2006D9C2C /* linux */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDDEB1851B5D2006D9C2C /* EventHelpers.h */,
+				90FCDDEC1851B5D2006D9C2C /* LinuxForceFeedback.h */,
+				90FCDDED1851B5D2006D9C2C /* LinuxInputManager.h */,
+				90FCDDEE1851B5D2006D9C2C /* LinuxJoyStickEvents.h */,
+				90FCDDEF1851B5D2006D9C2C /* LinuxKeyboard.h */,
+				90FCDDF01851B5D2006D9C2C /* LinuxMouse.h */,
+				90FCDDF11851B5D2006D9C2C /* LinuxPrereqs.h */,
+			);
+			path = linux;
+			sourceTree = "<group>";
+		};
+		90FCDDF21851B5D2006D9C2C /* mac */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDDF31851B5D2006D9C2C /* MacHelpers.h */,
+				90FCDDF41851B5D2006D9C2C /* MacHIDManager.h */,
+				90FCDDF51851B5D2006D9C2C /* MacInputManager.h */,
+				90FCDDF61851B5D2006D9C2C /* MacJoyStick.h */,
+				90FCDDF71851B5D2006D9C2C /* MacKeyboard.h */,
+				90FCDDF81851B5D2006D9C2C /* MacMouse.h */,
+				90FCDDF91851B5D2006D9C2C /* MacPrereqs.h */,
+			);
+			path = mac;
+			sourceTree = "<group>";
+		};
+		90FCDE091851B5D2006D9C2C /* win32 */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDE0A1851B5D2006D9C2C /* Win32ForceFeedback.h */,
+				90FCDE0B1851B5D2006D9C2C /* Win32InputManager.h */,
+				90FCDE0C1851B5D2006D9C2C /* Win32JoyStick.h */,
+				90FCDE0D1851B5D2006D9C2C /* Win32KeyBoard.h */,
+				90FCDE0E1851B5D2006D9C2C /* Win32Mouse.h */,
+				90FCDE0F1851B5D2006D9C2C /* Win32Prereqs.h */,
+			);
+			path = win32;
+			sourceTree = "<group>";
+		};
+		90FCDE101851B5D2006D9C2C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDE111851B5D2006D9C2C /* linux64 */,
+				90FCDE131851B5D2006D9C2C /* osx */,
+				90FCDE151851B5D2006D9C2C /* vs2008 */,
+				90FCDE181851B5D2006D9C2C /* vs2010 */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		90FCDE111851B5D2006D9C2C /* linux64 */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDE121851B5D2006D9C2C /* libwgois64.a */,
+			);
+			path = linux64;
+			sourceTree = "<group>";
+		};
+		90FCDE131851B5D2006D9C2C /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDE141851B5D2006D9C2C /* libOIS.a */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		90FCDE151851B5D2006D9C2C /* vs2008 */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDE161851B5D2006D9C2C /* OIS_static.lib */,
+				90FCDE171851B5D2006D9C2C /* OIS_static_d.lib */,
+			);
+			path = vs2008;
+			sourceTree = "<group>";
+		};
+		90FCDE181851B5D2006D9C2C /* vs2010 */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDE191851B5D2006D9C2C /* OIS_vs2010_static.lib */,
+				90FCDE1A1851B5D2006D9C2C /* OIS_vs2010_static_d.lib */,
+			);
+			path = vs2010;
+			sourceTree = "<group>";
+		};
+		90FCDE1C1851B5D2006D9C2C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				90FCDE1D1851B5D2006D9C2C /* ofxGamepad.cpp */,
+				90FCDE1E1851B5D2006D9C2C /* ofxGamepad.h */,
+				90FCDE1F1851B5D2006D9C2C /* ofxGamepadCamera.cpp */,
+				90FCDE201851B5D2006D9C2C /* ofxGamepadCamera.h */,
+				90FCDE211851B5D2006D9C2C /* ofxGamepadConfigs.h */,
+				90FCDE221851B5D2006D9C2C /* ofxGamepadHandler.cpp */,
+				90FCDE231851B5D2006D9C2C /* ofxGamepadHandler.h */,
+				90FCDE241851B5D2006D9C2C /* ofxGamepadLinux.cpp */,
+				90FCDE251851B5D2006D9C2C /* ofxGamepadLinux.h */,
+				90FCDE261851B5D2006D9C2C /* ofxGamepadOIS.cpp */,
+				90FCDE271851B5D2006D9C2C /* ofxGamepadOIS.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		9360d34d90ea59a50af2804ff846484b /* ofxAudioUnit */ = {
@@ -1260,6 +1494,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				90FCDDD11851B5D2006D9C2C /* ofxGamepad */,
 				903619E7184D3B290003E3D5 /* ofxPostProcessing */,
 				90361A2E184D3B2A0003E3D5 /* ofxUI */,
 				90361CC4184D3B340003E3D5 /* ofxXmlSettings */,
@@ -1465,6 +1700,7 @@
 				904AAB861836D09F00B7EB00 /* ofxOpenNI.cpp in Sources */,
 				9011EBDB18318919003EBEF6 /* openNIManager.cpp in Sources */,
 				90361CD8184D3B340003E3D5 /* GodRaysPass.cpp in Sources */,
+				90FCDE341851B5D2006D9C2C /* ofxGamepadLinux.cpp in Sources */,
 				90361CE4184D3B340003E3D5 /* ToonPass.cpp in Sources */,
 				90361CDD184D3B340003E3D5 /* NoiseWarpPass.cpp in Sources */,
 				db0886176363032dab378e33606eac8f /* LICENSE in Sources */,
@@ -1478,18 +1714,23 @@
 				90361CE2184D3B340003E3D5 /* RimHighlightingPass.cpp in Sources */,
 				90361CD3184D3B340003E3D5 /* DofAltPass.cpp in Sources */,
 				b7855559edba51207314369387bb28a9 /* CAAUParameter.cpp in Sources */,
+				90FCDE321851B5D2006D9C2C /* ofxGamepadCamera.cpp in Sources */,
 				0c4f519bce65ba5d7d6b6b68d57ecf11 /* CADebugMacros.cpp in Sources */,
 				87b337624802e70c0bdb11f33d9e5da5 /* ofxAudioUnit.cpp in Sources */,
+				90FCDE331851B5D2006D9C2C /* ofxGamepadHandler.cpp in Sources */,
+				90FCDE311851B5D2006D9C2C /* ofxGamepad.cpp in Sources */,
 				2d5ff7f2acfb45212bc7739d19593e1b /* ofxAudioUnitCocoaUtilties.mm in Sources */,
 				90361CDE184D3B340003E3D5 /* PixelatePass.cpp in Sources */,
 				2b33b0211e062cb61c7faef9e99e4eff /* ofxAudioUnitDSPNode.cpp in Sources */,
 				0e826ec50f9f913c3159c2f77faa5583 /* ofxAudioUnitFftNode.cpp in Sources */,
 				903619E0184D39E50003E3D5 /* squigglerScene.cpp in Sources */,
+				90FCDE351851B5D2006D9C2C /* ofxGamepadOIS.cpp in Sources */,
 				90361CDA184D3B340003E3D5 /* KaleidoscopePass.cpp in Sources */,
 				90361CDC184D3B340003E3D5 /* LUTPass.cpp in Sources */,
 				f37393707bbd7e49a1055ffbaf2d252d /* ofxAudioUnitFilePlayer.cpp in Sources */,
 				f09ec3f89cf64e415784bb3205db80da /* ofxAudioUnitHardwareUtils.cpp in Sources */,
 				90361D17184D3B340003E3D5 /* tinyxmlparser.cpp in Sources */,
+				90FCDE3B18522A5F006D9C2C /* squiggler.cpp in Sources */,
 				a1d93b3b282e51fd3ded53133a442174 /* ofxAudioUnitInput.cpp in Sources */,
 				90361D18184D3B340003E3D5 /* ofxXmlSettings.cpp in Sources */,
 				90361CD7184D3B340003E3D5 /* FxaaPass.cpp in Sources */,
@@ -1502,10 +1743,10 @@
 				250a710d8814bf6d345b0877aa3e879b /* ofxAudioUnitNetSend.cpp in Sources */,
 				90361CE1184D3B340003E3D5 /* RGBShiftPass.cpp in Sources */,
 				f46d757e6d52dffe3a9c169bfec4ec4b /* ofxAudioUnitOutput.cpp in Sources */,
-				903619E6184D3A520003E3D5 /* squiggler.cpp in Sources */,
 				aa26bbda5e32e5bb20c82addd5114453 /* ofxAudioUnitRecorder.cpp in Sources */,
 				90361CD5184D3B340003E3D5 /* EdgePass.cpp in Sources */,
 				90361CD1184D3B340003E3D5 /* ContrastPass.cpp in Sources */,
+				90FCDE3E18522A6E006D9C2C /* colorSchemeDesigner.cpp in Sources */,
 				0928f46c1ffafb7170c2a661ee0a4a61 /* ofxAudioUnitSampler.cpp in Sources */,
 				904AAB871836D09F00B7EB00 /* ofxOpenNITypes.cpp in Sources */,
 				9011EBF01832A079003EBEF6 /* smoother.cpp in Sources */,
@@ -1776,6 +2017,10 @@
 					/Users/jasonlevine/Code/of_v0.8.0_osx_release/apps/myApps/just_you_AA_NI_GLSL/bin/data/openni/lib,
 					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib,
 					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/win/copy_to_data_openni_path/lib,
+					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/linux64,
+					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/osx,
+					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2008,
+					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2010,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				WRAPPER_EXTENSION = app;
@@ -1864,6 +2109,10 @@
 					/Users/jasonlevine/Code/of_v0.8.0_osx_release/apps/myApps/just_you_AA_NI_GLSL/bin/data/openni/lib,
 					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib,
 					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/win/copy_to_data_openni_path/lib,
+					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/linux64,
+					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/osx,
+					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2008,
+					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2010,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

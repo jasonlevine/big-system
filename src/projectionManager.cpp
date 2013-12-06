@@ -72,36 +72,36 @@ void projectionManager::draw(int wallScene, int bodyScene, float scale, float xO
     fgFbo.end();
 //    ofTexture &tex0 = scenes[bodyScene]->post.getProcessedTextureReference();
 
-    fgFbo.draw(0,0);
+//    fgFbo.draw(0,0);
     
     bgFbo.begin();
     scenes[wallScene]->draw(0, 0, w, h, true);
     bgFbo.end();
     
-    bgFbo.draw(1024,0);
+//    bgFbo.draw(1024,0);
     
 //    ofTexture &tex1 = bgFbo.getTextureReference();
     
 
 //
-//    finalFbo.begin();
-//    ofClear(0, 0, 0, 0);
-//    
-//    shader.begin();
-//    shader.setUniformTexture("maskTex", maskFbo.getTextureReference(), 1 );
-//    shader.setUniformTexture("tex0", fgFbo.getTextureReference(), 2 );
-//    shader.setUniformTexture("tex1", bgFbo.getTextureReference(), 3 );
-//    ofPushMatrix();
-//    ofTranslate(w * 0.5, h * 0.5);
-//    ofSetColor(255);
-//    plane.draw();
-//    ofPopMatrix();
-//    
-//    shader.end();
-//    finalFbo.end();
-//
-//
-//    
-//    finalFbo.draw(0,0);
+    finalFbo.begin();
+    ofClear(0, 0, 0, 0);
+    
+    shader.begin();
+    shader.setUniformTexture("maskTex", maskFbo.getTextureReference(), 1 );
+    shader.setUniformTexture("tex0", fgFbo.getTextureReference(), 2 );
+    shader.setUniformTexture("tex1", bgFbo.getTextureReference(), 3 );
+    ofPushMatrix();
+    ofTranslate(w * 0.5, h * 0.5);
+    ofSetColor(255);
+    plane.draw();
+    ofPopMatrix();
+    
+    shader.end();
+    finalFbo.end();
+
+
+    
+    finalFbo.draw(0,0);
   
 }

@@ -101,6 +101,7 @@ void squigglerScene::setupGUI(){
     useCam = false;
     posX = posY = posZ = 0;
     lookatX = lookatY = lookatZ = 0;
+    orientX = orientY = orientZ = 0;
     usePost = false;
     kaleidoscope = dof = bloom = highlight = godrays = false;
     
@@ -121,6 +122,9 @@ void squigglerScene::setupGUI(){
     gui->addSlider("lookatX", -ofGetWidth()/2, ofGetWidth()/2, &lookatX, length-xInit, dim);
     gui->addSlider("lookatY", -ofGetHeight()/2, ofGetHeight()/2, &lookatY, length-xInit, dim);
     gui->addSlider("lookatZ", -1000, 1000, &lookatZ, length-xInit, dim);
+    gui->addSlider("orientX", -90, 90, &orientX, length-xInit, dim);
+    gui->addSlider("orientY", -90, 90, &orientY, length-xInit, dim);
+    gui->addSlider("orientZ", -90, 90, &orientZ, length-xInit, dim);
     gui->addSpacer(length-xInit, 1);
     gui->addWidgetDown(new ofxUILabelToggle(dim, dim, &usePost, "usePost?", OFX_UI_FONT_MEDIUM));
     gui->addLabelToggle("flip?", false);
@@ -150,11 +154,11 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
 		ofxUISlider *slider = (ofxUISlider *) e.widget;
 		cam.lookAt(ofVec3f(lookatX, lookatY, lookatZ));
 	}
-    //    else if(name == "useCam?")
-    //	{
-    //		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
-    //		ofSetDepthTest(toggle->getValue());
-    //	}
+    else if(name == "orientX" || name == "orientY" || name == "orientZ")
+	{
+		ofxUISlider *slider = (ofxUISlider *) e.widget;
+		cam.setOrientation(ofVec3f(orientX, orientY, orientZ));
+	}
     else if(name == "flip?")
 	{
 		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;

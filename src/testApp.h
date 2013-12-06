@@ -3,18 +3,17 @@
 
 #include "ofMain.h"
 
-
-#include "ofxOpenCv.h"
-
 #include "openNIManager.h"
 //#include "audioAnalytics.h"
 //#include "renderManager.h"
 #include "projectionManager.h"
+#include "colorSchemeDesigner.h"
 
 #include "scene.h"
 #include "squigglerScene.h"
 #include "meshScene.h"
-//#include "hexagonScene.h"
+
+#include "ofxGamepadHandler.h"
 
 
 
@@ -34,11 +33,17 @@ public:
 	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
 	void windowResized(int w, int h);
+    
+    void axisChanged(ofxGamepadAxisEvent &e);
+    void buttonPressed(ofxGamepadButtonEvent &e);
+    void buttonReleased(ofxGamepadButtonEvent &e);
 
     openNIManager oni;
     
     audioAnalytics aa;
     int mode;
+    
+    colorSchemeDesigner colorScheme;
     
     vector<scene*> scenes;
     int currentScene;
@@ -50,6 +55,7 @@ public:
     float xOffset, yOffset, scale;
     
     ofTrueTypeFont verdana;
+
 
 };
 

@@ -5,6 +5,7 @@ void testApp::setup() {
     
     oni.setup();
     
+    colorScheme.setup();
 
     scenes.push_back(new squigglerScene());
     scenes.push_back(new meshScene());
@@ -18,6 +19,29 @@ void testApp::setup() {
     scene1 = 0;
     scene2 = 1;
     
+    squigglerScene * squiggle = static_cast<squigglerScene*>(scenes[0]);
+    colorScheme.addColorRef(squiggle->bassSquiggler.colorStart);
+    colorScheme.addColorRef(squiggle->bassSquiggler.colorEnd);
+    colorScheme.addColorRef(squiggle->bassSquiggler.colorLine);
+    
+    colorScheme.addColorRef(squiggle->kickSquiggler.colorStart);
+    colorScheme.addColorRef(squiggle->kickSquiggler.colorEnd);
+    colorScheme.addColorRef(squiggle->kickSquiggler.colorLine);
+    
+    colorScheme.addColorRef(squiggle->voxSquiggler.colorStart);
+    colorScheme.addColorRef(squiggle->voxSquiggler.colorEnd);
+    colorScheme.addColorRef(squiggle->voxSquiggler.colorLine);
+    
+    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorStart);
+    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorEnd);
+    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorLine);
+    
+    meshScene * mesh = static_cast<meshScene*>(scenes[1]);
+    colorScheme.addColorRef(mesh->meshCol);
+    colorScheme.addColorRef(mesh->meshHiCol);
+
+    
+    
 //    rm.setup(oni, scenes);
     pm.setup(oni, scenes);
     xOffset = yOffset = 0;
@@ -29,7 +53,15 @@ void testApp::setup() {
     
     aa.playStems();
     
-    
+    ofxGamepadHandler::get()->enableHotplug();
+	
+	//CHECK IF THERE EVEN IS A GAMEPAD CONNECTED
+	if(ofxGamepadHandler::get()->getNumPads()>0){
+        ofxGamepad* pad = ofxGamepadHandler::get()->getGamepad(0);
+        ofAddListener(pad->onAxisChanged, this, &testApp::axisChanged);
+        ofAddListener(pad->onButtonPressed, this, &testApp::buttonPressed);
+        ofAddListener(pad->onButtonReleased, this, &testApp::buttonReleased);
+	}
     
 }
 
@@ -74,9 +106,10 @@ void testApp::draw(){
         case 0:
             oni.draw();
             break;
-            
+                
         case 1:
-            aa.drawAnalytics();
+//            aa.drawAnalytics();
+            colorScheme.draw();
             break;
             
         case 2:
@@ -194,7 +227,48 @@ void testApp::keyPressed(int key){
             scene2 = abs(scene2 - 1);
             break;
             
+        case 'c':
+            colorScheme.assignRandom(true);
+            break;
+            
+        case 'G':
+            colorScheme.gui->toggleVisible();
+            break;
+            
     }
+}
+
+//--------------------------------------------------------------
+
+void testApp::axisChanged(ofxGamepadAxisEvent& e)
+{
+	cout << "AXIS " << e.axis << " VALUE " << ofToString(e.value) << endl;
+    squigglerScene * squiggle = static_cast<squigglerScene*>(scenes[0]);
+    switch (e.axis) {
+        case 2:
+            squiggle->orientZ = ofMap(e.value, -1.0, 1.0, -90, 90);
+            squiggle->cam.setOrientation(ofVec3f(squiggle->orientX, squiggle->orientY, squiggle->orientZ));
+            break;
+            
+        case 3:
+            squiggle->orientY = ofMap(e.value, -1.0, 1.0, -90, 90);
+            squiggle->cam.setOrientation(ofVec3f(squiggle->orientX, squiggle->orientY, squiggle->orientZ));
+            break;
+            
+        case 1:
+            squiggle->fadeAmt = ofMap(e.value, 0.0, 1.0, 100, 0);
+            break;
+    }
+}
+
+void testApp::buttonPressed(ofxGamepadButtonEvent& e)
+{
+	cout << "BUTTON " << e.button << " PRESSED" << endl;
+}
+
+void testApp::buttonReleased(ofxGamepadButtonEvent& e)
+{
+	cout << "BUTTON " << e.button << " RELEASED" << endl;
 }
 
 //--------------------------------------------------------------
