@@ -13,10 +13,11 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
     aa = _aa;
     oni = _oni;
     
-    voxSquiggler.setup(255+2, 0, 140, 0.06);
-    bgVoxSquiggler.setup(255 * 2 + 2, 1, 140, 0.06);
-    kickSquiggler.setup(255 * 3 + 2, 2, 160, 0.4);
-    bassSquiggler.setup(255 * 4 + 2, 3, 100, 0.2);
+//    squiggler[i].setup(255 * i + 2, 0, 140, 0.06);
+//    voxSquiggler.setup(255+2, 0, 140, 0.06);
+//    bgVoxSquiggler.setup(255 * 2 + 2, 1, 140, 0.06);
+//    kickSquiggler.setup(255 * 3 + 2, 2, 160, 0.4);
+//    bassSquiggler.setup(255 * 4 + 2, 3, 100, 0.2);
 
     fbo.allocate(1024, 768, GL_RGBA32F_ARB);
     fbo.begin();
@@ -47,12 +48,23 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
     presets.pushTag("root");
 }
 
+void squigglerScene::setupSquigglers(vector<int> &tracks){
+    for (int i = 0; i < tracks.size(); i++) {
+        squigglers.push_back(new squiggler);
+        squigglers[i]->setup(255 * (i+1) + 2, tracks[i], 140, 0.06);
+    }
+}
+
 void squigglerScene::update(){
     gui->update();
-    voxSquiggler.update(aa->pitch[voxSquiggler.track], aa->amp[voxSquiggler.track], useCam);
-    bgVoxSquiggler.update(aa->pitch[bgVoxSquiggler.track], aa->amp[bgVoxSquiggler.track], useCam);
-    kickSquiggler.update(aa->pitch[kickSquiggler.track], aa->amp[kickSquiggler.track], useCam);
-    bassSquiggler.update(aa->pitch[bassSquiggler.track], aa->amp[bassSquiggler.track], useCam);
+    
+    for (int i = 0; i < squigglers.size(); i++) {
+        squigglers[i]->update(aa->pitch[squigglers[i]->track], aa->amp[squigglers[i]->track], useCam);
+    }
+//    voxSquiggler.update(aa->pitch[voxSquiggler.track], aa->amp[voxSquiggler.track], useCam);
+//    bgVoxSquiggler.update(aa->pitch[bgVoxSquiggler.track], aa->amp[bgVoxSquiggler.track], useCam);
+//    kickSquiggler.update(aa->pitch[kickSquiggler.track], aa->amp[kickSquiggler.track], useCam);
+//    bassSquiggler.update(aa->pitch[bassSquiggler.track], aa->amp[bassSquiggler.track], useCam);
 }
 
 void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen = true){
@@ -68,10 +80,13 @@ void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen
     
     if (useCam) cam.begin();
     //ofDrawAxis(100);
-    kickSquiggler.draw();
-    bassSquiggler.draw();
-    bgVoxSquiggler.draw();
-    voxSquiggler.draw();
+    for (int i = 0; i < squigglers.size(); i++) {
+        squigglers[i]->draw();
+    }
+//    kickSquiggler.draw();
+//    bassSquiggler.draw();
+//    bgVoxSquiggler.draw();
+//    voxSquiggler.draw();
     if (useCam) cam.end();
     fbo.end();
     
@@ -200,8 +215,11 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
 
 void squigglerScene::toggleGUI() {
     gui->toggleVisible();
-    voxSquiggler.gui->toggleVisible();
-    bgVoxSquiggler.gui->toggleVisible();
-    kickSquiggler.gui->toggleVisible();
-    bassSquiggler.gui->toggleVisible();
+    for (int i = 0; i < squigglers.size(); i++) {
+        squigglers[i]->gui->toggleVisible();
+    }
+//    voxSquiggler.gui->toggleVisible();
+//    bgVoxSquiggler.gui->toggleVisible();
+//    kickSquiggler.gui->toggleVisible();
+//    bassSquiggler.gui->toggleVisible();
 }

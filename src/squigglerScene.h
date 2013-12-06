@@ -20,6 +20,9 @@ public:
     void setup(audioAnalytics * _aa, openNIManager * _oni);
     void update();
     void draw(int x, int y, int width, int height, bool drawToScreen);
+    
+    void setupSquigglers(vector<int> &tracks);
+    
     ofTexture & getTexRef(int width, int height);
     
     void setupGUI();
@@ -28,7 +31,8 @@ public:
     
     ///vars
     
-    squiggler voxSquiggler, bgVoxSquiggler, kickSquiggler, bassSquiggler;
+    vector<squiggler*> squigglers;
+//    squiggler voxSquiggler, bgVoxSquiggler, kickSquiggler, bassSquiggler;
     
     ofFbo fbo;
     

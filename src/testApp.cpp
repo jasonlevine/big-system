@@ -8,6 +8,7 @@ void testApp::setup() {
     colorScheme.setup();
 
     scenes.push_back(new squigglerScene());
+    scenes.push_back(new squigglerScene());
     scenes.push_back(new meshScene());
     
     for (int i = 0; i < scenes.size(); i++) {
@@ -19,22 +20,50 @@ void testApp::setup() {
     scene1 = 0;
     scene2 = 1;
     
-    squigglerScene * squiggle = static_cast<squigglerScene*>(scenes[0]);
-    colorScheme.addColorRef(squiggle->bassSquiggler.colorStart);
-    colorScheme.addColorRef(squiggle->bassSquiggler.colorEnd);
-    colorScheme.addColorRef(squiggle->bassSquiggler.colorLine);
+    squigglerScene * squiggle0 = static_cast<squigglerScene*>(scenes[0]);
     
-    colorScheme.addColorRef(squiggle->kickSquiggler.colorStart);
-    colorScheme.addColorRef(squiggle->kickSquiggler.colorEnd);
-    colorScheme.addColorRef(squiggle->kickSquiggler.colorLine);
+    int tracksInit0[] = {  2, 3, 4, 6 };
+    vector<int> tracks0;
+    tracks0.assign(tracksInit0, tracksInit0 + 4);
     
-    colorScheme.addColorRef(squiggle->voxSquiggler.colorStart);
-    colorScheme.addColorRef(squiggle->voxSquiggler.colorEnd);
-    colorScheme.addColorRef(squiggle->voxSquiggler.colorLine);
+    squiggle0->setupSquigglers(tracks0);
     
-    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorStart);
-    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorEnd);
-    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorLine);
+    for (int i = 0; i < squiggle0->squigglers.size(); i++) {
+        colorScheme.addColorRef(squiggle0->squigglers[i]->colorStart);
+        colorScheme.addColorRef(squiggle0->squigglers[i]->colorEnd);
+        colorScheme.addColorRef(squiggle0->squigglers[i]->colorLine);
+    }
+    
+    squigglerScene * squiggle1 = static_cast<squigglerScene*>(scenes[1]);
+    
+    int tracksInit1[] = {  0, 1 };
+    vector<int> tracks1;
+    tracks1.assign(tracksInit1, tracksInit1 + 2);
+    
+    squiggle1->setupSquigglers(tracks1);
+    
+    for (int i = 0; i < squiggle1->squigglers.size(); i++) {
+        colorScheme.addColorRef(squiggle1->squigglers[i]->colorStart);
+        colorScheme.addColorRef(squiggle1->squigglers[i]->colorEnd);
+        colorScheme.addColorRef(squiggle1->squigglers[i]->colorLine);
+    }
+
+    
+//    colorScheme.addColorRef(squiggle->bassSquiggler.colorStart);
+//    colorScheme.addColorRef(squiggle->bassSquiggler.colorEnd);
+//    colorScheme.addColorRef(squiggle->bassSquiggler.colorLine);
+//    
+//    colorScheme.addColorRef(squiggle->kickSquiggler.colorStart);
+//    colorScheme.addColorRef(squiggle->kickSquiggler.colorEnd);
+//    colorScheme.addColorRef(squiggle->kickSquiggler.colorLine);
+//    
+//    colorScheme.addColorRef(squiggle->voxSquiggler.colorStart);
+//    colorScheme.addColorRef(squiggle->voxSquiggler.colorEnd);
+//    colorScheme.addColorRef(squiggle->voxSquiggler.colorLine);
+//    
+//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorStart);
+//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorEnd);
+//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorLine);
     
     meshScene * mesh = static_cast<meshScene*>(scenes[1]);
     colorScheme.addColorRef(mesh->meshCol);
@@ -168,7 +197,7 @@ void testApp::keyPressed(int key){
             
         case 's':
             currentScene++;
-            currentScene%=2;
+            currentScene%=3;
             break;
             
         case 'f':
