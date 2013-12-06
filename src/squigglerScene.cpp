@@ -57,14 +57,16 @@ void squigglerScene::update(){
 }
 
 void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen = true){
-//    ofPushStyle();
-//    ofEnableAlphaBlending();
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+    glEnable(GL_DEPTH_TEST);
+	
+	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofBackground(0);
     fbo.begin();
-
-    ofSetColor(0,0,0,fadeAmt);
-    ofRect(0,0,ofGetWidth(),ofGetHeight());
+	
+	ofClear(0, fadeAmt);
+//    ofSetColor(0, 0, 0, fadeAmt);
+//    ofRect(0, 0, ofGetWidth(), ofGetHeight());
     
     
     if (useCam) cam.begin();
@@ -74,20 +76,17 @@ void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen
     bgVoxSquiggler.draw();
     voxSquiggler.draw();
     if (useCam) cam.end();
+	
     fbo.end();
+    glDisable(GL_DEPTH_TEST);
     
 
     post.begin();
     fbo.draw(0,0);
-    
-//    ofPushMatrix();
-//    ofTranslate(x,y);
     post.end(drawToScreen);
-//    ofPopMatrix();
     
     ofDisableBlendMode();
-//    ofDisableAlphaBlending();
-//    ofPopStyle();
+	
 }
 
 ofTexture & squigglerScene::getTexRef(int width, int height){
