@@ -17,7 +17,6 @@ void colorSchemeDesigner::setup(){
     width = 200;
     xOffset = 320;
     
-    
     vector<ofFloatColor> hueScheme;
     hueScheme.assign(5, ofFloatColor::black);
     
@@ -53,6 +52,8 @@ void colorSchemeDesigner::setup(){
     gui->setAutoDraw(false);
     
     ofAddListener(gui->newGUIEvent,this,&colorSchemeDesigner::guiEvent);
+	
+	assignRandom(true);
 }
 
 //--------------------------------------------------------------
@@ -126,6 +127,61 @@ void colorSchemeDesigner::guiEvent(ofxUIEventArgs &e) {
         else if (name == "accented") mode = 5;
     }
     
+    updateColorScheme();
+}
+
+void colorSchemeDesigner::assignRandom(bool unique) {
+	
+	colorSchemeIndices.clear();
+	applyColorIndeces.clear();
+	
+    for (int i = 0; i < colorScheme[0].size(); i++) {
+        colorSchemeIndices.push_back(ofVec2f(0,i));
+    }
+    
+    if  (mode == 1 || mode == 3 || mode == 5) {
+        for (int i = 0; i < colorScheme[0].size(); i++) {
+            colorSchemeIndices.push_back(ofVec2f(1,i));
+        }
+    }
+    
+    if  (mode == 2 || mode == 3 || mode == 4 || mode == 5) {
+        for (int i = 0; i < colorScheme[0].size(); i++) {
+            colorSchemeIndices.push_back(ofVec2f(2,i));
+        }
+        for (int i = 0; i < colorScheme[0].size(); i++) {
+            colorSchemeIndices.push_back(ofVec2f(3,i));
+        }
+    }
+	
+	for (int i=0; i<assignColors.size(); i++)
+	{
+		int index = ofRandom(0, colorSchemeIndices.size());
+		applyColorIndeces.push_back(index);
+	}
+	
+	assert( assignColors.size() == applyColorIndeces.size() );
+	
+	applyColors();
+}
+
+void colorSchemeDesigner::applyColors() {
+    
+    for (int i = 0; i < assignColors.size(); i++ ) {
+        int index = applyColorIndeces[i];
+        int hue = colorSchemeIndices[index].x;
+        int variant = (int)colorSchemeIndices[index].y;
+		
+		ofFloatColor *color = &colorScheme[hue][variant];
+        assignColors[i]->r = color->r;
+        assignColors[i]->g = color->g;
+        assignColors[i]->b = color->b;
+        assignColors[i]->a = color->a;
+    }
+}
+
+
+void colorSchemeDesigner::updateColorScheme() {
     primary.setHsb(hue, saturation, brightness);
     
     ofFloatColor primaryHB, primaryHS, primaryLB, primaryLS;
@@ -273,59 +329,6 @@ void colorSchemeDesigner::guiEvent(ofxUIEventArgs &e) {
         colorScheme[3][3] = thirdHS;
         colorScheme[3][4] = thirdLS;
     }
-    
+	
+	applyColors();
 }
-
-void colorSchemeDesigner::assignRandom(bool unique) {
-    vector<ofVec2f> colorSchemeIndices;
-    
-    for (int i = 0; i < colorScheme[0].size(); i++) {
-        colorSchemeIndices.push_back(ofVec2f(0,i));
-    }
-    
-    if  (mode == 1 || mode == 3 || mode == 5) {
-        for (int i = 0; i < colorScheme[0].size(); i++) {
-            colorSchemeIndices.push_back(ofVec2f(1,i));
-        }
-    }
-    
-    if  (mode == 2 || mode == 3 || mode == 4 || mode == 5) {
-        for (int i = 0; i < colorScheme[0].size(); i++) {
-            colorSchemeIndices.push_back(ofVec2f(2,i));
-        }
-        for (int i = 0; i < colorScheme[0].size(); i++) {
-            colorSchemeIndices.push_back(ofVec2f(3,i));
-        }
-    }
-    
-    for (int i = 0; i < assignColors.size(); i++ ) {
-        int index = ofRandom(0, colorSchemeIndices.size());
-        int hue = colorSchemeIndices[index].x;
-        int variant = (int)colorSchemeIndices[index].y;
-        assignColors[i]->set(colorScheme[hue][variant]);
-    }
-}
-//void colorSchemeDesigner::assignRandom(bool unique) {
-//    vector<vector<ofFloatColor> > colorSchemeCopy;
-//    
-//    colorSchemeCopy.push_back(colorScheme[0]);
-//    if  (mode == 1 || mode == 3 || mode == 5) colorSchemeCopy.push_back(colorScheme[1]);
-//    if  (mode == 2 || mode == 3 || mode == 4 || mode == 5) {
-//        colorSchemeCopy.push_back(colorScheme[2]);
-//        colorSchemeCopy.push_back(colorScheme[3]);
-//    }
-//    
-//    int copySize = colorSchemeCopy.size();
-//    for (int i = 0; i < assignColors.size(); i++ ) {
-//        
-//        int mainIndex;
-////        do {
-//            mainIndex = ofRandom(0, copySize);
-////        } while ( colorSchemeCopy[mainIndex].size() == 0 );
-//        
-//        int subIndex = ofRandom(0, colorSchemeCopy[mainIndex].size());
-////        assignColors[i]->set(colorSchemeCopy[mainIndex][subIndex]);
-//        assignColors[i] = &colorSchemeCopy[mainIndex][subIndex];
-////        if( unique ) colorSchemeCopy[mainIndex].erase( colorSchemeCopy[mainIndex].begin() + subIndex );
-//    }
-//}

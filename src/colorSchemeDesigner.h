@@ -19,8 +19,8 @@ public:
     void guiEvent(ofxUIEventArgs &e);
     
     void addColorRef(ofFloatColor *col) { assignColors.push_back(col); }
-    void assignRandom(bool unique);
-    
+	void assignRandom(bool unique);
+	
     ofxUICanvas * gui;
     
     ofFloatColor primary;
@@ -34,4 +34,44 @@ public:
     
     vector<vector<ofFloatColor> > colorScheme;
     vector<ofFloatColor*> assignColors;
+	
+	
+	// ------------------------------------------------
+	// !!!:motoi added
+	void updateColorScheme();
+	void applyColors();
+	vector<ofVec2f> colorSchemeIndices;
+	vector<int> applyColorIndeces;
+	
+	
+	// interfaces
+	void setHue(const float value)
+	{
+		hue = value;
+		updateColorScheme();
+	}
+	
+	void setSaturation(const float value)
+	{
+		saturation = value;
+		updateColorScheme();
+	}
+	
+	void setbrightness(const float value)
+	{
+		brightness = value;
+		updateColorScheme();
+	}
+	
+	void setAngle(const float value)
+	{
+		angle = value;
+		updateColorScheme();
+	}
+	
+	void setDistance(const float value)
+	{
+		distance = value;
+		updateColorScheme();
+	}
 };
