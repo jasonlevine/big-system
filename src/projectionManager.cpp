@@ -99,9 +99,9 @@ void projectionManager::draw(int wallScene, int bodyScene, float scale, float xO
     
     shader.end();
     finalFbo.end();
-//
-//
-//    
-//    finalFbo.draw(0,0);
+
+
+    
+    finalFbo.draw(0,0);
   
 }

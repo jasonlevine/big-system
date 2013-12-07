@@ -45,7 +45,7 @@ void meshScene::setup(audioAnalytics * _aa, openNIManager * _oni){
 
 }
 
-void meshScene::update(){
+void meshScene::update(int width, int height){
     vector<float> wave;
     aa->taps[0]->getSamples(wave, 0);
     waveHistory.push_back(wave);

@@ -16,7 +16,7 @@
 class meshScene : public scene {
 public:
     void setup(audioAnalytics * _aa, openNIManager * _oni);
-    void update();
+    void update(int width, int height);
     void draw(int x, int y, int width, int height, bool drawToScreen);
     ofTexture & getTexRef(int width, int height);
         

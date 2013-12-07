@@ -92,7 +92,7 @@ void testApp::update(){
     aa.updateAnalytics();
     
     for (int i = 0; i < scenes.size(); i++) {
-        scenes[i]->update();
+        scenes[i]->update(1024, 768);
     }
     
     /*
@@ -134,7 +134,7 @@ void testApp::draw(){
             break;
             
         case 2:
-            scenes[currentScene]->draw(0, 0, ofGetWidth(), ofGetHeight(), true);
+            scenes[currentScene]->draw(0, 0, 1024, 768, true);
             break;
             
         case 3:
