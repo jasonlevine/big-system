@@ -63,7 +63,7 @@ void testApp::setup() {
 //    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorEnd);
 //    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorLine);
     
-    meshScene * mesh = static_cast<meshScene*>(scenes[1]);
+    meshScene * mesh = static_cast<meshScene*>(scenes[2]);
     colorScheme.addColorRef(mesh->meshCol);
     colorScheme.addColorRef(mesh->meshHiCol);
 

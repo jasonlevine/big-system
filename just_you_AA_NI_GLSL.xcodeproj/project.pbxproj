@@ -2014,13 +2014,13 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/apps/myApps/just_you_AA_NI_GLSL/bin/data/openni/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/win/copy_to_data_openni_path/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/linux64,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/osx,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2008,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2010,
+					"$(OF_PATH)/apps/myApps/just_you_AA_NI_GLSL/bin/data/openni/lib",
+					"$(OF_PATH)/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib",
+					"$(OF_PATH)/addons/ofxOpenNI/win/copy_to_data_openni_path/lib",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/linux64",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/osx",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/vs2008",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/vs2010",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				WRAPPER_EXTENSION = app;
@@ -2106,13 +2106,13 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_49)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/apps/myApps/just_you_AA_NI_GLSL/bin/data/openni/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/win/copy_to_data_openni_path/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/linux64,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/osx,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2008,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2010,
+					"$(OF_PATH)/apps/myApps/just_you_AA_NI_GLSL/bin/data/openni/lib",
+					"$(OF_PATH)/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib",
+					"$(OF_PATH)/addons/ofxOpenNI/win/copy_to_data_openni_path/lib",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/linux64",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/osx",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/vs2008",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/vs2010",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
