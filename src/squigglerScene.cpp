@@ -12,11 +12,6 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
 
     aa = _aa;
     oni = _oni;
-    
-    voxSquiggler.setup(255+2, 0, 140, 0.06);
-    bgVoxSquiggler.setup(255 * 2 + 2, 1, 140, 0.06);
-    kickSquiggler.setup(255 * 3 + 2, 2, 160, 0.4);
-    bassSquiggler.setup(255 * 4 + 2, 3, 100, 0.2);
 
     fbo.allocate(1024, 768, GL_RGBA32F_ARB);
     fbo.begin();
@@ -25,35 +20,38 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
 
     cam.setScale(1, -1, 1);
 
-    //    voxStats.addChild("root");
-    //    voxStats.setTo("root");
-
     ofSetLineWidth(4);
 
     post.init(1024, 768);
+    post.createPass<FxaaPass>()->setEnabled(true);
     post.createPass<KaleidoscopePass>()->setEnabled(false);
     post.createPass<DofAltPass>()->setEnabled(false);
     post.createPass<BloomPass>()->setEnabled(false);
     post.createPass<GodRaysPass>()->setEnabled(false);
     post.createPass<RimHighlightingPass>()->setEnabled(false);
+    
     post.setFlip(false);
 
-
     renderPasses = post.getPasses();
-    //    shared_ptr<KaleidoscopePass> Kaleidoscope = static_pointer_cast<KaleidoscopePass>(renderPasses[4]);
-    //    Kaleidoscope->setSegments(4);
     setupGUI();
 
     presets.loadFile("presets.xml");
     presets.pushTag("root");
 }
 
-void squigglerScene::update(){
+void squigglerScene::setupSquigglers(vector<int> &tracks){
+    for (int i = 0; i < tracks.size(); i++) {
+        squigglers.push_back(new squiggler);
+        squigglers[i]->setup(255 * (i+1) + 2, tracks[i], 0.06, 140);
+    }
+}
+
+void squigglerScene::update(int width, int height){
     gui->update();
-    voxSquiggler.update(aa->pitch[voxSquiggler.track], aa->amp[voxSquiggler.track], useCam);
-    bgVoxSquiggler.update(aa->pitch[bgVoxSquiggler.track], aa->amp[bgVoxSquiggler.track], useCam);
-    kickSquiggler.update(aa->pitch[kickSquiggler.track], aa->amp[kickSquiggler.track], useCam);
-    bassSquiggler.update(aa->pitch[bassSquiggler.track], aa->amp[bassSquiggler.track], useCam);
+    
+    for (int i = 0; i < squigglers.size(); i++) {
+        squigglers[i]->update(aa->pitch[squigglers[i]->track], aa->amp[squigglers[i]->track], width, height);
+    }
 }
 
 void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen = true){
@@ -65,18 +63,14 @@ void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen
     fbo.begin();
 	
 	ofClear(0, fadeAmt);
-//    ofSetColor(0, 0, 0, fadeAmt);
-//    ofRect(0, 0, ofGetWidth(), ofGetHeight());
     
-    
-    if (useCam) cam.begin();
-    //ofDrawAxis(100);
-    kickSquiggler.draw();
-    bassSquiggler.draw();
-    bgVoxSquiggler.draw();
-    voxSquiggler.draw();
-    if (useCam) cam.end();
-	
+    cam.begin();
+    ofDrawAxis(100);
+    for (int i = 0; i < squigglers.size(); i++) {
+        squigglers[i]->draw();
+    }
+    cam.end();
+
     fbo.end();
     glDisable(GL_DEPTH_TEST);
     
@@ -86,7 +80,6 @@ void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen
     post.end(drawToScreen);
     
     ofDisableBlendMode();
-	
 }
 
 ofTexture & squigglerScene::getTexRef(int width, int height){
@@ -98,7 +91,8 @@ ofTexture & squigglerScene::getTexRef(int width, int height){
 void squigglerScene::setupGUI(){
     fadeAmt = 255;
     useCam = false;
-    posX = posY = posZ = 0;
+    posX = posY = 0;
+    posZ = 2000;
     lookatX = lookatY = lookatZ = 0;
     orientX = orientY = orientZ = 0;
     usePost = false;
@@ -130,9 +124,8 @@ void squigglerScene::setupGUI(){
     gui->addLabelToggle("kaleidoscope", false);
     gui->addLabelToggle("dof", false);
     gui->addLabelToggle("bloom", false);
-    gui->addLabelToggle("highlight", false);
     gui->addLabelToggle("godrays", false);
-    
+    gui->addLabelToggle("highlight", false);
     
     ofAddListener(gui->newGUIEvent,this,&squigglerScene::guiEvent);
 }
@@ -140,7 +133,6 @@ void squigglerScene::setupGUI(){
 void squigglerScene::guiEvent(ofxUIEventArgs &e){
     string name = e.widget->getName();
 	int kind = e.widget->getKind();
-    
     
     //    else
     if(name == "posX" || name == "posY" || name == "posZ")
@@ -167,26 +159,20 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
     else if(name == "kaleidoscope")
 	{
 		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
-		post[0]->setEnabled(toggle->getValue());
+		post[1]->setEnabled(toggle->getValue());
         kaleidoscope = toggle->getValue();
 	}
     else if(name == "dof")
 	{
 		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
-		post[1]->setEnabled(toggle->getValue());
+		post[2]->setEnabled(toggle->getValue());
         dof = toggle->getValue();
 	}
     else if(name == "bloom")
 	{
 		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
-		post[2]->setEnabled(toggle->getValue());
-        bloom = toggle->getValue();
-	}
-    else if(name == "highlight")
-	{
-		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
 		post[3]->setEnabled(toggle->getValue());
-        highlight = toggle->getValue();
+        bloom = toggle->getValue();
 	}
     else if(name == "godrays")
 	{
@@ -194,13 +180,18 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
 		post[4]->setEnabled(toggle->getValue());
         godrays = toggle->getValue();
 	}
+    else if(name == "highlight")
+	{
+		ofxUILabelToggle *toggle = (ofxUILabelToggle *) e.widget;
+		post[5]->setEnabled(toggle->getValue());
+        highlight = toggle->getValue();
+	}
 
 }
 
 void squigglerScene::toggleGUI() {
     gui->toggleVisible();
-    voxSquiggler.gui->toggleVisible();
-    bgVoxSquiggler.gui->toggleVisible();
-    kickSquiggler.gui->toggleVisible();
-    bassSquiggler.gui->toggleVisible();
+    for (int i = 0; i < squigglers.size(); i++) {
+        squigglers[i]->gui->toggleVisible();
+    }
 }

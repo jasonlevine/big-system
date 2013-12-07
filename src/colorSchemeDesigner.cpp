@@ -329,6 +329,5 @@ void colorSchemeDesigner::updateColorScheme() {
         colorScheme[3][3] = thirdHS;
         colorScheme[3][4] = thirdLS;
     }
-	
 	applyColors();
 }

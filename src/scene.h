@@ -16,7 +16,7 @@
 class scene {
     public:
     virtual void setup(audioAnalytics * _aa, openNIManager * _oni){}
-    virtual void update(){}
+    virtual void update(int width, int height){}
     virtual void draw(int x, int y, int width, int height, bool drawToScreen){}
 //    void setupGUI(){}
 //    void guiEvent(ofxUIEventArgs &e){}

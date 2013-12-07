@@ -6,6 +6,7 @@ void testApp::setup() {
     oni.setup();
 
     scenes.push_back(new squigglerScene());
+    scenes.push_back(new squigglerScene());
     scenes.push_back(new meshScene());
     
     for (int i = 0; i < scenes.size(); i++) {
@@ -17,24 +18,52 @@ void testApp::setup() {
     scene1 = 0;
     scene2 = 1;
     
-    squigglerScene * squiggle = static_cast<squigglerScene*>(scenes[0]);
-    colorScheme.addColorRef(squiggle->bassSquiggler.colorStart);
-    colorScheme.addColorRef(squiggle->bassSquiggler.colorEnd);
-    colorScheme.addColorRef(squiggle->bassSquiggler.colorLine);
+    squigglerScene * squiggle0 = static_cast<squigglerScene*>(scenes[0]);
     
-    colorScheme.addColorRef(squiggle->kickSquiggler.colorStart);
-    colorScheme.addColorRef(squiggle->kickSquiggler.colorEnd);
-    colorScheme.addColorRef(squiggle->kickSquiggler.colorLine);
+    int tracksInit0[] = {  2, 3, 4, 6 };
+    vector<int> tracks0;
+    tracks0.assign(tracksInit0, tracksInit0 + 4);
     
-    colorScheme.addColorRef(squiggle->voxSquiggler.colorStart);
-    colorScheme.addColorRef(squiggle->voxSquiggler.colorEnd);
-    colorScheme.addColorRef(squiggle->voxSquiggler.colorLine);
+    squiggle0->setupSquigglers(tracks0);
     
-    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorStart);
-    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorEnd);
-    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorLine);
+    for (int i = 0; i < squiggle0->squigglers.size(); i++) {
+        colorScheme.addColorRef(squiggle0->squigglers[i]->colorStart);
+        colorScheme.addColorRef(squiggle0->squigglers[i]->colorEnd);
+        colorScheme.addColorRef(squiggle0->squigglers[i]->colorLine);
+    }
     
-    meshScene * mesh = static_cast<meshScene*>(scenes[1]);
+    squigglerScene * squiggle1 = static_cast<squigglerScene*>(scenes[1]);
+    
+    int tracksInit1[] = {  0, 1 };
+    vector<int> tracks1;
+    tracks1.assign(tracksInit1, tracksInit1 + 2);
+    
+    squiggle1->setupSquigglers(tracks1);
+    
+    for (int i = 0; i < squiggle1->squigglers.size(); i++) {
+        colorScheme.addColorRef(squiggle1->squigglers[i]->colorStart);
+        colorScheme.addColorRef(squiggle1->squigglers[i]->colorEnd);
+        colorScheme.addColorRef(squiggle1->squigglers[i]->colorLine);
+    }
+
+    
+//    colorScheme.addColorRef(squiggle->bassSquiggler.colorStart);
+//    colorScheme.addColorRef(squiggle->bassSquiggler.colorEnd);
+//    colorScheme.addColorRef(squiggle->bassSquiggler.colorLine);
+//    
+//    colorScheme.addColorRef(squiggle->kickSquiggler.colorStart);
+//    colorScheme.addColorRef(squiggle->kickSquiggler.colorEnd);
+//    colorScheme.addColorRef(squiggle->kickSquiggler.colorLine);
+//    
+//    colorScheme.addColorRef(squiggle->voxSquiggler.colorStart);
+//    colorScheme.addColorRef(squiggle->voxSquiggler.colorEnd);
+//    colorScheme.addColorRef(squiggle->voxSquiggler.colorLine);
+//    
+//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorStart);
+//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorEnd);
+//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorLine);
+    
+    meshScene * mesh = static_cast<meshScene*>(scenes[2]);
     colorScheme.addColorRef(mesh->meshCol);
     colorScheme.addColorRef(mesh->meshHiCol);
 
@@ -46,22 +75,15 @@ void testApp::setup() {
     xOffset = yOffset = 0;
     scale = 1.0;
     
+    gamePad.setup(scenes);
+    
     verdana.loadFont(ofToDataPath("verdana.ttf"), 24);
     
 //    grayImage.allocate(640,480);
     
     aa.playStems();
     
-    ofxGamepadHandler::get()->enableHotplug();
-	
-	//CHECK IF THERE EVEN IS A GAMEPAD CONNECTED
-	if(ofxGamepadHandler::get()->getNumPads()>0){
-        ofxGamepad* pad = ofxGamepadHandler::get()->getGamepad(0);
-        ofAddListener(pad->onAxisChanged, this, &testApp::axisChanged);
-        ofAddListener(pad->onButtonPressed, this, &testApp::buttonPressed);
-        ofAddListener(pad->onButtonReleased, this, &testApp::buttonReleased);
-	}
-    
+      
 }
 
 //--------------------------------------------------------------
@@ -70,7 +92,7 @@ void testApp::update(){
     aa.updateAnalytics();
     
     for (int i = 0; i < scenes.size(); i++) {
-        scenes[i]->update();
+        scenes[i]->update(1024, 768);
     }
     
     /*
@@ -112,7 +134,7 @@ void testApp::draw(){
             break;
             
         case 2:
-            scenes[currentScene]->draw(0, 0, ofGetWidth(), ofGetHeight(), true);
+            scenes[currentScene]->draw(0, 0, 1024, 768, true);
             break;
             
         case 3:
@@ -174,7 +196,7 @@ void testApp::keyPressed(int key){
             
         case 's':
             currentScene++;
-            currentScene%=2;
+            currentScene%=3;
             break;
             
         case 'f':
@@ -248,38 +270,6 @@ void testApp::keyPressed(int key){
     }
 }
 
-//--------------------------------------------------------------
-
-void testApp::axisChanged(ofxGamepadAxisEvent& e)
-{
-	cout << "AXIS " << e.axis << " VALUE " << ofToString(e.value) << endl;
-    squigglerScene * squiggle = static_cast<squigglerScene*>(scenes[0]);
-    switch (e.axis) {
-        case 2:
-            squiggle->orientZ = ofMap(e.value, -1.0, 1.0, -90, 90);
-            squiggle->cam.setOrientation(ofVec3f(squiggle->orientX, squiggle->orientY, squiggle->orientZ));
-            break;
-            
-        case 3:
-            squiggle->orientY = ofMap(e.value, -1.0, 1.0, -90, 90);
-            squiggle->cam.setOrientation(ofVec3f(squiggle->orientX, squiggle->orientY, squiggle->orientZ));
-            break;
-            
-        case 1:
-            squiggle->fadeAmt = ofMap(e.value, 0.0, 1.0, 100, 0);
-            break;
-    }
-}
-
-void testApp::buttonPressed(ofxGamepadButtonEvent& e)
-{
-	cout << "BUTTON " << e.button << " PRESSED" << endl;
-}
-
-void testApp::buttonReleased(ofxGamepadButtonEvent& e)
-{
-	cout << "BUTTON " << e.button << " RELEASED" << endl;
-}
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){

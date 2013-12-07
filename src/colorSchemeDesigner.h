@@ -33,6 +33,7 @@ public:
     int mode;
     
     vector<vector<ofFloatColor> > colorScheme;
+    
     vector<ofFloatColor*> assignColors;
 	
 	

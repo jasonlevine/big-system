@@ -23,9 +23,10 @@ void meshScene::setup(audioAnalytics * _aa, openNIManager * _oni){
     
     // Setup post-processing chain
     post.init(1024, 768);
+    post.createPass<FxaaPass>()->setEnabled(true);
     post.createPass<BloomPass>()->setEnabled(false);
-    post.createPass<DofAltPass>()->setEnabled(true);
-    post.createPass<GodRaysPass>()->setEnabled(true);
+    post.createPass<DofAltPass>()->setEnabled(false);
+    post.createPass<GodRaysPass>()->setEnabled(false);
     post.createPass<RimHighlightingPass>()->setEnabled(false);
     post.createPass<KaleidoscopePass>()->setEnabled(false);
     
@@ -44,7 +45,7 @@ void meshScene::setup(audioAnalytics * _aa, openNIManager * _oni){
 
 }
 
-void meshScene::update(){
+void meshScene::update(int width, int height){
     vector<float> wave;
     aa->taps[0]->getSamples(wave, 0);
     waveHistory.push_back(wave);
@@ -207,33 +208,33 @@ void meshScene::guiEvent(ofxUIEventArgs &e){
     else if(name == "numSegments")
     {
         ofxUISlider *slider = (ofxUISlider *) e.widget;
-        shared_ptr<KaleidoscopePass> Kaleidoscope = static_pointer_cast<KaleidoscopePass>(renderPasses[4]);
+        shared_ptr<KaleidoscopePass> Kaleidoscope = static_pointer_cast<KaleidoscopePass>(renderPasses[5]);
         Kaleidoscope->setSegments(slider->getScaledValue());
 	}
     else if(name == "Bloom") //kind == OFX_UI_WIDGET_LABELBUTTON
     {
         ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
-        post[0]->setEnabled(button->getValue());
+        post[1]->setEnabled(button->getValue());
     }
     else if(name == "Dof") //kind == OFX_UI_WIDGET_LABELBUTTON
     {
         ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
-        post[1]->setEnabled(button->getValue());
+        post[2]->setEnabled(button->getValue());
     }
     else if(name == "GodRays") //kind == OFX_UI_WIDGET_LABELBUTTON
     {
         ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
-        post[2]->setEnabled(button->getValue());
+        post[3]->setEnabled(button->getValue());
     }
     else if(name == "RimHighlighting") //kind == OFX_UI_WIDGET_LABELBUTTON
     {
         ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
-        post[3]->setEnabled(button->getValue());
+        post[4]->setEnabled(button->getValue());
     }
     else if(name == "Kaleidoscope") //kind == OFX_UI_WIDGET_LABELBUTTON
     {
         ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
-        post[4]->setEnabled(button->getValue());
+        post[5]->setEnabled(button->getValue());
     }
 }
 

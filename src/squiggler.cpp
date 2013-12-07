@@ -22,16 +22,16 @@ void squiggler::setup(float guiX, int _track, float _maxAmp, float _maxPitch) {
     baseThickness = 20;
     taper = false;
     calligraphy = false;
-    colorStart = new ofFloatColor(1.0,1.0,1.0); //&base;
-    colorEnd = new ofFloatColor(1.0,1.0,1.0); //&base;
-    colorLine = new ofFloatColor(1.0,1.0,1.0); //&base;
+    colorStart = new ofFloatColor(1.0,1.0,1.0);
+    colorEnd = new ofFloatColor(1.0,1.0,1.0);//&base;
+    colorLine = new ofFloatColor(1.0,1.0,1.0);//&base;
 //    colorStart->set(1.0, 0.7, 1.0, 1.0);
 //    colorEnd->set(1.0, 0.7, 1.0, 1.0);
 //    colorLine->set(1.0, 0.7, 1.0, 1.0);
     redFade = greenFade = blueFade = alphaFade = false;
     zFade = 0;
     melt = 0;
-    
+
     
     
     //init gui dims
@@ -42,6 +42,9 @@ void squiggler::setup(float guiX, int _track, float _maxAmp, float _maxPitch) {
 
     //gui!
     gui = new ofxUICanvas(guiX, 0, length+xInit, ofGetHeight());
+    gui->addSlider("maxPitch", 50, 150, &maxPitch, length-xInit, dim);
+    gui->addSlider("maxAmp", 0.01, 0.2, &maxAmp, length-xInit, dim);
+    gui->addSpacer(length-xInit, 1);
     gui->addIntSlider("trailLength", 1, 50, &trailLength, length-xInit, dim);
     gui->addWidgetDown(new ofxUILabelToggle(dim, dim, &curve, "curve?", OFX_UI_FONT_MEDIUM));
     gui->addIntSlider("smoothing", 0, 50, &smoothing, length-xInit, dim);
@@ -66,14 +69,14 @@ void squiggler::setup(float guiX, int _track, float _maxAmp, float _maxPitch) {
     gui->addButton("zero melt", false);
 }
 
-void squiggler::update(float pitch, float amp, bool useCam) {
+void squiggler::update(float pitch, float amp, int w, int h) {
     gui->update();
     
-    float x = pitch / maxAmp * ofGetWidth();
-    if (useCam) x -= ofGetWidth()/2;
+    float x = pitch / maxPitch * ofGetWidth();
+//    x -= ofGetWidth()/2;
     
-    float y = ofGetHeight() - amp / maxPitch * ofGetHeight();
-    if (useCam) y -= ofGetHeight()/2;
+    float y = ofGetHeight() - amp / maxAmp * ofGetHeight();
+//    y -= ofGetHeight()/2;
     
     if ( pitch > 1 && amp > 0.005 ) trail.push_back(ofVec3f(x,y,0));
     if ( trail.size() > trailLength ) trail.erase(trail.begin());

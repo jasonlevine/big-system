@@ -225,9 +225,6 @@
 		903619E8184D3B290003E3D5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		903619F7184D3B2A0003E3D5 /* ofxaddons_thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ofxaddons_thumbnail.png; sourceTree = "<group>"; };
 		903619F8184D3B2A0003E3D5 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
-		903619F9184D3B2A0003E3D5 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
-		903619FA184D3B2A0003E3D5 /* screenshot_godray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot_godray.png; sourceTree = "<group>"; };
-		903619FB184D3B2A0003E3D5 /* screenshot_toon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot_toon.png; sourceTree = "<group>"; };
 		903619FD184D3B2A0003E3D5 /* BleachBypassPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BleachBypassPass.cpp; sourceTree = "<group>"; };
 		903619FE184D3B2A0003E3D5 /* BleachBypassPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleachBypassPass.h; sourceTree = "<group>"; };
 		903619FF184D3B2A0003E3D5 /* BloomPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BloomPass.cpp; sourceTree = "<group>"; };
@@ -858,7 +855,6 @@
 		9011EBE01831994D003EBEF6 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
-
 				90FCDE3918522A5F006D9C2C /* squiggler.cpp */,
 				90FCDE3A18522A5F006D9C2C /* squiggler.h */,
 				903619DE184D39E50003E3D5 /* squigglerScene.cpp */,
@@ -890,9 +886,6 @@
 				903619E8184D3B290003E3D5 /* .gitignore */,
 				903619F7184D3B2A0003E3D5 /* ofxaddons_thumbnail.png */,
 				903619F8184D3B2A0003E3D5 /* readme.md */,
-				903619F9184D3B2A0003E3D5 /* screenshot.png */,
-				903619FA184D3B2A0003E3D5 /* screenshot_godray.png */,
-				903619FB184D3B2A0003E3D5 /* screenshot_toon.png */,
 				903619FC184D3B2A0003E3D5 /* src */,
 			);
 			name = ofxPostProcessing;
@@ -2021,13 +2014,13 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/apps/myApps/just_you_AA_NI_GLSL/bin/data/openni/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/win/copy_to_data_openni_path/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/linux64,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/osx,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2008,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2010,
+					"$(OF_PATH)/apps/myApps/just_you_AA_NI_GLSL/bin/data/openni/lib",
+					"$(OF_PATH)/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib",
+					"$(OF_PATH)/addons/ofxOpenNI/win/copy_to_data_openni_path/lib",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/linux64",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/osx",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/vs2008",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/vs2010",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				WRAPPER_EXTENSION = app;
@@ -2113,13 +2106,13 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_49)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/apps/myApps/just_you_AA_NI_GLSL/bin/data/openni/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxOpenNI/win/copy_to_data_openni_path/lib,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/linux64,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/osx,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2008,
-					/Users/jasonlevine/Code/of_v0.8.0_osx_release/addons/ofxGamepad/libs/wgois/lib/vs2010,
+					"$(OF_PATH)/apps/myApps/just_you_AA_NI_GLSL/bin/data/openni/lib",
+					"$(OF_PATH)/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib",
+					"$(OF_PATH)/addons/ofxOpenNI/win/copy_to_data_openni_path/lib",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/linux64",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/osx",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/vs2008",
+					"$(OF_PATH)/addons/ofxGamepad/libs/wgois/lib/vs2010",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

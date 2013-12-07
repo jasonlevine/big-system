@@ -7,15 +7,13 @@
 //#include "audioAnalytics.h"
 //#include "renderManager.h"
 #include "projectionManager.h"
+#include "gamePadManager.h"
+
 #include "colorSchemeDesigner.h"
 
 #include "scene.h"
 #include "squigglerScene.h"
 #include "meshScene.h"
-
-#include "ofxGamepadHandler.h"
-
-
 
 
 class testApp : public ofBaseApp{
@@ -34,16 +32,14 @@ public:
 	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
 	void windowResized(int w, int h);
-    
-    void axisChanged(ofxGamepadAxisEvent &e);
-    void buttonPressed(ofxGamepadButtonEvent &e);
-    void buttonReleased(ofxGamepadButtonEvent &e);
 
 
     openNIManager oni;
     
     audioAnalytics aa;
     int mode;
+    
+    
     
     colorSchemeDesigner colorScheme;
     
@@ -55,6 +51,8 @@ public:
 //    renderManager rm;
     projectionManager pm;
     float xOffset, yOffset, scale;
+    
+    gamePadManager gamePad;
     
     ofTrueTypeFont verdana;
 
