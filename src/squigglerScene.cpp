@@ -116,7 +116,6 @@ void squigglerScene::setupGUI(){
     
     gui->addFPSSlider("FPS SLIDER", length-xInit, dim*.25, 1000);
     gui->addIntSlider("fadeAmt", 0, 255, &fadeAmt, length-xInit, dim);
-    gui->addWidgetDown(new ofxUILabelToggle(dim, dim, &useCam, "useCam?", OFX_UI_FONT_MEDIUM));
     gui->addSlider("posX", -1024, 1024, &posX, length-xInit, dim);
     gui->addSlider("posY", -768, 768, &posY, length-xInit, dim);
     gui->addSlider("posZ", 0, 2000, &posZ, length-xInit, dim);
@@ -127,7 +126,6 @@ void squigglerScene::setupGUI(){
     gui->addSlider("orientY", -180, 180, &orientY, length-xInit, dim);
     gui->addSlider("orientZ", -180, 180, &orientZ, length-xInit, dim);
     gui->addSpacer(length-xInit, 1);
-    gui->addWidgetDown(new ofxUILabelToggle(dim, dim, &usePost, "usePost?", OFX_UI_FONT_MEDIUM));
     gui->addLabelToggle("flip?", false);
     gui->addLabelToggle("kaleidoscope", false);
     gui->addLabelToggle("dof", false);
@@ -228,7 +226,7 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
                 squigglers[i]->gui->saveSettings(filename);
             }
             
-            ddl->addToggle(folderName);
+            ddl->addToggle(path + folderName);
         }
     }
     else if(name == "presets")
@@ -237,11 +235,15 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
         vector<ofxUIWidget *> &selected = ddlist->getSelected();
         for(int i = 0; i < selected.size(); i++)
         {
-            string path = "squigglerPresets/" + selected[0]->getName() + "/";
-            gui->loadSettings(path + "main.xml");
+            string path = selected[0]->getName() + "/";
+            string filename = path + "main.xml";
+            cout << filename << endl;
+            gui->loadSettings(filename);
             
             for (int i = 0; i < squigglers.size(); i++) {
-                squigglers[i]->gui->loadSettings(path + "squiggler" + ofToString(i) + ".xml");
+                string filename = path + "squiggler" + ofToString(i) + ".xml";
+                cout << filename << endl;
+                squigglers[i]->gui->loadSettings(filename);
             }
         }
     }
