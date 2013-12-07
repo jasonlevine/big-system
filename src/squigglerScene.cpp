@@ -213,10 +213,20 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
     if (name == "save preset") {
         ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
         if (button->getValue()) {
-            string filename = "squigglerPresets/" + ofGetTimestampString() + ".xml";
-            cout << filename << endl;
+            
+            string path = "squigglerPresets/";
+            ofDirectory dir(path);
+            string folderName = ofGetTimestampString() + "/";
+            dir.createDirectory(path + folderName);
+            string filename = path + folderName + "main.xml";
             gui->saveSettings(filename);
-            ddl->addToggle(filename);
+            
+            for (int i = 0; i < squigglers.size(); i++) {
+                string filename = path + folderName + "squiggler" + ofToString(i) + ".xml";
+                squigglers[i]->gui->saveSettings(filename);
+            }
+            
+            ddl->addToggle(folderName);
         }
     }
     else if(name == "presets")
@@ -225,7 +235,12 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
         vector<ofxUIWidget *> &selected = ddlist->getSelected();
         for(int i = 0; i < selected.size(); i++)
         {
-            gui->loadSettings(selected[0]->getName());
+            string path = "squigglerPresets/" + selected[0]->getName() + "/";
+            gui->loadSettings(path + "main.xml");
+            
+            for (int i = 0; i < squigglers.size(); i++) {
+                squigglers[i]->gui->loadSettings(path + "squiggler" + ofToString(i) + ".xml");
+            }
         }
     }
 
