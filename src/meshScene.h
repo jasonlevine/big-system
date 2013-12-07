@@ -35,7 +35,8 @@ public:
     float bassAccum, time;
     
     //UI variables
-    ofxUIScrollableCanvas *gui;
+    ofxUIScrollableCanvas *gui, *gui2;
+    ofxUIDropDownList *ddl;
     
     float noiseScale;
     float meshRotateX;

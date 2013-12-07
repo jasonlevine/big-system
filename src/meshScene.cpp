@@ -183,21 +183,44 @@ void meshScene::setupGUI(){
     gui->addSlider("lookatX", -260, 260, &lookatX, length-xInit, dim);
     gui->addSlider("lookatY", -500, 500, &lookatY, length-xInit, dim);
     gui->addSlider("lookatZ", -600, 600, &lookatZ, length-xInit, dim);
-    gui->addSpacer(length-xInit, 1);
-    gui->addLabelToggle("Kaleidoscope", false);
-    gui->addSlider("numSegments", 1.0, 10.0, 1.0, length-xInit, dim);
-    gui->addLabelToggle("Bloom", false);
-    gui->addLabelToggle("Dof", false);
-    gui->addSlider("DofFStop", 1.0, 15.0, 1.0, length-xInit, dim);
-    gui->addSpacer(length-xInit, 1);
-    gui->addLabelToggle("GodRays", false);
-    gui->addLabelToggle("RimHighlighting", false);
     
-    gui->autoSizeToFitWidgets();
-    gui->getRect()->setWidth(ofGetWidth());
+    
+    gui2 = new ofxUIScrollableCanvas(length+xInit + 2, 0, length+xInit, ofGetHeight());
+    gui2->setScrollAreaToScreen();
+    gui2->setScrollableDirections(false, true);
+
+    gui2->addLabelToggle("Kaleidoscope", false);
+    gui2->addSlider("numSegments", 1.0, 10.0, 1.0, length-xInit, dim);
+    gui2->addLabelToggle("Bloom", false);
+    gui2->addLabelToggle("Dof", false);
+    gui2->addSlider("DofFStop", 1.0, 15.0, 1.0, length-xInit, dim);
+    gui2->addSpacer(length-xInit, 1);
+    gui2->addLabelToggle("GodRays", false);
+    gui2->addLabelToggle("RimHighlighting", false);
+    gui2->addSpacer(length-xInit, 1);
+    gui2->addLabelButton("save preset", false);
+   
+    string path = "meshPresets/";
+    ofDirectory dir(path);
+    dir.listDir();
+    
+    vector<string> presets;
+    for(int i = 0; i < dir.numFiles(); i++){
+        presets.push_back(dir.getPath(i));
+        cout << dir.getPath(i) << endl;
+    }
+    
+    ddl = gui2->addDropDownList("presets", presets);
+    ddl->setAllowMultiple(false);
+    //    ddl->setAutoClose(true);
+    gui2->autoSizeToFitWidgets();
+
+    gui2->autoSizeToFitWidgets();
+    gui2->getRect()->setWidth(ofGetWidth());
     
     
     ofAddListener(gui->newGUIEvent,this,&meshScene::guiEvent);
+    ofAddListener(gui2->newGUIEvent,this,&meshScene::guiEvent);
 }
 
 
@@ -243,6 +266,25 @@ void meshScene::guiEvent(ofxUIEventArgs &e){
         ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
         post[5]->setEnabled(button->getValue());
     }
+    else if (name == "save preset") {
+        ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
+        if (button->getValue()) {
+            string filename = "meshPresets/" + ofGetTimestampString() + ".xml";
+            cout << filename << endl;
+            gui->saveSettings(filename);
+            ddl->addToggle(filename);
+        }
+    }
+    else if(name == "presets")
+    {
+        ofxUIDropDownList *ddlist = (ofxUIDropDownList *) e.widget;
+        vector<ofxUIWidget *> &selected = ddlist->getSelected();
+        for(int i = 0; i < selected.size(); i++)
+        {
+            gui->loadSettings(selected[0]->getName());
+        }
+    }
+
 }
 
 

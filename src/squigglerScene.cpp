@@ -132,6 +132,24 @@ void squigglerScene::setupGUI(){
     gui->addLabelToggle("bloom", false);
     gui->addLabelToggle("godrays", false);
     gui->addLabelToggle("highlight", false);
+    gui->addSpacer(length-xInit, 1);
+    gui->addLabelButton("save preset", false);
+    
+    string path = "squigglerPresets/";
+    ofDirectory dir(path);
+    dir.listDir();
+    
+    vector<string> presets;
+    for(int i = 0; i < dir.numFiles(); i++){
+        presets.push_back(dir.getPath(i));
+        cout << dir.getPath(i) << endl;
+    }
+    
+    
+    
+    ddl = gui->addDropDownList("presets", presets);
+    ddl->setAllowMultiple(false);
+
     
     ofAddListener(gui->newGUIEvent,this,&squigglerScene::guiEvent);
 }
@@ -192,6 +210,24 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
 		post[5]->setEnabled(toggle->getValue());
         highlight = toggle->getValue();
 	}
+    if (name == "save preset") {
+        ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
+        if (button->getValue()) {
+            string filename = "squigglerPresets/" + ofGetTimestampString() + ".xml";
+            cout << filename << endl;
+            gui->saveSettings(filename);
+            ddl->addToggle(filename);
+        }
+    }
+    else if(name == "presets")
+    {
+        ofxUIDropDownList *ddlist = (ofxUIDropDownList *) e.widget;
+        vector<ofxUIWidget *> &selected = ddlist->getSelected();
+        for(int i = 0; i < selected.size(); i++)
+        {
+            gui->loadSettings(selected[0]->getName());
+        }
+    }
 
 }
 

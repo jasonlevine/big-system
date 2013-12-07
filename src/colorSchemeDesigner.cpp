@@ -44,11 +44,8 @@ void colorSchemeDesigner::setup(){
     gui->addSlider("primary saturation", 0.0, 1.0, &saturation, length-xInit, dim);
     gui->addSlider("angle", 0.01, 0.25, &angle, length-xInit, dim);
     gui->addSlider("distance", 0.1, 0.5, &distance, length-xInit, dim);
-    
-    
-    gui->addSpacer(length-xInit, 1);
     gui->addRadio("RADIO VERTICAL", names, OFX_UI_ORIENTATION_VERTICAL, dim, dim);
-    
+    gui->addSpacer(length-xInit, 1);
     gui->addLabelButton("save preset", false);
     
     
@@ -86,6 +83,7 @@ void colorSchemeDesigner::guiEvent(ofxUIEventArgs &e) {
             string filename = "colorPresets/" + ofGetTimestampString() + ".xml";
             cout << filename << endl;
             gui->saveSettings(filename);
+            ddl->addToggle(filename);
         }
     }
     else if(name == "presets")
@@ -95,9 +93,28 @@ void colorSchemeDesigner::guiEvent(ofxUIEventArgs &e) {
         for(int i = 0; i < selected.size(); i++)
         {
             gui->loadSettings(selected[0]->getName());
+            ofxXmlSettings *XML = new ofxXmlSettings();
+            XML->loadFile(selected[0]->getName());
+            int widgetTags = XML->getNumTags("Widget");
+            for(int i = 0; i < widgetTags; i++)
+            {
+                XML->pushTag("Widget", i);
+                string name = XML->getValue("Name", "NULL", 0);
+                int state = XML->getValue("Value", 0, 0);
+                cout << name << " " << state << endl;
+                if (name == "mono" && state) mode = 0;
+                else if (name == "complement" && state) mode = 1;
+                else if (name == "triad" && state) mode = 2;
+                else if (name == "tetrad" && state) mode = 3;
+                else if (name == "analogic" && state) mode = 4;
+                else if (name == "accented" && state) mode = 5;
+                XML->popTag();
+            }
+            delete XML;
+
         }
     }
-    if(kind == OFX_UI_WIDGET_TOGGLE)
+    else if(kind == OFX_UI_WIDGET_TOGGLE)
     {
         //        ofxUIToggle *toggle = (ofxUIToggle *) e.widget;
         //        cout << name << "\t value: " << toggle->getValue() << endl;
