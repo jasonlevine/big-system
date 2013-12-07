@@ -34,9 +34,11 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
 
     renderPasses = post.getPasses();
     setupGUI();
+	toggleGUI();
 
     presets.loadFile("presets.xml");
     presets.pushTag("root");
+	
 }
 
 void squigglerScene::setupSquigglers(vector<int> &tracks){
@@ -55,15 +57,14 @@ void squigglerScene::update(int width, int height){
 }
 
 void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen = true){
-//    ofPushStyle();
-//    ofEnableAlphaBlending();
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+    glEnable(GL_DEPTH_TEST);
+	
+	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofBackground(0);
     fbo.begin();
-
-    ofSetColor(0,0,0,fadeAmt);
-    ofRect(0,0, width, height);
-    
+	
+	ofClear(0, fadeAmt);
     
     cam.begin();
     ofDrawAxis(100);
@@ -71,7 +72,9 @@ void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen
         squigglers[i]->draw();
     }
     cam.end();
+
     fbo.end();
+    glDisable(GL_DEPTH_TEST);
     
 
     post.begin();
@@ -90,7 +93,8 @@ ofTexture & squigglerScene::getTexRef(int width, int height){
 void squigglerScene::setupGUI(){
     fadeAmt = 255;
     useCam = false;
-    posX = posY = posZ = 0;
+    posX = posY = 0;
+    posZ = 2000;
     lookatX = lookatY = lookatZ = 0;
     orientX = orientY = orientZ = 0;
     usePost = false;

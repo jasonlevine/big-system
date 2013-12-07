@@ -46,7 +46,7 @@ public:
     vector<scene*> scenes;
     int currentScene;
     
-    int scene1, scene2;
+    int wallScene, bodyScene;
     
 //    renderManager rm;
     projectionManager pm;

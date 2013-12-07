@@ -15,8 +15,9 @@ void testApp::setup() {
     
     currentScene = 0;
     mode = 2;
-    scene1 = 0;
-    scene2 = 1;
+	
+    wallScene = 0;
+    bodyScene = 2;
     
     squigglerScene * squiggle0 = static_cast<squigglerScene*>(scenes[0]);
     
@@ -92,7 +93,7 @@ void testApp::update(){
     aa.updateAnalytics();
     
     for (int i = 0; i < scenes.size(); i++) {
-        scenes[i]->update();
+        scenes[i]->update(1024, 768);
     }
     
     /*
@@ -134,11 +135,11 @@ void testApp::draw(){
             break;
             
         case 2:
-            scenes[currentScene]->draw(0, 0, ofGetWidth(), ofGetHeight(), true);
+            scenes[currentScene]->draw(0, 0, 1024, 768, true);
             break;
             
         case 3:
-            pm.draw(scene1, scene2, scale, xOffset, yOffset);
+            pm.draw(wallScene, bodyScene, scale, xOffset, yOffset);
             break;
             
 //        case 4:
@@ -244,8 +245,8 @@ void testApp::keyPressed(int key){
             break;
             
         case 'x':
-            scene1 = abs(scene1 - 1);
-            scene2 = abs(scene2 - 1);
+            wallScene = abs(wallScene - 1);
+            bodyScene = abs(bodyScene - 1);
             break;
             
         case 'c':

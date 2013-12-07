@@ -42,10 +42,11 @@ void meshScene::setup(audioAnalytics * _aa, openNIManager * _oni){
     noiseStrength = 0.0;
     
     drawPost = false;
-
+	
+	gui->toggleVisible();
 }
 
-void meshScene::update(){
+void meshScene::update(int width, int height){
     vector<float> wave;
     aa->taps[0]->getSamples(wave, 0);
     waveHistory.push_back(wave);
@@ -62,8 +63,9 @@ void meshScene::update(){
 }
 
 void meshScene::draw(int x, int y, int width, int height, bool drawToScreen = true){
-//    ofPushStyle();
-//    ofSetDepthTest(true);
+	
+	glEnable(GL_DEPTH_TEST);
+	
     float noiseVel = bassAccum;
     
     if (waveHistory[0].size() > 0) {
@@ -100,8 +102,6 @@ void meshScene::draw(int x, int y, int width, int height, bool drawToScreen = tr
         }
         
         
-        //        ofDrawAxis(100);
-
         post.begin(cam);
         ofPushMatrix();
         ofRotateX(meshRotateX);
@@ -111,15 +111,9 @@ void meshScene::draw(int x, int y, int width, int height, bool drawToScreen = tr
         ofSetLineWidth(lineWidth);
         mesh.drawWireframe();
         ofPopMatrix();
-        
-//        ofPushMatrix();
-//        ofTranslate(x,y);
         post.end();
-//        ofPopMatrix();
-
     }
-//    ofSetDepthTest(false);
-//    ofPopStyle();
+	glDisable(GL_DEPTH_TEST);
 }
 
 //--------------------------------------------------------------

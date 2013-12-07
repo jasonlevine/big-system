@@ -73,10 +73,10 @@ void squiggler::update(float pitch, float amp, int w, int h) {
     gui->update();
     
     float x = pitch / maxPitch * ofGetWidth();
-    x -= ofGetWidth()/2;
+//    x -= ofGetWidth()/2;
     
     float y = ofGetHeight() - amp / maxAmp * ofGetHeight();
-    y -= ofGetHeight()/2;
+//    y -= ofGetHeight()/2;
     
     if ( pitch > 1 && amp > 0.005 ) trail.push_back(ofVec3f(x,y,0));
     if ( trail.size() > trailLength ) trail.erase(trail.begin());
