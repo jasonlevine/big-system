@@ -45,7 +45,7 @@ void projectionManager::setup(openNIManager &_oni, vector<scene*> &_scenes){
 	
 	
 	
-	gui = new ofxUICanvas(300, 0, 300, 400);
+	gui = new ofxUICanvas(300, 0, 600, 400);
 	
 	for (int i=0; i<screens.size(); i++)
 	{
