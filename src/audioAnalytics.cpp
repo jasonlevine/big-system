@@ -135,24 +135,33 @@ void audioAnalytics::setupAUGraph(){
 }
 
 //--------------------------------------------------------------
-void audioAnalytics::playStems(){
+void audioAnalytics::playStems(float timeInSeconds){
+
+    int sampleRate = 44100;
+    int timeInSamples = timeInSeconds * sampleRate;
+    
     for ( int i = 0; i < NUMTRACKS; i++ ) {
         stems[i]->prime();
     }
     
     for ( int i = 0; i < NUMTRACKS; i++ ) {
-        stems[i]->loop();
+        stems[i]->playAtSampleTime(timeInSamples);
     }
     
-    stems[0]->loop();
-    stems[1]->loop();
-    stems[2]->loop();
-    stems[3]->loop();
-    stems[4]->loop();
-    stems[5]->loop();
-    stems[6]->loop();
+    stems[0]->playAtSampleTime(timeInSamples);
+    stems[1]->playAtSampleTime(timeInSamples);
+    stems[2]->playAtSampleTime(timeInSamples);
+    stems[3]->playAtSampleTime(timeInSamples);
+    stems[4]->playAtSampleTime(timeInSamples);
+    stems[5]->playAtSampleTime(timeInSamples);
+    stems[6]->playAtSampleTime(timeInSamples);
 }
 
+void audioAnalytics::stopStems(){
+    for ( int i = 0; i < NUMTRACKS; i++ ) {
+        stems[i]->stop();
+    }
+}
 
 ///////////////////////////UPDATE//////////////////////////
 //--------------------------------------------------------------

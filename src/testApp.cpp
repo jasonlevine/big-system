@@ -68,7 +68,7 @@ void testApp::setup() {
     
 //    grayImage.allocate(640,480);
     
-    aa.playStems();
+//    aa.playStems(0);
     
       
 }
@@ -191,14 +191,53 @@ void testApp::keyPressed(int key){
         case 'f':
             ofToggleFullscreen();
             break;
-            
+            /*
+             1) Intro 0
+             3) Intro Chorus 13
+             4) First Verse 23
+             5) First Chorus 56
+             6) First Instrumental 1:06 = 66
+             7) Second Verse 1:17 = 77
+             8) Second Chorus 1:49 = 109
+             9) outro 1:59 = 119
+             */
         case '1':
-        case '2':
-        case '3':
-        case '4':
-        case '5':
-            aa.setMode(key - 48);
+            aa.playStems(0);
             break;
+            
+        case '2':
+            aa.playStems(13);
+            break;
+            
+        case '3':
+            aa.playStems(23);
+            break;
+            
+        case '4':
+            aa.playStems(56);
+            break;
+            
+        case '5':
+            aa.playStems(66);
+            break;
+            
+        case '6':
+            aa.playStems(77);
+            break;
+            
+        case '7':
+            aa.playStems(109);
+            break;
+            
+        case '8':
+            aa.playStems(119);
+            break;
+            
+        case '0':
+            aa.stopStems();
+            break;
+            
+
             
         case OF_KEY_LEFT:
             xOffset-=10;

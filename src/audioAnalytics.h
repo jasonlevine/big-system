@@ -18,7 +18,8 @@ public:
     void setupVectors();
     void loadTracks();
     void setupAUGraph();
-    void playStems();
+    void playStems(float timeInSeconds);
+    void stopStems();
     
     void updateAnalytics();
     void findMinMax(int track, bool save);

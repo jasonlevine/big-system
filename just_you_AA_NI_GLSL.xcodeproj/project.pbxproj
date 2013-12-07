@@ -113,7 +113,6 @@
 		b7855559edba51207314369387bb28a9 /* CAAUParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = e8f2f49af09eb5453e1e65361fd9486d /* CAAUParameter.cpp */; };
 		c0a1f9451231b08dccffc838143dfcfa /* ofxAudioUnitNetReceive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = c8329ebfadf768e535429bca43694591 /* ofxAudioUnitNetReceive.cpp */; };
 		d5d5c8479c1c2a462955a2eccb1dbe2a /* ofxAudioUnitMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49b5dc24cf34c7895a50341684c3b269 /* ofxAudioUnitMidi.cpp */; };
-		db0886176363032dab378e33606eac8f /* LICENSE in Sources */ = {isa = PBXBuildFile; fileRef = 5565f17457b99e20477bb48863c16b81 /* LICENSE */; };
 		ee243572eca9ad4d118eef8e0bbca18a /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 7c1900a801ef82f8e3b799b7471cdfab /* TPCircularBuffer.c */; };
 		f09ec3f89cf64e415784bb3205db80da /* ofxAudioUnitHardwareUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9aba70779062f057766bc5de660295e8 /* ofxAudioUnitHardwareUtils.cpp */; };
 		f37393707bbd7e49a1055ffbaf2d252d /* ofxAudioUnitFilePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31564f8523ff518f4ec8f292e95be7da /* ofxAudioUnitFilePlayer.cpp */; };
@@ -187,7 +186,6 @@
 		51c5e490d52815f7cdc14ee89b737b01 /* pitchmcomb.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = pitchmcomb.h; path = ../../../addons/ofxAudioFeatures/libs/aubio/include/aubio/pitch/pitchmcomb.h; sourceTree = SOURCE_ROOT; };
 		51fc5fe96346b4b3df63318114a70e5c /* types.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = types.h; path = ../../../addons/ofxAudioFeatures/libs/aubio/include/aubio/types.h; sourceTree = SOURCE_ROOT; };
 		526ff3da7a2afa7a8f02036df4c4466d /* lvec.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = lvec.h; path = ../../../addons/ofxAudioFeatures/libs/aubio/include/aubio/lvec.h; sourceTree = SOURCE_ROOT; };
-		5565f17457b99e20477bb48863c16b81 /* LICENSE */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 30; name = LICENSE; path = ../../../addons/ofxAudioFeatures/src/LICENSE; sourceTree = SOURCE_ROOT; };
 		57a2df3c11e2cfa840afa2a0c0f7a808 /* vecutils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = vecutils.h; path = ../../../addons/ofxAudioFeatures/libs/aubio/include/aubio/vecutils.h; sourceTree = SOURCE_ROOT; };
 		58685f70d967cf184b2311021aa51c1b /* ofxAudioUnitOutput.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAudioUnitOutput.cpp; path = ../../../addons/ofxAudioUnit/src/ofxAudioUnitOutput.cpp; sourceTree = SOURCE_ROOT; };
 		598ecd3ae55d46cb116f5c6fe3ee6dac /* CADebugMacros.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CADebugMacros.h; path = ../../../addons/ofxAudioUnit/src/CAPublicUtility/CADebugMacros.h; sourceTree = SOURCE_ROOT; };
@@ -657,7 +655,6 @@
 		009d3ea900245bb55761a717e4406193 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				5565f17457b99e20477bb48863c16b81 /* LICENSE */,
 				7ea9baae4fb502ee7b7d74f0618615ff /* ofxAudioDeviceControl.h */,
 				ae197401a06411e94419ee7963ba271f /* ofxAudioDeviceControl.mm */,
 				91821b92c0988056ec2f9256cc1bfe47 /* ofxAudioFeaturesChannel.cpp */,
@@ -1727,7 +1724,6 @@
 				90FCDE341851B5D2006D9C2C /* ofxGamepadLinux.cpp in Sources */,
 				90361CE4184D3B340003E3D5 /* ToonPass.cpp in Sources */,
 				90361CDD184D3B340003E3D5 /* NoiseWarpPass.cpp in Sources */,
-				db0886176363032dab378e33606eac8f /* LICENSE in Sources */,
 				9177f62acd8b721065a083f069ca8361 /* ofxAudioDeviceControl.mm in Sources */,
 				38f9c64bad4402cd15668a2c08cb2cf7 /* ofxAudioFeaturesChannel.cpp in Sources */,
 				90361CD2184D3B340003E3D5 /* ConvolutionPass.cpp in Sources */,

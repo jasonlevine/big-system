@@ -44,6 +44,7 @@ void meshScene::setup(audioAnalytics * _aa, openNIManager * _oni){
     drawPost = false;
 	
 	gui->toggleVisible();
+    gui2->toggleVisible();
 }
 
 void meshScene::update(int width, int height){
