@@ -45,6 +45,7 @@ public:
     ofCamera cam;
     //UI variables
     ofxUICanvas *gui;
+    ofxUIDropDownList *ddl;
     
     int fadeAmt;
     bool useCam;

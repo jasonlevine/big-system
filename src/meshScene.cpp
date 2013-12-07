@@ -56,6 +56,7 @@ void meshScene::update(int width, int height){
     bassAccum += aa->amp[3] / waveSpeed;
     
     gui->update();
+    gui2->update();
     
     cam.setPosition(camX, camY, camZ);
     cam.lookAt(ofVec3f(lookatX, lookatY, lookatZ));
@@ -146,9 +147,9 @@ void meshScene::setupGUI(){
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
     float length = 255-xInit;
     
-    gui = new ofxUIScrollableCanvas(0, 0, length+xInit, ofGetHeight());
-    gui->setScrollAreaToScreen();
-    gui->setScrollableDirections(false, true);
+    gui = new ofxUICanvas(0, 0, length+xInit, ofGetHeight());
+//    gui->setScrollAreaToScreen();
+//    gui->setScrollableDirections(false, true);
     
     gui->addFPSSlider("FPS SLIDER", length-xInit, dim*.25, 1000);
 //    gui->addSpacer(length-xInit, 1);
@@ -177,21 +178,42 @@ void meshScene::setupGUI(){
     gui->addSlider("lookatX", -260, 260, &lookatX, length-xInit, dim);
     gui->addSlider("lookatY", -500, 500, &lookatY, length-xInit, dim);
     gui->addSlider("lookatZ", -600, 600, &lookatZ, length-xInit, dim);
-    gui->addSpacer(length-xInit, 1);
-    gui->addLabelToggle("Kaleidoscope", false);
-    gui->addSlider("numSegments", 1.0, 10.0, 1.0, length-xInit, dim);
-    gui->addLabelToggle("Bloom", false);
-    gui->addLabelToggle("Dof", false);
-    gui->addSlider("DofFStop", 1.0, 15.0, 1.0, length-xInit, dim);
-    gui->addSpacer(length-xInit, 1);
-    gui->addLabelToggle("GodRays", false);
-    gui->addLabelToggle("RimHighlighting", false);
     
-    gui->autoSizeToFitWidgets();
-    gui->getRect()->setWidth(ofGetWidth());
+    
+    gui2 = new ofxUICanvas(length+xInit + 2, 0, length+xInit, ofGetHeight());
+   
+
+    gui2->addLabelToggle("Kaleidoscope", false);
+    gui2->addSlider("numSegments", 1.0, 10.0, 1.0, length-xInit, dim);
+    gui2->addLabelToggle("Bloom", false);
+    gui2->addLabelToggle("Dof", false);
+    gui2->addSlider("DofFStop", 1.0, 15.0, 1.0, length-xInit, dim);
+    gui2->addSpacer(length-xInit, 1);
+    gui2->addLabelToggle("GodRays", false);
+    gui2->addLabelToggle("RimHighlighting", false);
+    gui2->addSpacer(length-xInit, 1);
+    gui2->addLabelButton("save preset", false);
+   
+    string path = "meshPresets/";
+    ofDirectory dir(path);
+    dir.listDir();
+    
+    vector<string> presets;
+    for(int i = 0; i < dir.numFiles(); i++){
+        presets.push_back(dir.getPath(i));
+        cout << dir.getPath(i) << endl;
+    }
+    
+    ddl = gui2->addDropDownList("presets", presets);
+    ddl->setAllowMultiple(false);
+    //    ddl->setAutoClose(true);
+    gui2->autoSizeToFitWidgets();
+
+//    gui2->getRect()->setWidth(ofGetWidth());
     
     
     ofAddListener(gui->newGUIEvent,this,&meshScene::guiEvent);
+    ofAddListener(gui2->newGUIEvent,this,&meshScene::guiEvent);
 }
 
 
@@ -237,12 +259,40 @@ void meshScene::guiEvent(ofxUIEventArgs &e){
         ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
         post[5]->setEnabled(button->getValue());
     }
+    else if (name == "save preset") {
+        ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
+        if (button->getValue()) {
+            string filename1 = "meshPresets/" + ofGetTimestampString() + ".GUI1";
+            string filename2 = "meshPresets/" + ofGetTimestampString() + ".GUI2";
+//            cout << filename << endl;
+            gui->saveSettings(filename1);
+            gui2->saveSettings(filename2);
+            ddl->addToggle(filename1);
+        }
+    }
+    else if(name == "presets")
+    {
+        ofxUIDropDownList *ddlist = (ofxUIDropDownList *) e.widget;
+        vector<ofxUIWidget *> &selected = ddlist->getSelected();
+        for(int i = 0; i < selected.size(); i++)
+        {
+            string presetName = selected[0]->getName();
+            gui->loadSettings(presetName);
+            presetName[presetName.length()-1] = '2';
+//            presetName.append("2");
+            cout << presetName << endl;
+            gui2->loadSettings(presetName);
+        }
+    }
+
 }
 
 
 
 void meshScene::toggleGUI(){
     gui->toggleVisible();
+    gui2->toggleVisible();
+
 }
 
 

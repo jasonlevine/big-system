@@ -1,0 +1,35 @@
+<Widget>
+    <Kind>17</Kind>
+    <Name>Kaleidoscope</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>numSegments</Name>
+    <Value>3.186234713</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>Bloom</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>Dof</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>DofFStop</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>GodRays</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>RimHighlighting</Name>
+    <Value>0</Value>
+</Widget>
