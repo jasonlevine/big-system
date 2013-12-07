@@ -29,11 +29,16 @@ void meshScene::setup(audioAnalytics * _aa, openNIManager * _oni){
     post.createPass<GodRaysPass>()->setEnabled(false);
     post.createPass<RimHighlightingPass>()->setEnabled(false);
     post.createPass<KaleidoscopePass>()->setEnabled(false);
+    post.createPass<ContrastPass>()->setEnabled(true);
     
     
     renderPasses = post.getPasses();
     shared_ptr<KaleidoscopePass> Kaleidoscope = static_pointer_cast<KaleidoscopePass>(renderPasses[4]);
     Kaleidoscope->setSegments(0);
+	
+    shared_ptr<ContrastPass> contrastPass = static_pointer_cast<ContrastPass>(renderPasses[6]);
+    contrastPass->setBrightness(1.0);
+	
     lookatX = 0;
     lookatY = 0;
     lookatZ = -600;
@@ -41,6 +46,9 @@ void meshScene::setup(audioAnalytics * _aa, openNIManager * _oni){
     waveStrength = 1.0;
     noiseStrength = 0.0;
     
+	brightness = 1.0;
+	contrast = 1.0;
+	
     drawPost = false;
 	
 	gui->toggleVisible();
@@ -193,6 +201,10 @@ void meshScene::setupGUI(){
     gui2->addLabelToggle("GodRays", false);
     gui2->addLabelToggle("RimHighlighting", false);
     gui2->addSpacer(length-xInit, 1);
+    gui2->addSlider("brightness", 0.0, 5.0, &brightness, length-xInit, dim);
+    gui2->addSlider("contrast", 0.0, 5.0, &contrast, length-xInit, dim);
+    gui2->addLabelButton("reset bri/con", false);
+    gui2->addSpacer(length-xInit, 1);
     gui2->addLabelButton("save preset", false);
    
     string path = "meshPresets/";
@@ -286,7 +298,26 @@ void meshScene::guiEvent(ofxUIEventArgs &e){
             gui2->loadSettings(presetName);
         }
     }
-
+	else if(name == "brightness")
+	{
+		ofxUISlider *slider = (ofxUISlider *) e.widget;
+		shared_ptr<ContrastPass> contrastPass = static_pointer_cast<ContrastPass>(renderPasses[6]);
+		contrastPass->setBrightness( slider->getScaledValue() );
+	}
+	else if(name == "contrast")
+	{
+		ofxUISlider *slider = (ofxUISlider *) e.widget;
+		shared_ptr<ContrastPass> contrastPass = static_pointer_cast<ContrastPass>(renderPasses[6]);
+		contrastPass->setContrast( contrast );
+	}
+	else if(name == "reset bri/con")
+	{
+		shared_ptr<ContrastPass> contrastPass = static_pointer_cast<ContrastPass>(renderPasses[6]);
+		contrastPass->setContrast( 1.0 );
+		contrastPass->setBrightness( 1.0 );
+		contrast = 1.0;
+		brightness = 1.0;
+	}
 }
 
 

@@ -29,6 +29,7 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
     post.createPass<BloomPass>()->setEnabled(false);
     post.createPass<GodRaysPass>()->setEnabled(false);
     post.createPass<RimHighlightingPass>()->setEnabled(false);
+    post.createPass<ContrastPass>()->setEnabled(true);
     
     post.setFlip(false);
 
@@ -41,7 +42,10 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
     cam.setOrientation(ofVec3f(orientX, orientY, orientZ));
     
 	gui->toggleVisible();
-
+	
+	brightness = 1.0;
+	contrast = 1.0;
+	
     presets.loadFile("presets.xml");
     presets.pushTag("root");
 	
@@ -132,6 +136,10 @@ void squigglerScene::setupGUI(){
     gui->addLabelToggle("bloom", false);
     gui->addLabelToggle("godrays", false);
     gui->addLabelToggle("highlight", false);
+    gui->addSpacer(length-xInit, 1);
+    gui->addSlider("brightness", 0.0, 5.0, &brightness, length-xInit, dim);
+    gui->addSlider("contrast", 0.0, 5.0, &contrast, length-xInit, dim);
+    gui->addLabelButton("reset bri/con", false);
     gui->addSpacer(length-xInit, 1);
     gui->addLabelButton("save preset", false);
     
@@ -247,6 +255,26 @@ void squigglerScene::guiEvent(ofxUIEventArgs &e){
             }
         }
     }
+	else if(name == "brightness")
+	{
+		ofxUISlider *slider = (ofxUISlider *) e.widget;
+		shared_ptr<ContrastPass> contrastPass = static_pointer_cast<ContrastPass>(renderPasses[6]);
+		contrastPass->setBrightness( slider->getScaledValue() );
+	}
+	else if(name == "contrast")
+	{
+		ofxUISlider *slider = (ofxUISlider *) e.widget;
+		shared_ptr<ContrastPass> contrastPass = static_pointer_cast<ContrastPass>(renderPasses[6]);
+		contrastPass->setContrast( contrast );
+	}
+	else if(name == "reset bri/con")
+	{
+		shared_ptr<ContrastPass> contrastPass = static_pointer_cast<ContrastPass>(renderPasses[6]);
+		contrastPass->setContrast( 1.0 );
+		contrastPass->setBrightness( 1.0 );
+		contrast = 1.0;
+		brightness = 1.0;
+	}
 
 }
 

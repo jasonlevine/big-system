@@ -56,6 +56,8 @@ public:
     bool flip;
     bool kaleidoscope, dof, bloom, highlight, godrays;
     
+	float brightness, contrast;
+	
     ofxXmlSettings presets;
 
 

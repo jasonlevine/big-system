@@ -45,6 +45,8 @@ public:
     float scaleX, scaleY, scaleZ;
     ofFloatColor *meshCol, *meshHiCol;
     float lineWidth;
+	
+	float brightness, contrast;
     
     //postproc vars
     float waveStrength, noiseStrength, waveSpeed;
