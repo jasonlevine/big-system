@@ -67,89 +67,100 @@ void projectionManager::draw(int wallScene, int bodyScene, float scale, float xO
 		screens[1].viewport.deactivate();
 	}
 	
-	if (ofGetKeyPressed(','))
-	{
-		screens[0].draw_scene_index += 1;
-		screens[0].draw_scene_index %= NUM_SCENES;
-	}
-	
     ofSetColor(255);
     
- //	// mask fbo
-//    {
-//		maskFbo.begin();
-//		ofClear(0);
-//		int numUsers = oni->openNIDevice.getNumTrackedUsers();
-//		ofPushMatrix();
-//		ofTranslate(w * 0.5 + xOffset, h * 0.5 + yOffset);
-//		ofScale(scale, scale);
-//		ofTranslate(-w * 0.5, -h * 0.5);
-//		for (int i = 0; i < numUsers; i++){
-//			ofxOpenNIUser & user = oni->openNIDevice.getTrackedUser(i);
-//			user.drawMask();
-//		}
-//		ofPopMatrix();
-//		maskFbo.end();
-//	}
-//    
-//	// fg fbo (body)
-//	{
-//		fgFbo.begin();
-//		scenes[bodyScene]->draw(0, 0, w, h, true);
-//		fgFbo.end();
-//	}
-//	
-//	// bg fbo (wall)
-//	{
-//		bgFbo.begin();
-//		scenes[wallScene]->draw(0, 0, w, h, true);
-//		bgFbo.end();
-//	}
+	
+	// mask fbo
+    {
+		maskFbo.begin();
+		ofClear(0);
+		int numUsers = oni->openNIDevice.getNumTrackedUsers();
+		ofPushMatrix();
+		ofTranslate(w * 0.5 + xOffset, h * 0.5 + yOffset);
+		ofScale(scale, scale);
+		ofTranslate(-w * 0.5, -h * 0.5);
+		for (int i = 0; i < numUsers; i++){
+			ofxOpenNIUser & user = oni->openNIDevice.getTrackedUser(i);
+			user.drawMask();
+		}
+		ofPopMatrix();
+		maskFbo.end();
+	}
     
-//	// final fbo
-//	{
-//		finalFbo.begin();
-//		ofClear(0, 0, 0, 0);
-//		
-//		shader.begin();
-//		
-//		shader.setUniformTexture("maskTex", maskFbo.getTextureReference(), 1 );
-//		shader.setUniformTexture("tex0", fgFbo.getTextureReference(), 2 );
-////		shader.setUniformTexture("tex1", bgFbo.getTextureReference(), 3 );
-//		ofPushMatrix();
-//		ofTranslate(w * 0.5, h * 0.5);
-//		ofSetColor(255);
-//		plane.draw();
-//		ofPopMatrix();
-//		
-//		shader.end();
-//		finalFbo.end();
-//	}
+	// fg fbo (body)
+	{
+		fgFbo.begin();
+		scenes[bodyScene]->draw(0, 0, w, h, true);
+		fgFbo.end();
+	}
+	
+	// bg fbo (wall)
+	{
+		bgFbo.begin();
+		scenes[wallScene]->draw(0, 0, w, h, true);
+		bgFbo.end();
+	}
+    
+	// final fbo
+	{
+		finalFbo.begin();
+		ofClear(0, 0, 0, 0);
+		
+		shader.begin();
+		
+		shader.setUniformTexture("maskTex", maskFbo.getTextureReference(), 1 );
+		shader.setUniformTexture("tex0", fgFbo.getTextureReference(), 2 );
+		shader.setUniformTexture("tex1", bgFbo.getTextureReference(), 3 );
+		ofPushMatrix();
+		ofTranslate(w * 0.5, h * 0.5);
+		ofSetColor(255);
+		plane.draw();
+		ofPopMatrix();
+		
+		shader.end();
+		finalFbo.end();
+	}
+	
+	
+	
 	
 	for (int i=0; i<screens.size(); i++)
 	{
 		Screen &screen = screens[i];
-		
 		screen.begin();
-		{
-			// pass 1: mask
-//			if (screen.draw_scene_index == SCENE_MESH) {
-//				int numUsers = oni->openNIDevice.getNumTrackedUsers();
-//				ofPushMatrix();
-//				ofTranslate(w * 0.5 + xOffset, h * 0.5 + yOffset);
-//				ofScale(scale, scale);
-//				ofTranslate(-w * 0.5, -h * 0.5);
-//				for (int i = 0; i < numUsers; i++){
-//					ofxOpenNIUser & user = oni->openNIDevice.getTrackedUser(i);
-//					user.drawMask();
-//				}
-//			}
-			
+		finalFbo.draw(0, 0);
+		screen.end();
+	}
+	
+	
+//	for (int i=0; i<screens.size(); i++)
+//	{
+//		Screen &screen = screens[i];
+//		
+//		finalFbo.begin();
+//		ofClear()
+//		
+//		
+//		screen.begin();
+//		{
+//			// pass 1: mask
+////			if (screen.draw_scene_index == SCENE_MESH) {
+////				int numUsers = oni->openNIDevice.getNumTrackedUsers();
+////				ofPushMatrix();
+////				ofTranslate(w * 0.5 + xOffset, h * 0.5 + yOffset);
+////				ofScale(scale, scale);
+////				ofTranslate(-w * 0.5, -h * 0.5);
+////				for (int i = 0; i < numUsers; i++){
+////					ofxOpenNIUser & user = oni->openNIDevice.getTrackedUser(i);
+////					user.drawMask();
+////				}
+////			}
+//			
 //			// pass 2: mesh
-//			if (screen.draw_scene_index == SCENE_MESH) {
-//				cout << 111 << endl;
-//				scenes[SCENE_MESH]->draw(0, 0, w, h, true);
-//			}
+////			if (screen.draw_scene_index == SCENE_MESH) {
+////				cout << 111 << endl;
+////				scenes[SCENE_MESH]->draw(0, 0, w, h, true);
+////			}
 //
 //			// pass 3: squiggler_1
 //			if (screen.draw_scene_index == SCENE_SQUIGLLER_1) {
@@ -157,12 +168,12 @@ void projectionManager::draw(int wallScene, int bodyScene, float scale, float xO
 //			}
 //			
 //			// pass 4: squiggler_2
-//			if (screen.draw_scene_index == SCENE_SQUIGLLER_1) {
-//				scenes[SCENE_SQUIGLLER_2]->draw(0, 0, w, h, true);
-//			}
-		}
-		screen.end();
-	}
+////			if (screen.draw_scene_index == SCENE_SQUIGLLER_1) {
+////				scenes[SCENE_SQUIGLLER_2]->draw(0, 0, w, h, true);
+////			}
+//		}
+//		screen.end();
+//	}
 }
 
 

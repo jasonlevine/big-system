@@ -23,7 +23,7 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
     ofSetLineWidth(4);
 
     post.init(1024, 768);
-    post.createPass<FxaaPass>()->setEnabled(true);
+    post.createPass<FxaaPass>()->setEnabled(false);
     post.createPass<KaleidoscopePass>()->setEnabled(false);
     post.createPass<DofAltPass>()->setEnabled(false);
     post.createPass<BloomPass>()->setEnabled(false);

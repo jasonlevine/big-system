@@ -56,6 +56,7 @@ class Screen
 private:
 	
 	float circleRadius = 20;
+	ofFbo fbo;
 	
 public:
 	
@@ -63,13 +64,15 @@ public:
 	ofRectangle r;
 	ofxGLWarper viewport;
 	string screen_name;
+	inline ofFbo getFbo() { return fbo; }
+	
 	
 	
 	// -----
 	Screen( string name, ofRectangle view )
 	{
 		if (use_auto_save)
-			screen_name = "screen_" + name + ".xml";
+			screen_name = "screen-" + name + ".xml";
 		
 		r = view;
 		viewport.setup(view.x, view.y, view.width, view.height);
@@ -95,10 +98,9 @@ public:
 	{
 		ofPopMatrix();
 		
-		
 		ofPushStyle();
 		
-//		if (viewport.isActive())
+		if (viewport.isActive())
 		{
 			ofSetColor(ofColor(255, 0, 0));
 			ofNoFill();
@@ -108,6 +110,8 @@ public:
 			ofCircle(r.getTopRight(), circleRadius);
 			ofCircle(r.getBottomLeft(), circleRadius);
 			ofCircle(r.getBottomRight(), circleRadius);
+			
+			ofDrawBitmapString(screen_name, r.getTopRight());
 		}
 		ofPopStyle();
 		viewport.end();
