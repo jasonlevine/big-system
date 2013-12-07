@@ -34,6 +34,13 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
 
     renderPasses = post.getPasses();
     setupGUI();
+    
+    cam.setScale(1, -1, 1);
+    cam.setPosition(posX, posY, posZ);
+    cam.lookAt(ofVec3f(lookatX, lookatY, lookatZ));
+    cam.setOrientation(ofVec3f(orientX, orientY, orientZ));
+    
+    
 
     presets.loadFile("presets.xml");
     presets.pushTag("root");
@@ -108,15 +115,15 @@ void squigglerScene::setupGUI(){
     gui->addFPSSlider("FPS SLIDER", length-xInit, dim*.25, 1000);
     gui->addIntSlider("fadeAmt", 0, 255, &fadeAmt, length-xInit, dim);
     gui->addWidgetDown(new ofxUILabelToggle(dim, dim, &useCam, "useCam?", OFX_UI_FONT_MEDIUM));
-    gui->addSlider("posX", -ofGetWidth()/2, ofGetWidth()/2, &posX, length-xInit, dim);
-    gui->addSlider("posY", -ofGetHeight()/2, ofGetHeight()/2, &posY, length-xInit, dim);
+    gui->addSlider("posX", -1024, 1024, &posX, length-xInit, dim);
+    gui->addSlider("posY", -768, 768, &posY, length-xInit, dim);
     gui->addSlider("posZ", 0, 2000, &posZ, length-xInit, dim);
-    gui->addSlider("lookatX", -ofGetWidth()/2, ofGetWidth()/2, &lookatX, length-xInit, dim);
-    gui->addSlider("lookatY", -ofGetHeight()/2, ofGetHeight()/2, &lookatY, length-xInit, dim);
+    gui->addSlider("lookatX", -1024, 1024, &lookatX, length-xInit, dim);
+    gui->addSlider("lookatY", -768, 768, &lookatY, length-xInit, dim);
     gui->addSlider("lookatZ", -1000, 1000, &lookatZ, length-xInit, dim);
-    gui->addSlider("orientX", -90, 90, &orientX, length-xInit, dim);
-    gui->addSlider("orientY", -90, 90, &orientY, length-xInit, dim);
-    gui->addSlider("orientZ", -90, 90, &orientZ, length-xInit, dim);
+    gui->addSlider("orientX", -180, 180, &orientX, length-xInit, dim);
+    gui->addSlider("orientY", -180, 180, &orientY, length-xInit, dim);
+    gui->addSlider("orientZ", -180, 180, &orientZ, length-xInit, dim);
     gui->addSpacer(length-xInit, 1);
     gui->addWidgetDown(new ofxUILabelToggle(dim, dim, &usePost, "usePost?", OFX_UI_FONT_MEDIUM));
     gui->addLabelToggle("flip?", false);

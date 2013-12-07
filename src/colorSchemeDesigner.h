@@ -22,6 +22,7 @@ public:
 	void assignRandom(bool unique);
 	
     ofxUICanvas * gui;
+    ofxUIDropDownList *ddl;
     
     ofFloatColor primary;
     

@@ -49,11 +49,68 @@ void colorSchemeDesigner::setup(){
     gui->addSpacer(length-xInit, 1);
     gui->addRadio("RADIO VERTICAL", names, OFX_UI_ORIENTATION_VERTICAL, dim, dim);
     
+    gui->addLabelButton("save preset", false);
+    
+    
+    string path = "colorPresets/";
+    ofDirectory dir(path);
+    dir.listDir();
+   
+    vector<string> presets;
+    for(int i = 0; i < dir.numFiles(); i++){
+        presets.push_back(dir.getPath(i));
+        cout << dir.getPath(i) << endl;
+    }
+    
+    
+    
+    ddl = gui->addDropDownList("presets", presets);
+    ddl->setAllowMultiple(false);
+    //    ddl->setAutoClose(true);
+    gui->autoSizeToFitWidgets();
+    
     gui->setAutoDraw(false);
     
     ofAddListener(gui->newGUIEvent,this,&colorSchemeDesigner::guiEvent);
 	
 	assignRandom(true);
+}
+
+void colorSchemeDesigner::guiEvent(ofxUIEventArgs &e) {
+    string name = e.widget->getName();
+	int kind = e.widget->getKind();
+    
+     if (name == "save preset") {
+        ofxUILabelButton *button = (ofxUILabelButton *) e.widget;
+        if (button->getValue()) {
+            string filename = "colorPresets/" + ofGetTimestampString() + ".xml";
+            cout << filename << endl;
+            gui->saveSettings(filename);
+        }
+    }
+    else if(name == "presets")
+    {
+        ofxUIDropDownList *ddlist = (ofxUIDropDownList *) e.widget;
+        vector<ofxUIWidget *> &selected = ddlist->getSelected();
+        for(int i = 0; i < selected.size(); i++)
+        {
+            gui->loadSettings(selected[0]->getName());
+        }
+    }
+    if(kind == OFX_UI_WIDGET_TOGGLE)
+    {
+        //        ofxUIToggle *toggle = (ofxUIToggle *) e.widget;
+        //        cout << name << "\t value: " << toggle->getValue() << endl;
+        if (name == "mono") mode = 0;
+        else if (name == "complement") mode = 1;
+        else if (name == "triad") mode = 2;
+        else if (name == "tetrad") mode = 3;
+        else if (name == "analogic") mode = 4;
+        else if (name == "accented") mode = 5;
+    }
+
+    
+    updateColorScheme();
 }
 
 //--------------------------------------------------------------
@@ -111,24 +168,6 @@ void colorSchemeDesigner::drawHueScheme(int scheme, int position){
            width / 2, width / 4);
 }
 
-void colorSchemeDesigner::guiEvent(ofxUIEventArgs &e) {
-    string name = e.widget->getName();
-	int kind = e.widget->getKind();
-    
-    if(kind == OFX_UI_WIDGET_TOGGLE)
-    {
-        //        ofxUIToggle *toggle = (ofxUIToggle *) e.widget;
-        //        cout << name << "\t value: " << toggle->getValue() << endl;
-        if (name == "mono") mode = 0;
-        else if (name == "complement") mode = 1;
-        else if (name == "triad") mode = 2;
-        else if (name == "tetrad") mode = 3;
-        else if (name == "analogic") mode = 4;
-        else if (name == "accented") mode = 5;
-    }
-    
-    updateColorScheme();
-}
 
 void colorSchemeDesigner::assignRandom(bool unique) {
 	
