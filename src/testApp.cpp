@@ -242,6 +242,7 @@ void testApp::keyPressed(int key){
             
         case 'G':
             colorScheme.gui->toggleVisible();
+			pm.gui->toggleVisible();
             break;
 			
 		// !!!: motoi added

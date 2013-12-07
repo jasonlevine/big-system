@@ -10,20 +10,22 @@
 
 #include "openNIManager.h"
 #include "ofxGLWarper.h"
+#include "ofxUI.h"
 #include "scene.h"
 
 class Screen;
 
 const bool use_auto_save = true;
 const int APP_HEIGHT = 800;
-const int MBP_WIDTH = 824;
+const int MBP_WIDTH = 1024;
 const int PJ1_WIDTH = 1024;
 
 enum SCENE_INDEX {
 	SCENE_SQUIGLLER_1 = 0,
 	SCENE_SQUIGLLER_2 = 1,
 	SCENE_MESH = 2,
-	NUM_SCENES = 3
+	SCENE_MASK = 3,
+	NUM_SCENES = 4
 };
 
 
@@ -42,47 +44,51 @@ public:
     
     int bodyScene, wallScene;
     
-    ofFbo maskFbo, fgFbo, bgFbo;
+    ofFbo maskFbo, fgFbo;
     ofFbo finalFbo;
     
     ofPlanePrimitive plane;
     
+    ofxUICanvas *gui;
+	
     int w, h;
 };
 
 
 class Screen
 {
-private:
+protected:
 	
 	float circleRadius = 20;
-	ofFbo fbo;
 	
 public:
 	
-	int draw_scene_index = 0;
+	int draw_scene_index;
+	bool use_mask;
 	ofRectangle r;
 	ofxGLWarper viewport;
 	string screen_name;
-	inline ofFbo getFbo() { return fbo; }
 	
-	
+
 	
 	// -----
 	Screen( string name, ofRectangle view )
 	{
 		if (use_auto_save)
-			screen_name = "screen-" + name + ".xml";
+			screen_name = "screen-" + name;
+		
+		draw_scene_index = 0;
+		use_mask = false;
 		
 		r = view;
 		viewport.setup(view.x, view.y, view.width, view.height);
-		viewport.load(screen_name);
+		viewport.load(screen_name+ ".xml");
 	}
 	
 	void save()
 	{
 		if (use_auto_save)
-			viewport.save(screen_name);
+			viewport.save(screen_name+ ".xml");
 	}
 	
 	
