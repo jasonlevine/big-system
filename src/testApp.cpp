@@ -5,6 +5,8 @@ void testApp::setup() {
     
     oni.setup();
 
+	// !!!: don't change the order
+	// when you change this order, care about projectionManager::draw()
     scenes.push_back(new squigglerScene());
     scenes.push_back(new squigglerScene());
     scenes.push_back(new meshScene());
@@ -46,23 +48,6 @@ void testApp::setup() {
         colorScheme.addColorRef(squiggle1->squigglers[i]->colorEnd);
         colorScheme.addColorRef(squiggle1->squigglers[i]->colorLine);
     }
-
-    
-//    colorScheme.addColorRef(squiggle->bassSquiggler.colorStart);
-//    colorScheme.addColorRef(squiggle->bassSquiggler.colorEnd);
-//    colorScheme.addColorRef(squiggle->bassSquiggler.colorLine);
-//    
-//    colorScheme.addColorRef(squiggle->kickSquiggler.colorStart);
-//    colorScheme.addColorRef(squiggle->kickSquiggler.colorEnd);
-//    colorScheme.addColorRef(squiggle->kickSquiggler.colorLine);
-//    
-//    colorScheme.addColorRef(squiggle->voxSquiggler.colorStart);
-//    colorScheme.addColorRef(squiggle->voxSquiggler.colorEnd);
-//    colorScheme.addColorRef(squiggle->voxSquiggler.colorLine);
-//    
-//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorStart);
-//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorEnd);
-//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorLine);
     
     meshScene * mesh = static_cast<meshScene*>(scenes[2]);
     colorScheme.addColorRef(mesh->meshCol);
@@ -157,6 +142,8 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::exit(){
+	
+	pm.exit();
     oni.openNIDevice.stop();
 }
 
