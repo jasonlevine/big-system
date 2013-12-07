@@ -34,7 +34,7 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
 
     renderPasses = post.getPasses();
     setupGUI();
-	toggleGUI();
+	gui->toggleVisible();
 
     presets.loadFile("presets.xml");
     presets.pushTag("root");

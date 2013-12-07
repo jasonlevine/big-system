@@ -67,15 +67,17 @@ void squiggler::setup(float guiX, int _track, float _maxAmp, float _maxPitch) {
     gui->addSlider("zFade", 0, 20, &zFade, length-xInit, dim);
     gui->addSlider("melt", -2, 2, &melt, length-xInit, dim);
     gui->addButton("zero melt", false);
+	
+	gui->toggleVisible();
 }
 
 void squiggler::update(float pitch, float amp, int w, int h) {
     gui->update();
     
-    float x = pitch / maxPitch * ofGetWidth();
+    float x = pitch / maxPitch * w;
 //    x -= ofGetWidth()/2;
     
-    float y = ofGetHeight() - amp / maxAmp * ofGetHeight();
+    float y = ofGetHeight() - amp / maxAmp * h;
 //    y -= ofGetHeight()/2;
     
     if ( pitch > 1 && amp > 0.005 ) trail.push_back(ofVec3f(x,y,0));
