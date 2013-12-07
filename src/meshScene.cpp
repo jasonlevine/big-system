@@ -49,7 +49,7 @@ void meshScene::update(int width, int height){
     vector<float> wave;
     aa->taps[0]->getSamples(wave, 0);
     waveHistory.push_back(wave);
-    if (waveHistory.size() > 120) waveHistory.erase(waveHistory.begin());
+    if (waveHistory.size() > 60) waveHistory.erase(waveHistory.begin());
     
 
     bassAccum += aa->amp[3] / waveSpeed;
@@ -68,7 +68,7 @@ void meshScene::draw(int x, int y, int width, int height, bool drawToScreen = tr
     float noiseVel = bassAccum;
     
     if (waveHistory[0].size() > 0) {
-        int width = 120;
+        int width = 60;
         int height = waveHistory.size();
         
         ofMesh mesh;
@@ -202,6 +202,7 @@ void meshScene::setupGUI(){
    
     string path = "meshPresets/";
     ofDirectory dir(path);
+    dir.allowExt("GUI1");
     dir.listDir();
     
     vector<string> presets;
