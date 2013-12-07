@@ -31,7 +31,7 @@ void squiggler::setup(float guiX, int _track, float _maxAmp, float _maxPitch) {
     redFade = greenFade = blueFade = alphaFade = false;
     zFade = 0;
     melt = 0;
-    
+
     
     
     //init gui dims
@@ -69,14 +69,14 @@ void squiggler::setup(float guiX, int _track, float _maxAmp, float _maxPitch) {
     gui->addButton("zero melt", false);
 }
 
-void squiggler::update(float pitch, float amp, bool useCam) {
+void squiggler::update(float pitch, float amp, int w, int h) {
     gui->update();
     
     float x = pitch / maxPitch * ofGetWidth();
-    if (useCam) x -= ofGetWidth()/2;
+    x -= ofGetWidth()/2;
     
     float y = ofGetHeight() - amp / maxAmp * ofGetHeight();
-    if (useCam) y -= ofGetHeight()/2;
+    y -= ofGetHeight()/2;
     
     if ( pitch > 1 && amp > 0.005 ) trail.push_back(ofVec3f(x,y,0));
     if ( trail.size() > trailLength ) trail.erase(trail.begin());

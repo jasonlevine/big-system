@@ -4,8 +4,6 @@
 void testApp::setup() {
     
     oni.setup();
-    
-    colorScheme.setup();
 
     scenes.push_back(new squigglerScene());
     scenes.push_back(new squigglerScene());
@@ -69,7 +67,8 @@ void testApp::setup() {
     colorScheme.addColorRef(mesh->meshCol);
     colorScheme.addColorRef(mesh->meshHiCol);
 
-    
+    // !!!: setup should be called after adding colorRefs
+    colorScheme.setup();
     
 //    rm.setup(oni, scenes);
     pm.setup(oni, scenes);
@@ -256,6 +255,17 @@ void testApp::keyPressed(int key){
         case 'G':
             colorScheme.gui->toggleVisible();
             break;
+			
+		// !!!: motoi added
+		case 'u':
+			
+			float value = ofMap(ofGetMouseX(), 0, ofGetWidth(), 0.0, 1.0);
+			colorScheme.setHue( value );
+			colorScheme.setSaturation( value );
+			colorScheme.setbrightness( value );
+			colorScheme.setAngle( value );
+			colorScheme.setDistance( value );
+			break;
             
     }
 }

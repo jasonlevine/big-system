@@ -14,7 +14,7 @@
 class squiggler {
 public:
     void setup(float guiX, int _track, float _maxAmp, float _maxPitch);
-    void update(float pitch, float amp, bool useCam);
+    void update(float pitch, float amp, int w, int h);
     void draw();
     void guiEvent(ofxUIEventArgs &e);
     
