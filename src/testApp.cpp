@@ -5,6 +5,8 @@ void testApp::setup() {
     
     oni.setup();
 
+	// !!!: don't change the order
+	// when you change this order, care about projectionManager::draw()
     scenes.push_back(new squigglerScene());
     scenes.push_back(new squigglerScene());
     scenes.push_back(new meshScene());
@@ -15,8 +17,9 @@ void testApp::setup() {
     
     currentScene = 0;
     mode = 2;
-    scene1 = 0;
-    scene2 = 1;
+	
+    wallScene = 0;
+    bodyScene = 2;
     
     squigglerScene * squiggle0 = static_cast<squigglerScene*>(scenes[0]);
     
@@ -45,23 +48,6 @@ void testApp::setup() {
         colorScheme.addColorRef(squiggle1->squigglers[i]->colorEnd);
         colorScheme.addColorRef(squiggle1->squigglers[i]->colorLine);
     }
-
-    
-//    colorScheme.addColorRef(squiggle->bassSquiggler.colorStart);
-//    colorScheme.addColorRef(squiggle->bassSquiggler.colorEnd);
-//    colorScheme.addColorRef(squiggle->bassSquiggler.colorLine);
-//    
-//    colorScheme.addColorRef(squiggle->kickSquiggler.colorStart);
-//    colorScheme.addColorRef(squiggle->kickSquiggler.colorEnd);
-//    colorScheme.addColorRef(squiggle->kickSquiggler.colorLine);
-//    
-//    colorScheme.addColorRef(squiggle->voxSquiggler.colorStart);
-//    colorScheme.addColorRef(squiggle->voxSquiggler.colorEnd);
-//    colorScheme.addColorRef(squiggle->voxSquiggler.colorLine);
-//    
-//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorStart);
-//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorEnd);
-//    colorScheme.addColorRef(squiggle->bgVoxSquiggler.colorLine);
     
     meshScene * mesh = static_cast<meshScene*>(scenes[2]);
     colorScheme.addColorRef(mesh->meshCol);
@@ -138,7 +124,7 @@ void testApp::draw(){
             break;
             
         case 3:
-            pm.draw(scene1, scene2, scale, xOffset, yOffset);
+            pm.draw(wallScene, bodyScene, scale, xOffset, yOffset);
             break;
             
 //        case 4:
@@ -156,6 +142,8 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::exit(){
+	
+	pm.exit();
     oni.openNIDevice.stop();
 }
 
@@ -244,8 +232,8 @@ void testApp::keyPressed(int key){
             break;
             
         case 'x':
-            scene1 = abs(scene1 - 1);
-            scene2 = abs(scene2 - 1);
+            wallScene = abs(wallScene - 1);
+            bodyScene = abs(bodyScene - 1);
             break;
             
         case 'c':
