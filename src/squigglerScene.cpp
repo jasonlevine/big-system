@@ -90,7 +90,8 @@ ofTexture & squigglerScene::getTexRef(int width, int height){
 void squigglerScene::setupGUI(){
     fadeAmt = 255;
     useCam = false;
-    posX = posY = posZ = 0;
+    posX = posY = 0;
+    posZ = 2000;
     lookatX = lookatY = lookatZ = 0;
     orientX = orientY = orientZ = 0;
     usePost = false;
