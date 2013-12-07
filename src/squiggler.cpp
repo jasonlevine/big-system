@@ -67,16 +67,18 @@ void squiggler::setup(float guiX, int _track, float _maxAmp, float _maxPitch) {
     gui->addSlider("zFade", 0, 20, &zFade, length-xInit, dim);
     gui->addSlider("melt", -2, 2, &melt, length-xInit, dim);
     gui->addButton("zero melt", false);
+	
+	gui->toggleVisible();
 }
 
 void squiggler::update(float pitch, float amp, int w, int h) {
     gui->update();
     
-    float x = pitch / maxPitch * ofGetWidth();
-//    x -= ofGetWidth()/2;
+    float x = pitch / maxPitch * w;
+    x -= w/2;
     
-    float y = ofGetHeight() - amp / maxAmp * ofGetHeight();
-//    y -= ofGetHeight()/2;
+    float y = h - amp / maxAmp * h;
+    y -= h/2;
     
     if ( pitch > 1 && amp > 0.005 ) trail.push_back(ofVec3f(x,y,0));
     if ( trail.size() > trailLength ) trail.erase(trail.begin());
@@ -124,10 +126,7 @@ void squiggler::update(float pitch, float amp, int w, int h) {
         
 		ofVec3f rightPoint = thisPoint+toTheRight*thickness;
         rightLine.addVertex(rightPoint);
-        
 	}
-
-
 }
 
 void squiggler::draw() {
@@ -149,7 +148,6 @@ void squiggler::draw() {
         
 		mesh.addVertex(rightLine[i]);
         mesh.addColor(meshCol);
-        
 	}
     
     ofSetColor(255);

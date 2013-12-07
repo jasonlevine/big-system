@@ -23,7 +23,7 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
     ofSetLineWidth(4);
 
     post.init(1024, 768);
-    post.createPass<FxaaPass>()->setEnabled(true);
+    post.createPass<FxaaPass>()->setEnabled(false);
     post.createPass<KaleidoscopePass>()->setEnabled(false);
     post.createPass<DofAltPass>()->setEnabled(false);
     post.createPass<BloomPass>()->setEnabled(false);
@@ -40,10 +40,11 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
     cam.lookAt(ofVec3f(lookatX, lookatY, lookatZ));
     cam.setOrientation(ofVec3f(orientX, orientY, orientZ));
     
-    
+	gui->toggleVisible();
 
     presets.loadFile("presets.xml");
     presets.pushTag("root");
+	
 }
 
 void squigglerScene::setupSquigglers(vector<int> &tracks){
@@ -62,15 +63,14 @@ void squigglerScene::update(int width, int height){
 }
 
 void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen = true){
-//    ofPushStyle();
-//    ofEnableAlphaBlending();
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
+    glEnable(GL_DEPTH_TEST);
+	
+	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofBackground(0);
     fbo.begin();
-
-    ofSetColor(0,0,0,fadeAmt);
-    ofRect(0,0, width, height);
-    
+	
+	ofClear(0, fadeAmt);
     
     cam.begin();
     ofDrawAxis(100);
@@ -78,7 +78,9 @@ void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen
         squigglers[i]->draw();
     }
     cam.end();
+
     fbo.end();
+    glDisable(GL_DEPTH_TEST);
     
 
     post.begin();
