@@ -8,7 +8,7 @@
 
 #include "openNIManager.h"
 
-#define USERECORDING
+//#define USERECORDING
 
 //--------------------------------------------------------------
 void openNIManager::userEvent(ofxOpenNIUserEvent & event){

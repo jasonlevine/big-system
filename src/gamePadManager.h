@@ -8,16 +8,26 @@
 
 #pragma once
 #include "ofxGamepadHandler.h"
+#include "projectionManager.h"
 #include "squigglerScene.h"
+#include "meshScene.h"
+#include "colorSchemeDesigner.h"
+#include "smoother.h"
+#include "decayer.h"
 
 class gamePadManager {
 public:
 
-    void setup(vector<scene*> &_scenes);
+    void setup(vector<scene*> &_scenes, colorSchemeDesigner *_colorScheme, projectionManager *_pm);
     
     void axisChanged(ofxGamepadAxisEvent &e);
     void buttonPressed(ofxGamepadButtonEvent &e);
     void buttonReleased(ofxGamepadButtonEvent &e);
     
     vector<scene*> scenes;
+    colorSchemeDesigner *colorScheme;
+    projectionManager *pm;
+    
+    smoother smooth1, smooth2, smooth3, smooth4;
+    decayer decay1, decay2;
 };

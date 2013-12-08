@@ -62,7 +62,7 @@ void testApp::setup() {
     xOffset = yOffset = 0;
     scale = 1.0;
     
-    gamePad.setup(scenes);
+    gamePad.setup(scenes, &colorScheme, &pm);
     
     verdana.loadFont(ofToDataPath("verdana.ttf"), 24);
     
@@ -285,6 +285,11 @@ void testApp::keyPressed(int key){
 			pm.gui->toggleVisible();
             break;
 			
+        case '/':
+            ofSetFullscreen(false);
+            ofSetWindowPosition(0, 0);
+            break;
+            
 		// !!!: motoi added
 		case 'u':
 			
@@ -295,7 +300,6 @@ void testApp::keyPressed(int key){
 			colorScheme.setAngle( value );
 			colorScheme.setDistance( value );
 			break;
-            
     }
 }
 
