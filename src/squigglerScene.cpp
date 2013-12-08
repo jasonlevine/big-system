@@ -13,7 +13,7 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
     aa = _aa;
     oni = _oni;
 
-    fbo.allocate(1024, 768, GL_RGBA32F_ARB);
+    fbo.allocate(1920, 1080, GL_RGBA32F_ARB);
     fbo.begin();
     ofClear(0);
     fbo.end();
@@ -22,7 +22,7 @@ void squigglerScene::setup(audioAnalytics * _aa, openNIManager * _oni) {
 
     ofSetLineWidth(4);
 
-    post.init(1024, 768);
+    post.init(1920, 1080);
     post.createPass<FxaaPass>()->setEnabled(false);
     post.createPass<KaleidoscopePass>()->setEnabled(false);
     post.createPass<DofAltPass>()->setEnabled(false);
@@ -77,7 +77,7 @@ void squigglerScene::draw(int x, int y, int width, int height, bool drawToScreen
 	ofClear(0, fadeAmt);
     
     cam.begin();
-    ofDrawAxis(100);
+//    ofDrawAxis(100);
     for (int i = 0; i < squigglers.size(); i++) {
         squigglers[i]->draw();
     }
@@ -120,11 +120,11 @@ void squigglerScene::setupGUI(){
     
     gui->addFPSSlider("FPS SLIDER", length-xInit, dim*.25, 1000);
     gui->addIntSlider("fadeAmt", 0, 255, &fadeAmt, length-xInit, dim);
-    gui->addSlider("posX", -1024, 1024, &posX, length-xInit, dim);
-    gui->addSlider("posY", -768, 768, &posY, length-xInit, dim);
+    gui->addSlider("posX", -1920, 1920, &posX, length-xInit, dim);
+    gui->addSlider("posY", -1080, 1080, &posY, length-xInit, dim);
     gui->addSlider("posZ", 0, 2000, &posZ, length-xInit, dim);
-    gui->addSlider("lookatX", -1024, 1024, &lookatX, length-xInit, dim);
-    gui->addSlider("lookatY", -768, 768, &lookatY, length-xInit, dim);
+    gui->addSlider("lookatX", -1920, 1920, &lookatX, length-xInit, dim);
+    gui->addSlider("lookatY", -1080, 1080, &lookatY, length-xInit, dim);
     gui->addSlider("lookatZ", -1000, 1000, &lookatZ, length-xInit, dim);
     gui->addSlider("orientX", -180, 180, &orientX, length-xInit, dim);
     gui->addSlider("orientY", -180, 180, &orientY, length-xInit, dim);

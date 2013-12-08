@@ -16,8 +16,8 @@ void projectionManager::setup(openNIManager &_oni, vector<scene*> &_scenes){
     
     shader.load("shadersGL2/shader");
 
-    w = 1024;
-    h = 768;
+    w = 1920;
+    h = 1080;
     
     maskFbo.allocate(w, h, GL_RGBA);
     fgFbo.allocate(w, h, GL_RGBA);

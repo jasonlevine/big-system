@@ -22,7 +22,7 @@ void meshScene::setup(audioAnalytics * _aa, openNIManager * _oni){
     }
     
     // Setup post-processing chain
-    post.init(1024, 768);
+    post.init(1920, 1080);
     post.createPass<FxaaPass>()->setEnabled(true);
     post.createPass<BloomPass>()->setEnabled(false);
     post.createPass<DofAltPass>()->setEnabled(false);
@@ -111,7 +111,6 @@ void meshScene::draw(int x, int y, int width, int height, bool drawToScreen = tr
             }
         }
         
-        
         post.begin(cam);
         ofPushMatrix();
         ofRotateX(meshRotateX);
@@ -119,7 +118,7 @@ void meshScene::draw(int x, int y, int width, int height, bool drawToScreen = tr
         ofScale(scaleX, scaleY, scaleZ);
         ofTranslate(-width/2, 0, -height/2);
         ofSetLineWidth(lineWidth);
-        mesh.drawWireframe();
+        mesh.draw();
         ofPopMatrix();
         post.end();
     }

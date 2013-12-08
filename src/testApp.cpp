@@ -77,9 +77,10 @@ void testApp::setup() {
 void testApp::update(){
     oni.update();
     aa.updateAnalytics();
+    gamePad.update();
     
     for (int i = 0; i < scenes.size(); i++) {
-        scenes[i]->update(1024, 768);
+        scenes[i]->update(1920, 1080);
     }
     
     /*
@@ -121,7 +122,7 @@ void testApp::draw(){
             break;
             
         case 2:
-            scenes[currentScene]->draw(0, 0, 1024, 768, true);
+            scenes[currentScene]->draw(0, 0, 1920, 1080, true);
             break;
             
         case 3:
@@ -134,10 +135,10 @@ void testApp::draw(){
     }
     
     
-	ofSetColor(0, 255, 0);
-	string msg = "FPS: " + ofToString(ofGetFrameRate()) + " Device FPS: " + ofToString(oni.openNIDevice.getFrameRate());
-    
-	verdana.drawString(msg, ofGetWidth() - 600, 20);
+//	ofSetColor(0, 255, 0);
+//	string msg = "FPS: " + ofToString(ofGetFrameRate()) + " Device FPS: " + ofToString(oni.openNIDevice.getFrameRate());
+//    
+//	verdana.drawString(msg, ofGetWidth() - 600, 20);
 }
 
 

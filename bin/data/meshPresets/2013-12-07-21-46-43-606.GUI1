@@ -1,0 +1,90 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>FPS SLIDER</Name>
+    <Value>25.088792801</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lineWidth</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>noiseScale</Name>
+    <Value>0.061133604</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>noiseStrength</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>waveSpeed</Name>
+    <Value>38.676113129</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>waveStrength</Name>
+    <Value>0.502024293</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>hScale</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>colScale</Name>
+    <Value>5.773279667</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>meshRotateX</Name>
+    <Value>12.753036499</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>scaleX</Name>
+    <Value>50.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>scaleY</Name>
+    <Value>180.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>scaleZ</Name>
+    <Value>27.125505447</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>camX</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>camY</Name>
+    <Value>150.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>camZ</Name>
+    <Value>600.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lookatX</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lookatY</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>lookatZ</Name>
+    <Value>-600.000000000</Value>
+</Widget>

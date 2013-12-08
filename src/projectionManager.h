@@ -17,8 +17,8 @@ class Screen;
 
 const bool use_auto_save = true;
 const int APP_HEIGHT = 800;
-const int MBP_WIDTH = 1024;
-const int PJ1_WIDTH = 1024;
+const int MBP_WIDTH = 1920;
+const int PJ1_WIDTH = 1920;
 
 enum SCENE_INDEX {
 	SCENE_SQUIGLLER_1 = 0,

@@ -19,6 +19,7 @@ class gamePadManager {
 public:
 
     void setup(vector<scene*> &_scenes, colorSchemeDesigner *_colorScheme, projectionManager *_pm);
+    void update();
     
     void axisChanged(ofxGamepadAxisEvent &e);
     void buttonPressed(ofxGamepadButtonEvent &e);

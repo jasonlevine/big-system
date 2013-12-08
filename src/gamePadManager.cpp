@@ -25,16 +25,19 @@ void gamePadManager::setup(vector<scene*> &_scenes, colorSchemeDesigner *_colorS
         ofAddListener(pad->onButtonReleased, this, &gamePadManager::buttonReleased);
     }
     
-    smooth1.setNumPValues(10);
-    smooth2.setNumPValues(10);
-    smooth3.setNumPValues(10);
-    smooth4.setNumPValues(10);
+    smooth1.setNumPValues(25);
+    smooth2.setNumPValues(25);
+    smooth3.setNumPValues(25);
+    smooth4.setNumPValues(25);
     
-    decay1.setDecay(0.95);
-    decay2.setDecay(0.95);
+    decay1.setDecay(0.99);
+    decay2.setDecay(0.99);
 }
 
-
+void gamePadManager::update() {
+    decay1.update();
+    decay2.update();
+}
 
 //--------------------------------------------------------------
 
